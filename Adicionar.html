@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal - Adicionar notícia</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f5;
+  color: #111;
+}
+
+.cabecalho {
+  background: #111;
+  color: white;
+  padding: 25px 20px;
+  text-align: center;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.cabecalho p {
+  margin: 7px 0 0;
+}
+
+.conteudo {
+  max-width: 650px;
+  margin: auto;
+  padding: 20px;
+}
+
+.caixa {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.caixa h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  height: 200px;
+  resize: vertical;
+}
+
+#preview {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  margin-top: 15px;
+  border-radius: 10px;
+  display: none;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 22px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+button:active {
+  background: #333;
+}
+
+#mensagem {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.rodape {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="cabecalho">
+
+<h1>MEU JORNAL</h1>
+
+<p>Publicar nova notícia</p>
+
+</div>
+
+
+<div class="conteudo">
+
+<div class="caixa">
+
+<h2>Adicionar notícia</h2>
+
+
+<label for="titulo">
+Título da notícia
+</label>
+
+<input
+type="text"
+id="titulo"
+placeholder="Digite o título da notícia"
+>
+
+
+<label for="data">
+Data
+</label>
+
+<input
+type="date"
+id="data"
+>
+
+
+<label for="categoria">
+Categoria
+</label>
+
+<select id="categoria">
+
+<option value="">
+Escolha uma categoria
+</option>
+
+<option value="Política">
+Política
+</option>
+
+<option value="Sociedade">
+Sociedade
+</option>
+
+<option value="Desporto">
+Desporto
+</option>
+
+<option value="Economia">
+Economia
+</option>
+
+<option value="Educação">
+Educação
+</option>
+
+<option value="Cultura">
+Cultura
+</option>
+
+</select>
+
+
+<label for="imagem">
+Foto da notícia
+</label>
+
+<input
+type="file"
+id="imagem"
+accept="image/*"
+>
+
+
+<img
+id="preview"
+alt="Pré-visualização da foto"
+>
+
+
+<label for="texto">
+Notícia completa
+</label>
+
+<textarea
+id="texto"
+placeholder="Digite a notícia completa"
+></textarea>
+
+
+<button onclick="publicarNoticia()">
+
+Publicar notícia
+
+</button>
+
+
+<p id="mensagem"></p>
+
+</div>
+
+</div>
+
+
+<div class="rodape">
+
+<p>© 2026 Meu Jornal</p>
+
+</div>
+
+
+<script>
+
+var imagemBase64 = "";
+
+
+/* ESCOLHER FOTO */
+
+document.getElementById("imagem")
+.addEventListener(
+"change",
+function() {
+
+
+var arquivo = this.files[0];
+
+
+if (!arquivo) {
+
+imagemBase64 = "";
+
+document.getElementById(
+"preview"
+).style.display =
+"none";
+
+return;
+
+}
+
+
+/* LER FOTO */
+
+var leitor =
+new FileReader();
+
+
+leitor.onload =
+function(evento) {
+
+
+var imagem =
+new Image();
+
+
+imagem.onload =
+function() {
+
+
+/*
+REDUZIR A FOTO
+PARA 500 PIXELS
+*/
+
+var largura =
+imagem.width;
+
+var altura =
+imagem.height;
+
+
+var limite =
+500;
+
+
+if (largura > altura) {
+
+if (largura > limite) {
+
+altura =
+altura *
+(limite / largura);
+
+largura =
+limite;
+
+}
+
+} else {
+
+if (altura > limite) {
+
+largura =
+largura *
+(limite / altura);
+
+altura =
+limite;
+
+}
+
+}
+
+
+/* CANVAS */
+
+var canvas =
+document.createElement(
+"canvas"
+);
+
+
+canvas.width =
+Math.round(largura);
+
+canvas.height =
+Math.round(altura);
+
+
+/* CONTEXTO */
+
+var contexto =
+canvas.getContext("2d");
+
+
+contexto.drawImage(
+
+imagem,
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+/*
+COMPRESSÃO FORTE
+*/
+
+imagemBase64 =
+canvas.toDataURL(
+"image/jpeg",
+0.45
+);
+
+
+/* PRÉ-VISUALIZAÇÃO */
+
+var preview =
+document.getElementById(
+"preview"
+);
+
+
+preview.src =
+imagemBase64;
+
+
+preview.style.display =
+"block";
+
+
+};
+
+
+imagem.src =
+evento.target.result;
+
+};
+
+
+leitor.readAsDataURL(
+arquivo
+);
+
+});
+
+
+/* PUBLICAR */
+
+function publicarNoticia() {
+
+
+var titulo =
+document.getElementById(
+"titulo"
+).value.trim();
+
+
+var data =
+document.getElementById(
+"data"
+).value;
+
+
+var categoria =
+document.getElementById(
+"categoria"
+).value;
+
+
+var texto =
+document.getElementById(
+"texto"
+).value.trim();
+
+
+var mensagem =
+document.getElementById(
+"mensagem"
+);
+
+
+if (titulo === "") {
+
+mensagem.textContent =
+"Digite o título da notícia.";
+
+return;
+
+}
+
+
+if (data === "") {
+
+mensagem.textContent =
+"Escolha a data da notícia.";
+
+return;
+
+}
+
+
+if (categoria === "") {
+
+mensagem.textContent =
+"Escolha uma categoria.";
+
+return;
+
+}
+
+
+if (texto === "") {
+
+mensagem.textContent =
+"Digite o texto da notícia.";
+
+return;
+
+}
+
+
+/* BUSCAR NOTÍCIAS */
+
+var noticias = [];
+
+
+try {
+
+noticias =
+JSON.parse(
+
+localStorage.getItem(
+"meuJornalNoticias"
+) || "[]"
+
+);
+
+}
+
+catch (erro) {
+
+noticias = [];
+
+}
+
+
+/* NOVA NOTÍCIA */
+
+var novaNoticia = {
+
+titulo: titulo,
+
+data: data,
+
+categoria: categoria,
+
+texto: texto,
+
+imagem: imagemBase64,
+
+visualizacoes: 0
+
+};
+
+
+/* TENTAR GUARDAR */
+
+noticias.push(
+novaNoticia
+);
+
+
+try {
+
+
+localStorage.setItem(
+
+"meuJornalNoticias",
+
+JSON.stringify(noticias)
+
+);
+
+
+/* SUCESSO */
+
+mensagem.textContent =
+"Notícia publicada com sucesso!";
+
+
+limparFormulario();
+
+
+}
+
+catch (erro) {
+
+
+/*
+SE O ARMAZENAMENTO
+ESTIVER CHEIO,
+TENTAR SEM A FOTO
+*/
+
+noticias.pop();
+
+
+novaNoticia.imagem = "";
+
+
+noticias.push(
+novaNoticia
+);
+
+
+try {
+
+
+localStorage.setItem(
+
+"meuJornalNoticias",
+
+JSON.stringify(noticias)
+
+);
+
+
+mensagem.textContent =
+
+"Notícia publicada, mas a foto não pôde ser guardada. O armazenamento está cheio.";
+
+
+limparFormulario();
+
+
+}
+
+catch (erro2) {
+
+
+noticias.pop();
+
+
+mensagem.textContent =
+
+"Não foi possível publicar. O armazenamento do navegador está cheio.";
+
+}
+
+}
+
+}
+
+
+/* LIMPAR FORMULÁRIO */
+
+function limparFormulario() {
+
+
+document.getElementById(
+"titulo"
+).value = "";
+
+
+document.getElementById(
+"data"
+).value = "";
+
+
+document.getElementById(
+"categoria"
+).value = "";
+
+
+document.getElementById(
+"texto"
+).value = "";
+
+
+document.getElementById(
+"imagem"
+).value = "";
+
+
+document.getElementById(
+"preview"
+).src = "";
+
+
+document.getElementById(
+"preview"
+).style.display =
+"none";
+
+
+imagemBase64 = "";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

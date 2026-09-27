@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Jornal - Notícia</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .conteudo {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .imagem {
+            width: 100%;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        a {
+            color: #222;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>MEU JORNAL</h1>
+    <p>Informação ao seu alcance</p>
+</header>
+
+<div class="conteudo">
+
+    <h2>Nova ponte é inaugurada na cidade</h2>
+
+    <p><strong>Data:</strong> 22 de Setembro de 2026</p>
+
+    <img
+        class="imagem"
+        src="https://images.unsplash.com/photo-1454625233598-f29d597eea1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+        alt="Ponte sobre o rio">
+
+    <p>
+        Uma nova ponte foi inaugurada na cidade, com o objetivo de
+        melhorar a circulação de pessoas e veículos.
+    </p>
+
+    <p>
+        A nova infraestrutura vai facilitar a ligação entre diferentes
+        zonas e contribuir para uma circulação mais rápida e segura.
+    </p>
+
+    <p>
+        Durante a inauguração, moradores destacaram a importância da
+        ponte para o desenvolvimento da região.
+    </p>
+
+    <p>
+        As autoridades informaram que outras melhorias poderão ser
+        realizadas para continuar a melhorar as condições de circulação.
+    </p>
+
+    <br>
+
+    <a href="noticias.html">← Voltar para notícias</a>
+
+</div>
+
+</body>
+</html>

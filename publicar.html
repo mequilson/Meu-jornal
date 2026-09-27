@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal - Publicar</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin:0;
+}
+
+header p{
+    margin:6px 0 0;
+}
+
+nav{
+    background:#1f2937;
+    text-align:center;
+    padding:12px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 6px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:700px;
+    margin:25px auto;
+    padding:20px;
+}
+
+.caixa{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+    margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+
+}
+
+textarea{
+
+    min-height:220px;
+    resize:vertical;
+
+}
+
+.contador{
+
+    text-align:right;
+    color:#666;
+    font-size:13px;
+    margin-top:4px;
+
+}
+
+.preview{
+
+    margin-top:15px;
+    text-align:center;
+
+}
+
+.preview img{
+
+    max-width:100%;
+    max-height:350px;
+    border-radius:10px;
+
+}
+
+.botoes{
+
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+
+}
+
+button{
+
+    flex:1;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+
+}
+
+.publicar{
+
+    background:#16a34a;
+    color:white;
+
+}
+
+.limpar{
+
+    background:#dc2626;
+    color:white;
+
+}
+
+.sucesso{
+
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#dcfce7;
+    color:#166534;
+    border-radius:8px;
+    font-weight:bold;
+
+}
+
+.erro{
+
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#fee2e2;
+    color:#991b1b;
+    border-radius:8px;
+    font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1>MEU JORNAL</h1>
+
+<p>Publicar notícia</p>
+
+</header>
+
+
+<nav>
+
+<a href="index.html">INÍCIO</a>
+
+<a href="publicar.html">PUBLICAR</a>
+
+<a href="noticias.html">NOTÍCIAS</a>
+
+<a href="rendimento.html">RENDIMENTO</a>
+
+</nav>
+
+
+<div class="container">
+
+<div class="caixa">
+
+<h2 id="tituloPagina">
+Publicar nova notícia
+</h2>
+
+
+<label>
+Nome do autor/repórter
+</label>
+
+<input
+type="text"
+id="autor"
+placeholder="Nome do autor ou repórter"
+>
+
+
+<label>
+Data da publicação
+</label>
+
+<input
+type="date"
+id="data"
+>
+
+
+<label>
+Título da notícia
+</label>
+
+<input
+type="text"
+id="titulo"
+placeholder="Digite o título da notícia"
+>
+
+
+<label>
+Categoria
+</label>
+
+<select id="categoria">
+
+<option value="Outras">
+Outras
+</option>
+
+<option value="Política">
+Política
+</option>
+
+<option value="Desporto">
+Desporto
+</option>
+
+<option value="Economia">
+Economia
+</option>
+
+<option value="Sociedade">
+Sociedade
+</option>
+
+<option value="Cultura">
+Cultura
+</option>
+
+<option value="Educação">
+Educação
+</option>
+
+<option value="Saúde">
+Saúde
+</option>
+
+<option value="Tecnologia">
+Tecnologia
+</option>
+
+<option value="Internacional">
+Internacional
+</option>
+
+</select>
+
+
+<label>
+Texto da notícia
+</label>
+
+<textarea
+id="texto"
+maxlength="10000"
+placeholder="Escreva aqui a notícia..."
+></textarea>
+
+
+<div class="contador">
+
+<span id="contador">0</span>
+ / 10000 caracteres
+
+</div>
+
+
+<label>
+Imagem da notícia
+</label>
+
+<input
+type="file"
+id="imagem"
+accept="image/*"
+>
+
+
+<div
+class="preview"
+id="preview">
+</div>
+
+
+<div class="botoes">
+
+<button
+class="publicar"
+onclick="publicarNoticia()">
+
+PUBLICAR
+
+</button>
+
+
+<button
+class="limpar"
+onclick="limparFormulario()">
+
+LIMPAR
+
+</button>
+
+</div>
+
+
+<div
+class="sucesso"
+id="mensagemSucesso">
+</div>
+
+
+<div
+class="erro"
+id="mensagemErro">
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+NOTÍCIAS
+========================= */
+
+var noticias =
+JSON.parse(
+localStorage.getItem(
+"meuJornalNoticias"
+)
+) || [];
+
+
+var modoEdicao=false;
+
+var indiceEdicao=-1;
+
+
+/* =========================
+DATA
+========================= */
+
+function dataAtual(){
+
+var d=new Date();
+
+var ano=d.getFullYear();
+
+var mes=String(
+d.getMonth()+1
+).padStart(2,"0");
+
+var dia=String(
+d.getDate()
+).padStart(2,"0");
+
+return ano+"-"+mes+"-"+dia;
+
+}
+
+
+document.getElementById(
+"data"
+).value=dataAtual();
+
+
+/* =========================
+CONTADOR
+========================= */
+
+document.getElementById(
+"texto"
+).addEventListener(
+"input",
+function(){
+
+document.getElementById(
+"contador"
+).textContent=
+this.value.length;
+
+}
+);
+
+
+/* =========================
+IMAGEM
+========================= */
+
+document.getElementById(
+"imagem"
+).addEventListener(
+"change",
+function(){
+
+var arquivo=this.files[0];
+
+if(!arquivo){
+
+document.getElementById(
+"preview"
+).innerHTML="";
+
+return;
+
+}
+
+
+/*
+Limite de segurança.
+*/
+
+if(
+arquivo.size >
+3 * 1024 * 1024
+){
+
+alert(
+"A imagem é muito grande. Escolha uma imagem menor que 3 MB."
+);
+
+this.value="";
+
+document.getElementById(
+"preview"
+).innerHTML="";
+
+return;
+
+}
+
+
+var leitor=new FileReader();
+
+
+leitor.onload=function(e){
+
+document.getElementById(
+"preview"
+).innerHTML=
+"<img src='"+e.target.result+"'>";
+
+};
+
+
+leitor.onerror=function(){
+
+mostrarErro(
+"Não foi possível ler a imagem."
+);
+
+};
+
+
+leitor.readAsDataURL(arquivo);
+
+}
+
+);
+
+
+/* =========================
+COMPRIMIR IMAGEM
+========================= */
+
+function prepararImagem(
+arquivo,
+callback
+){
+
+var leitor=new FileReader();
+
+
+leitor.onload=function(e){
+
+var img=new Image();
+
+
+img.onload=function(){
+
+var max=1200;
+
+var largura=img.width;
+
+var altura=img.height;
+
+
+if(largura>max){
+
+altura=
+altura*(max/largura);
+
+largura=max;
+
+}
+
+
+if(altura>max){
+
+largura=
+largura*(max/altura);
+
+altura=max;
+
+}
+
+
+var canvas=
+document.createElement("canvas");
+
+
+canvas.width=
+Math.round(largura);
+
+canvas.height=
+Math.round(altura);
+
+
+var contexto=
+canvas.getContext("2d");
+
+
+contexto.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+/*
+JPEG reduz bastante o tamanho.
+*/
+
+var imagemFinal=
+canvas.toDataURL(
+"image/jpeg",
+0.75
+);
+
+
+callback(imagemFinal);
+
+};
+
+
+img.onerror=function(){
+
+mostrarErro(
+"Não foi possível preparar a imagem."
+);
+
+};
+
+
+img.src=e.target.result;
+
+};
+
+
+leitor.onerror=function(){
+
+mostrarErro(
+"Não foi possível ler a imagem."
+);
+
+};
+
+
+leitor.readAsDataURL(arquivo);
+
+}
+
+
+/* =========================
+PUBLICAR
+========================= */
+
+function publicarNoticia(){
+
+esconderMensagens();
+
+
+var autor=
+document.getElementById(
+"autor"
+).value.trim();
+
+
+var data=
+document.getElementById(
+"data"
+).value;
+
+
+var titulo=
+document.getElementById(
+"titulo"
+).value.trim();
+
+
+var categoria=
+document.getElementById(
+"categoria"
+).value;
+
+
+var texto=
+document.getElementById(
+"texto"
+).value.trim();
+
+
+var arquivo=
+document.getElementById(
+"imagem"
+).files[0];
+
+
+if(titulo===""){
+
+alert(
+"Digite o título da notícia."
+);
+
+return;
+
+}
+
+
+if(texto===""){
+
+alert(
+"Escreva o texto da notícia."
+);
+
+return;
+
+}
+
+
+if(data===""){
+
+data=dataAtual();
+
+}
+
+
+/* =========================
+EDIÇÃO
+========================= */
+
+if(modoEdicao){
+
+noticias[indiceEdicao].autor=
+autor;
+
+noticias[indiceEdicao].data=
+data;
+
+noticias[indiceEdicao].titulo=
+titulo;
+
+noticias[indiceEdicao].categoria=
+categoria;
+
+noticias[indiceEdicao].texto=
+texto;
+
+
+if(arquivo){
+
+prepararImagem(
+arquivo,
+function(imagemBase64){
+
+noticias[indiceEdicao]
+.imagem=imagemBase64;
+
+
+/*
+Também mantemos imagemId
+antigo para não quebrar dados.
+*/
+
+salvarNoticias();
+
+finalizarEdicao();
+
+}
+);
+
+}else{
+
+salvarNoticias();
+
+finalizarEdicao();
+
+}
+
+return;
+
+}
+
+
+/* =========================
+NOVA NOTÍCIA
+========================= */
+
+var noticia={
+
+autor:autor,
+
+data:data,
+
+titulo:titulo,
+
+categoria:categoria,
+
+texto:texto
+
+};
+
+
+if(arquivo){
+
+prepararImagem(
+arquivo,
+function(imagemBase64){
+
+noticia.imagem=
+imagemBase64;
+
+noticias.push(noticia);
+
+salvarNoticias();
+
+mostrarSucesso(
+"Notícia publicada com sucesso!"
+);
+
+limparCampos();
+
+}
+);
+
+}else{
+
+noticias.push(noticia);
+
+salvarNoticias();
+
+mostrarSucesso(
+"Notícia publicada com sucesso!"
+);
+
+limparCampos();
+
+}
+
+}
+
+
+/* =========================
+SALVAR
+========================= */
+
+function salvarNoticias(){
+
+try{
+
+localStorage.setItem(
+"meuJornalNoticias",
+JSON.stringify(noticias)
+);
+
+}catch(e){
+
+mostrarErro(
+"Não foi possível guardar a notícia. A imagem pode ser grande demais."
+);
+
+}
+
+}
+
+
+/* =========================
+EDIÇÃO
+========================= */
+
+function finalizarEdicao(){
+
+modoEdicao=false;
+
+indiceEdicao=-1;
+
+document.getElementById(
+"tituloPagina"
+).textContent=
+"Publicar nova notícia";
+
+mostrarSucesso(
+"Notícia atualizada com sucesso!"
+);
+
+limparCampos();
+
+}
+
+
+/* =========================
+SUCESSO
+========================= */
+
+function mostrarSucesso(texto){
+
+var caixa=
+document.getElementById(
+"mensagemSucesso"
+);
+
+caixa.textContent=texto;
+
+caixa.style.display="block";
+
+}
+
+
+function mostrarErro(texto){
+
+var caixa=
+document.getElementById(
+"mensagemErro"
+);
+
+caixa.textContent=texto;
+
+caixa.style.display="block";
+
+}
+
+
+function esconderMensagens(){
+
+document.getElementById(
+"mensagemSucesso"
+).style.display="none";
+
+document.getElementById(
+"mensagemErro"
+).style.display="none";
+
+}
+
+
+/* =========================
+LIMPAR CAMPOS
+========================= */
+
+function limparCampos(){
+
+document.getElementById(
+"autor"
+).value="";
+
+document.getElementById(
+"titulo"
+).value="";
+
+document.getElementById(
+"categoria"
+).value="Outras";
+
+document.getElementById(
+"texto"
+).value="";
+
+document.getElementById(
+"imagem"
+).value="";
+
+document.getElementById(
+"preview"
+).innerHTML="";
+
+document.getElementById(
+"contador"
+).textContent="0";
+
+document.getElementById(
+"data"
+).value=dataAtual();
+
+}
+
+
+function limparFormulario(){
+
+limparCampos();
+
+esconderMensagens();
+
+}
+
+
+/* =========================
+CARREGAR EDIÇÃO
+========================= */
+
+function carregarEdicao(){
+
+var valor=
+localStorage.getItem(
+"meuJornalEditar"
+);
+
+if(valor===null){
+
+return;
+
+}
+
+
+localStorage.removeItem(
+"meuJornalEditar"
+);
+
+
+var indice=parseInt(valor);
+
+
+if(
+isNaN(indice) ||
+!noticias[indice]
+){
+
+return;
+
+}
+
+
+modoEdicao=true;
+
+indiceEdicao=indice;
+
+
+var noticia=
+noticias[indice];
+
+
+document.getElementById(
+"tituloPagina"
+).textContent=
+"Editar notícia";
+
+
+document.getElementById(
+"autor"
+).value=
+noticia.autor || "";
+
+
+document.getElementById(
+"titulo"
+).value=
+noticia.titulo || "";
+
+
+document.getElementById(
+"categoria"
+).value=
+noticia.categoria || "Outras";
+
+
+document.getElementById(
+"texto"
+).value=
+noticia.texto || "";
+
+
+if(
+noticia.data &&
+/^\d{4}-\d{2}-\d{2}$/.test(
+noticia.data
+)
+){
+
+document.getElementById(
+"data"
+).value=
+noticia.data;
+
+}
+
+
+document.getElementById(
+"contador"
+).textContent=
+(noticia.texto || "").length;
+
+
+/*
+Se a notícia já tiver imagem
+guardada diretamente.
+*/
+
+if(noticia.imagem){
+
+document.getElementById(
+"preview"
+).innerHTML=
+"<img src='"+noticia.imagem+"'>";
+
+}
+
+}
+
+
+/* =========================
+INICIAR
+========================= */
+
+carregarEdicao();
+
+</script>
+
+</body>
+</html>

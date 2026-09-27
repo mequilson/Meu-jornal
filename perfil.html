@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfil - Meu Jornal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f2f2f2;
+        }
+
+        .pagina {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .cartao {
+            background: white;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        .foto {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #ddd;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 7px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .botao {
+            display: block;
+            margin-top: 20px;
+            padding: 14px;
+            background: #333;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        #mensagem {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="pagina">
+
+    <h1>MEU JORNAL</h1>
+
+    <div class="cartao">
+
+        <div class="foto">
+            👤
+        </div>
+
+        <label for="nome">
+            Nome do jornalista
+        </label>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Digite o seu nome"
+        >
+
+        <label for="profissao">
+            Profissão
+        </label>
+
+        <input
+            type="text"
+            id="profissao"
+            placeholder="Ex.: Jornalista"
+        >
+
+        <label for="biografia">
+            Sobre o jornalista
+        </label>
+
+        <textarea
+            id="biografia"
+            placeholder="Escreva uma breve descrição"
+        ></textarea>
+
+        <button onclick="guardarPerfil()">
+            Guardar perfil
+        </button>
+
+        <p id="mensagem"></p>
+
+    </div>
+
+    <div class="cartao">
+
+        <h2>Meu perfil</h2>
+
+        <p>
+            <strong>Nome:</strong>
+            <span id="nomeMostrado">Ainda não definido</span>
+        </p>
+
+        <p>
+            <strong>Profissão:</strong>
+            <span id="profissaoMostrada">Ainda não definida</span>
+        </p>
+
+        <p>
+            <strong>Sobre:</strong>
+        </p>
+
+        <p id="biografiaMostrada">
+            Ainda não definida
+        </p>
+
+    </div>
+
+    <a class="botao" href="noticias.html">
+        Voltar para notícias
+    </a>
+
+</div>
+
+<script>
+
+function guardarPerfil() {
+
+    var nome =
+        document.getElementById("nome").value.trim();
+
+    var profissao =
+        document.getElementById("profissao").value.trim();
+
+    var biografia =
+        document.getElementById("biografia").value.trim();
+
+    if (nome === "") {
+
+        document.getElementById("mensagem").textContent =
+            "Digite o seu nome.";
+
+        return;
+    }
+
+    localStorage.setItem(
+        "meuJornalPerfilNome",
+        nome
+    );
+
+    localStorage.setItem(
+        "meuJornalPerfilProfissao",
+        profissao
+    );
+
+    localStorage.setItem(
+        "meuJornalPerfilBiografia",
+        biografia
+    );
+
+    document.getElementById("mensagem").textContent =
+        "Perfil guardado com sucesso.";
+
+    mostrarPerfil();
+}
+
+function mostrarPerfil() {
+
+    var nome =
+        localStorage.getItem("meuJornalPerfilNome") ||
+        "Ainda não definido";
+
+    var profissao =
+        localStorage.getItem("meuJornalPerfilProfissao") ||
+        "Ainda não definida";
+
+    var biografia =
+        localStorage.getItem("meuJornalPerfilBiografia") ||
+        "Ainda não definida";
+
+    document.getElementById("nome").value =
+        nome === "Ainda não definido" ? "" : nome;
+
+    document.getElementById("profissao").value =
+        profissao === "Ainda não definida" ? "" : profissao;
+
+    document.getElementById("biografia").value =
+        biografia === "Ainda não definida" ? "" : biografia;
+
+    document.getElementById("nomeMostrado").textContent =
+        nome;
+
+    document.getElementById("profissaoMostrada").textContent =
+        profissao;
+
+    document.getElementById("biografiaMostrada").textContent =
+        biografia;
+}
+
+mostrarPerfil();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal - Rendimento</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+}
+
+header {
+  background: #0b57d0;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.conteudo {
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.caixa {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.caixa h2 {
+  margin-top: 0;
+  color: #0b57d0;
+}
+
+.numero {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 17px;
+}
+
+.botao {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: #0b57d0;
+  color: white;
+  padding: 14px;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.botao.apagar {
+  background: #d93025;
+  margin-top: 8px;
+}
+
+.mensagem {
+  text-align: center;
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.info {
+  background: #e8f0fe;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.historico-item {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.historico-item:last-child {
+  border-bottom: none;
+}
+
+.valor {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b57d0;
+}
+
+.data {
+  color: #666;
+  margin-top: 5px;
+}
+
+.sem-historico {
+  color: #777;
+  text-align: center;
+  padding: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+<h1>MEU JORNAL</h1>
+
+<p>Rendimento</p>
+
+</header>
+
+
+<div class="conteudo">
+
+
+<div class="info">
+
+<strong>Cálculo atual:</strong><br>
+
+Cada visualização vale
+<strong>0,50 MT</strong>
+no cálculo interno do jornal.
+
+</div>
+
+
+<div class="caixa">
+
+<h2>Visualizações</h2>
+
+<div
+  class="numero"
+  id="visualizacoes">
+0
+</div>
+
+<p>
+Número de visualizações das notícias.
+</p>
+
+</div>
+
+
+<div class="caixa">
+
+<h2>Publicidade</h2>
+
+<div
+  class="numero"
+  id="publicidade">
+0 MT
+</div>
+
+<p>
+Valor total recebido através de publicidade.
+</p>
+
+<input
+  type="number"
+  id="valorPublicidade"
+  placeholder="Digite o valor da publicidade"
+  step="0.01"
+  min="0"
+>
+
+<button
+  class="botao"
+  onclick="adicionarPublicidade()">
+
+ADICIONAR PUBLICIDADE
+
+</button>
+
+<div
+  class="mensagem"
+  id="mensagem">
+</div>
+
+</div>
+
+
+<div class="caixa">
+
+<h2>Rendimento</h2>
+
+<div
+  class="numero"
+  id="rendimento">
+0 MT
+</div>
+
+<p>
+Rendimento calculado pelas visualizações.
+</p>
+
+</div>
+
+
+<div class="caixa">
+
+<h2>Rendimento total</h2>
+
+<div
+  class="numero"
+  id="total">
+0 MT
+</div>
+
+<p>
+Rendimento das visualizações + publicidade.
+</p>
+
+</div>
+
+
+<div class="caixa">
+
+<h2>Histórico de publicidade</h2>
+
+<div id="historico"></div>
+
+</div>
+
+
+<button
+  class="botao"
+  onclick="voltar()">
+
+← VOLTAR AO INÍCIO
+
+</button>
+
+
+</div>
+
+
+<footer>
+
+Meu Jornal
+
+</footer>
+
+
+<script>
+
+
+var valorPorVisualizacao = 0.50;
+
+
+function obterHistorico() {
+
+  return JSON.parse(
+    localStorage.getItem(
+      "meuJornalHistoricoPublicidade"
+    )
+  ) || [];
+
+}
+
+
+function atualizar() {
+
+
+var visualizacoes =
+parseInt(
+  localStorage.getItem(
+    "meuJornalVisualizacoes"
+  )
+) || 0;
+
+
+var publicidade =
+parseFloat(
+  localStorage.getItem(
+    "meuJornalPublicidade"
+  )
+) || 0;
+
+
+var rendimento =
+visualizacoes *
+valorPorVisualizacao;
+
+
+var total =
+rendimento +
+publicidade;
+
+
+localStorage.setItem(
+  "meuJornalRendimento",
+  rendimento
+);
+
+
+localStorage.setItem(
+  "meuJornalTotal",
+  total
+);
+
+
+document.getElementById(
+  "visualizacoes"
+).innerText =
+visualizacoes;
+
+
+document.getElementById(
+  "publicidade"
+).innerText =
+publicidade.toFixed(2) +
+" MT";
+
+
+document.getElementById(
+  "rendimento"
+).innerText =
+rendimento.toFixed(2) +
+" MT";
+
+
+document.getElementById(
+  "total"
+).innerText =
+total.toFixed(2) +
+" MT";
+
+
+mostrarHistorico();
+
+}
+
+
+function adicionarPublicidade() {
+
+
+var campo =
+document.getElementById(
+  "valorPublicidade"
+);
+
+
+var valor =
+parseFloat(
+  campo.value
+);
+
+
+if (
+  isNaN(valor) ||
+  valor <= 0
+) {
+
+  document.getElementById(
+    "mensagem"
+  ).innerText =
+  "Digite um valor válido.";
+
+  return;
+
+}
+
+
+var publicidadeAtual =
+parseFloat(
+  localStorage.getItem(
+    "meuJornalPublicidade"
+  )
+) || 0;
+
+
+var novaPublicidade =
+publicidadeAtual +
+valor;
+
+
+localStorage.setItem(
+  "meuJornalPublicidade",
+  novaPublicidade
+);
+
+
+var historico =
+obterHistorico();
+
+
+var agora =
+new Date();
+
+
+var registro = {
+
+  valor: valor,
+
+  data:
+  agora.toLocaleDateString(
+    "pt-PT"
+  ),
+
+  hora:
+  agora.toLocaleTimeString(
+    "pt-PT"
+  )
+
+};
+
+
+historico.push(
+  registro
+);
+
+
+localStorage.setItem(
+  "meuJornalHistoricoPublicidade",
+  JSON.stringify(
+    historico
+  )
+);
+
+
+campo.value = "";
+
+
+document.getElementById(
+  "mensagem"
+).innerText =
+"Publicidade adicionada com sucesso.";
+
+
+atualizar();
+
+}
+
+
+function mostrarHistorico() {
+
+
+var historico =
+obterHistorico();
+
+
+var area =
+document.getElementById(
+  "historico"
+);
+
+
+if (
+  historico.length === 0
+) {
+
+  area.innerHTML =
+  '<div class="sem-historico">' +
+  'Nenhuma publicidade registrada.' +
+  '</div>';
+
+  return;
+
+}
+
+
+var html = "";
+
+
+for (
+  var i = historico.length - 1;
+  i >= 0;
+  i--
+) {
+
+
+html +=
+
+'<div class="historico-item">' +
+
+'<div class="valor">' +
+
+Number(
+  historico[i].valor
+).toFixed(2) +
+
+' MT</div>' +
+
+'<div class="data">' +
+
+'Data: ' +
+historico[i].data +
+
+'<br>' +
+
+'Hora: ' +
+historico[i].hora +
+
+'</div>' +
+
+'</div>';
+
+
+}
+
+
+area.innerHTML =
+html;
+
+}
+
+
+function voltar() {
+
+  window.location.href =
+  "index.html";
+
+}
+
+
+atualizar();
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Jornal - Notícias</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #0b4f8a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .noticia {
+      background: white;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .imagem {
+      height: 150px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .botao {
+      background: #0b4f8a;
+      color: white;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .data {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>MEU JORNAL</h1>
+  <p>Notícias e informações</p>
+</header>
+
+<div id="listaNoticias"></div>
+
+<script>
+
+var noticiasPublicadas =
+  JSON.parse(localStorage.getItem("noticias")) || [];
+
+var lista = document.getElementById("listaNoticias");
+
+function mostrarNoticia(noticia, indice) {
+
+  var div = document.createElement("div");
+  div.className = "noticia";
+
+  div.innerHTML =
+    '<div class="imagem">Imagem da notícia</div>' +
+    '<h2>' + noticia.titulo + '</h2>' +
+    '<p class="data">' + noticia.data + '</p>' +
+    '<p>' + noticia.texto + '</p>' +
+    '<button class="botao" onclick="lerNoticia(' + indice + ')">' +
+    'Notícia completa' +
+    '</button>';
+
+  lista.appendChild(div);
+}
+
+function lerNoticia(indice) {
+
+  var noticia = noticiasPublicadas[indice];
+
+  document.body.innerHTML =
+    '<header>' +
+      '<h1>MEU JORNAL</h1>' +
+      '<p>Notícia completa</p>' +
+    '</header>' +
+
+    '<div class="noticia">' +
+      '<h1>' + noticia.titulo + '</h1>' +
+      '<p class="data">' + noticia.data + '</p>' +
+      '<p>' + noticia.texto + '</p>' +
+
+      '<button class="botao" onclick="location.reload()">' +
+      'Voltar para Notícias' +
+      '</button>' +
+    '</div>';
+}
+
+if (noticiasPublicadas.length === 0) {
+
+  lista.innerHTML =
+    '<div class="noticia">' +
+    '<h2>Nenhuma notícia publicada ainda.</h2>' +
+    '</div>';
+
+} else {
+
+  for (var i = noticiasPublicadas.length - 1; i >= 0; i--) {
+    mostrarNoticia(noticiasPublicadas[i], i);
+  }
+
+}
+
+</script>
+
+</body>
+</html>

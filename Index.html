@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f3f6;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:34px;
+}
+
+header p{
+    margin:8px 0 0;
+    color:#d1d5db;
+}
+
+nav{
+    background:white;
+    padding:12px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+    box-shadow:0 2px 7px rgba(0,0,0,.08);
+}
+
+nav a{
+    text-decoration:none;
+    color:#111827;
+    background:#e5e7eb;
+    padding:9px 13px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    background:#d1d5db;
+}
+
+.container{
+    width:94%;
+    max-width:1000px;
+    margin:20px auto;
+}
+
+.caixa{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.caixa h2{
+    margin-top:0;
+}
+
+.botoes-categoria{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.botoes-categoria button{
+    border:0;
+    background:#e5e7eb;
+    padding:10px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.botoes-categoria button:hover{
+    background:#d1d5db;
+}
+
+
+/* DESTAQUE */
+
+.destaque{
+    background:white;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.1);
+    margin-bottom:25px;
+}
+
+.destaque img{
+    width:100%;
+    max-height:480px;
+    object-fit:cover;
+    display:block;
+}
+
+.destaque-conteudo{
+    padding:22px;
+}
+
+.etiqueta{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    padding:6px 11px;
+    border-radius:15px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.destaque h2{
+    font-size:30px;
+    margin:12px 0 8px;
+}
+
+.data{
+    color:#777;
+    font-size:14px;
+}
+
+.destaque p{
+    line-height:1.6;
+    color:#444;
+}
+
+.btn{
+    border:0;
+    background:#111827;
+    color:white;
+    padding:11px 17px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#374151;
+}
+
+
+/* OUTRAS NOTÍCIAS */
+
+.grade{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card img{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-conteudo{
+    padding:16px;
+}
+
+.card h3{
+    font-size:21px;
+    margin:9px 0;
+}
+
+.card p{
+    color:#555;
+    line-height:1.5;
+}
+
+.ver-todas{
+    text-align:center;
+    margin-top:20px;
+}
+
+.ver-todas a{
+    display:inline-block;
+    background:#111827;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+
+/* ADMINISTRAÇÃO */
+
+#areaAdmin{
+    display:none;
+}
+
+.admin-login input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.admin-painel{
+    display:none;
+}
+
+.resumos{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin:15px 0;
+}
+
+.resumo{
+    background:#f3f4f6;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+}
+
+.resumo strong{
+    display:block;
+    font-size:24px;
+    margin-top:5px;
+}
+
+.admin-botoes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+}
+
+.admin-botoes button{
+    border:0;
+    padding:11px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    background:#e5e7eb;
+}
+
+.admin-botoes button:hover{
+    background:#d1d5db;
+}
+
+.sair{
+    background:#dc2626 !important;
+    color:white;
+}
+
+
+/* PUBLICIDADE / RENDIMENTO */
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.info-box{
+    background:#f3f4f6;
+    padding:18px;
+    border-radius:10px;
+}
+
+.info-box strong{
+    font-size:22px;
+}
+
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:999;
+}
+
+.modal-caixa{
+    background:white;
+    max-width:400px;
+    width:100%;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.modal-caixa input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.modal-caixa button{
+    border:0;
+    padding:11px 17px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:4px;
+}
+
+.confirmar{
+    background:#111827;
+    color:white;
+}
+
+.cancelar{
+    background:#d1d5db;
+}
+
+
+/* RODAPÉ */
+
+footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#777;
+}
+
+
+/* TELEMÓVEL */
+
+@media(max-width:700px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .grade{
+        grid-template-columns:1fr;
+    }
+
+    .resumos{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+
+    .destaque h2{
+        font-size:25px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>MEU JORNAL</h1>
+
+    <p>Informação ao seu alcance</p>
+
+</header>
+
+
+<nav>
+
+    <a href="index.html">INÍCIO</a>
+
+    <a href="publicar.html">PUBLICAR</a>
+
+    <a href="noticias.html">NOTÍCIAS</a>
+
+    <a href="rendimento.html">RENDIMENTO</a>
+
+    <a href="#areaAdmin">ADMINISTRAÇÃO</a>
+
+</nav>
+
+
+<div class="container">
+
+
+    <!-- BOAS-VINDAS -->
+
+    <div class="caixa">
+
+        <h2>Bem-vindo ao Meu Jornal</h2>
+
+        <p>
+            Consulte as principais notícias, pesquise por assunto
+            e acompanhe as informações publicadas.
+        </p>
+
+    </div>
+
+
+    <!-- CATEGORIAS -->
+
+    <div class="caixa">
+
+        <h2>Explorar por categoria</h2>
+
+        <div class="botoes-categoria">
+
+            <button onclick="abrirCategoria('Todas')">
+                Todas
+            </button>
+
+            <button onclick="abrirCategoria('Política')">
+                Política
+            </button>
+
+            <button onclick="abrirCategoria('Desporto')">
+                Desporto
+            </button>
+
+            <button onclick="abrirCategoria('Economia')">
+                Economia
+            </button>
+
+            <button onclick="abrirCategoria('Sociedade')">
+                Sociedade
+            </button>
+
+            <button onclick="abrirCategoria('Cultura')">
+                Cultura
+            </button>
+
+            <button onclick="abrirCategoria('Educação')">
+                Educação
+            </button>
+
+            <button onclick="abrirCategoria('Saúde')">
+                Saúde
+            </button>
+
+            <button onclick="abrirCategoria('Tecnologia')">
+                Tecnologia
+            </button>
+
+            <button onclick="abrirCategoria('Internacional')">
+                Internacional
+            </button>
+
+            <button onclick="abrirCategoria('Outras')">
+                Outras
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTÍCIA DESTAQUE -->
+
+    <div id="destaqueArea"></div>
+
+
+    <!-- OUTRAS NOTÍCIAS -->
+
+    <div class="caixa">
+
+        <h2>Últimas notícias</h2>
+
+        <div id="outrasNoticias" class="grade"></div>
+
+        <div class="ver-todas">
+
+            <a href="noticias.html">
+                VER TODAS AS NOTÍCIAS
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- PUBLICAR -->
+
+    <div class="caixa">
+
+        <h2>Publicar notícia</h2>
+
+        <p>
+            Tem uma notícia para publicar?
+        </p>
+
+        <a href="publicar.html">
+            <button class="btn">
+                PUBLICAR NOTÍCIA
+            </button>
+        </a>
+
+    </div>
+
+
+    <!-- RENDIMENTO -->
+
+    <div class="caixa">
+
+        <h2>Rendimento</h2>
+
+        <div class="info">
+
+            <div class="info-box">
+
+                Visualizações
+
+                <br>
+
+                <strong id="visualizacoes">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="info-box">
+
+                Rendimento
+
+                <br>
+
+                <strong id="rendimento">
+                    0,00 MT
+                </strong>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <a href="rendimento.html">
+            <button class="btn">
+                VER RENDIMENTO
+            </button>
+        </a>
+
+    </div>
+
+
+    <!-- ADMINISTRAÇÃO -->
+
+    <div class="caixa" id="areaAdmin">
+
+        <h2>Administração</h2>
+
+
+        <div id="loginAdmin" class="admin-login">
+
+            <p>
+                Área protegida por senha.
+            </p>
+
+            <input
+                type="password"
+                id="senhaAdmin"
+                placeholder="Digite a senha"
+            >
+
+            <button class="btn" onclick="entrarAdmin()">
+                ENTRAR
+            </button>
+
+            <p id="erroAdmin"></p>
+
+        </div>
+
+
+        <div id="painelAdmin" class="admin-painel">
+
+            <h3>Painel de administração</h3>
+
+            <div class="resumos">
+
+                <div class="resumo">
+
+                    Notícias
+
+                    <strong id="adminNoticias">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumo">
+
+                    Visualizações
+
+                    <strong id="adminVisualizacoes">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumo">
+
+                    Publicidade
+
+                    <strong id="adminPublicidade">
+                        0,00 MT
+                    </strong>
+
+                </div>
+
+
+                <div class="resumo">
+
+                    Total
+
+                    <strong id="adminTotal">
+                        0,00 MT
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-botoes">
+
+                <button onclick="abrirNoticiasAdmin()">
+                    GERIR NOTÍCIAS
+                </button>
+
+                <button onclick="abrirPublicarAdmin()">
+                    PUBLICAR
+                </button>
+
+                <button onclick="abrirRendimentoAdmin()">
+                    RENDIMENTO
+                </button>
+
+                <button onclick="mudarSenha()">
+                    ALTERAR SENHA
+                </button>
+
+                <button class="sair" onclick="sairAdmin()">
+                    SAIR
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    <p>MEU JORNAL</p>
+
+    <p>Informação ao seu alcance</p>
+
+</footer>
+
+
+<!-- MODAL DE SENHA -->
+
+<div id="modalSenha" class="modal">
+
+    <div class="modal-caixa">
+
+        <h3>Alterar senha</h3>
+
+        <input
+            type="password"
+            id="senhaAtual"
+            placeholder="Senha atual"
+        >
+
+        <input
+            type="password"
+            id="novaSenha"
+            placeholder="Nova senha"
+        >
+
+        <button
+            class="confirmar"
+            onclick="confirmarNovaSenha()"
+        >
+            GUARDAR
+        </button>
+
+        <button
+            class="cancelar"
+            onclick="fecharModalSenha()"
+        >
+            CANCELAR
+        </button>
+
+        <p id="mensagemSenha"></p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   NOTÍCIAS
+========================= */
+
+var noticias =
+    JSON.parse(
+        localStorage.getItem("meuJornalNoticias")
+    ) || [];
+
+
+/* =========================
+   BANCO DE IMAGENS
+========================= */
+
+function abrirBanco(callback){
+
+    var request =
+        indexedDB.open("MeuJornalBanco");
+
+    request.onsuccess = function(event){
+
+        var db =
+            event.target.result;
+
+        callback(db);
+
+    };
+
+    request.onerror = function(){
+
+        callback(null);
+
+    };
+
+}
+
+
+/* =========================
+   CARREGAR IMAGEM
+========================= */
+
+function carregarImagem(id, elemento){
+
+    if(!id){
+        return;
+    }
+
+    abrirBanco(function(db){
+
+        if(!db){
+            return;
+        }
+
+        try{
+
+            var transacao =
+                db.transaction(
+                    ["imagens"],
+                    "readonly"
+                );
+
+            var loja =
+                transacao.objectStore("imagens");
+
+            var pedido =
+                loja.get(id);
+
+            pedido.onsuccess =
+                function(){
+
+                    var resultado =
+                        pedido.result;
+
+                    if(!resultado){
+                        return;
+                    }
+
+                    var imagem =
+                        resultado;
+
+                    if(resultado.imagem){
+                        imagem =
+                            resultado.imagem;
+                    }
+
+                    if(imagem instanceof Blob){
+
+                        var url =
+                            URL.createObjectURL(
+                                imagem
+                            );
+
+                        elemento.src =
+                            url;
+
+                        elemento.style.display =
+                            "block";
+
+                    }
+
+                };
+
+        }catch(e){
+
+            console.log(
+                "Erro ao carregar imagem",
+                e
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   ESCAPAR TEXTO
+========================= */
+
+function escaparHTML(texto){
+
+    var div =
+        document.createElement("div");
+
+    div.textContent =
+        texto;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   ABRIR CATEGORIA
+========================= */
+
+function abrirCategoria(categoria){
+
+    if(categoria === "Todas"){
+
+        window.location.href =
+            "noticias.html";
+
+    }else{
+
+        window.location.href =
+            "noticias.html?categoria=" +
+            encodeURIComponent(categoria);
+
+    }
+
+}
+
+
+/* =========================
+   ABRIR NOTÍCIA
+========================= */
+
+function abrirNoticia(indice){
+
+    if(!noticias[indice]){
+        return;
+    }
+
+    localStorage.setItem(
+        "meuJornalNoticiaSelecionada",
+        indice
+    );
+
+    window.location.href =
+        "noticias.html";
+
+}
+
+
+/* =========================
+   MOSTRAR NOTÍCIAS
+========================= */
+
+function mostrarInicio(){
+
+    var destaque =
+        document.getElementById(
+            "destaqueArea"
+        );
+
+    var outras =
+        document.getElementById(
+            "outrasNoticias"
+        );
+
+
+    destaque.innerHTML = "";
+
+    outras.innerHTML = "";
+
+
+    if(noticias.length === 0){
+
+        destaque.innerHTML =
+
+            '<div class="caixa">' +
+
+            '<h2>Nenhuma notícia publicada</h2>' +
+
+            '<p>' +
+            'Publique a primeira notícia no Meu Jornal.' +
+            '</p>' +
+
+            '</div>';
+
+        return;
+
+    }
+
+
+    /* =========================
+       DESTAQUE
+    ========================= */
+
+    var principal =
+        noticias[0];
+
+    var resumo =
+        principal.texto || "";
+
+    if(resumo.length > 300){
+
+        resumo =
+            resumo.substring(0,300) +
+            "...";
+
+    }
+
+
+    var imagemPrincipal =
+        "";
+
+    if(principal.imagemId){
+
+        imagemPrincipal =
+
+            '<img id="imagemDestaque" ' +
+            'style="display:none;">';
+
+    }
+
+
+    destaque.innerHTML =
+
+        '<div class="destaque">' +
+
+        imagemPrincipal +
+
+        '<div class="destaque-conteudo">' +
+
+        '<span class="etiqueta">' +
+
+        escaparHTML(
+            principal.categoria ||
+            "Outras"
+        ) +
+
+        '</span>' +
+
+        '<h2>' +
+
+        escaparHTML(
+            principal.titulo ||
+            "Sem título"
+        ) +
+
+        '</h2>' +
+
+        '<div class="data">' +
+
+        escaparHTML(
+            principal.data ||
+            ""
+        ) +
+
+        '</div>' +
+
+        '<p>' +
+
+        escaparHTML(resumo) +
+
+        '</p>' +
+
+        '<button class="btn" ' +
+        'onclick="abrirNoticia(0)">' +
+
+        'LER NOTÍCIA COMPLETA' +
+
+        '</button>' +
+
+        '</div>' +
+
+        '</div>';
+
+
+    if(principal.imagemId){
+
+        var imagem =
+            document.getElementById(
+                "imagemDestaque"
+            );
+
+        carregarImagem(
+            principal.imagemId,
+            imagem
+        );
+
+    }
+
+
+    /* =========================
+       OUTRAS NOTÍCIAS
+    ========================= */
+
+    var limite =
+        Math.min(
+            noticias.length,
+            5
+        );
+
+
+    for(
+        var i = 1;
+        i < limite;
+        i++
+    ){
+
+        var noticia =
+            noticias[i];
+
+        var texto =
+            noticia.texto || "";
+
+        if(texto.length > 140){
+
+            texto =
+                texto.substring(0,140) +
+                "...";
+
+        }
+
+
+        var imagem =
+            "";
+
+        if(noticia.imagemId){
+
+            imagem =
+                '<img id="imagemCard' +
+                i +
+                '" style="display:none;">';
+
+        }
+
+
+        var card =
+            document.createElement("div");
+
+        card.className =
+            "card";
+
+
+        card.innerHTML =
+
+            imagem +
+
+            '<div class="card-conteudo">' +
+
+            '<span class="etiqueta">' +
+
+            escaparHTML(
+                noticia.categoria ||
+                "Outras"
+            ) +
+
+            '</span>' +
+
+            '<h3>' +
+
+            escaparHTML(
+                noticia.titulo ||
+                "Sem título"
+            ) +
+
+            '</h3>' +
+
+            '<div class="data">' +
+
+            escaparHTML(
+                noticia.data ||
+                ""
+            ) +
+
+            '</div>' +
+
+            '<p>' +
+
+            escaparHTML(texto) +
+
+            '</p>' +
+
+            '<button class="btn" ' +
+            'onclick="abrirNoticia(' +
+            i +
+            ')">' +
+
+            'LER NOTÍCIA' +
+
+            '</button>' +
+
+            '</div>';
+
+
+        outras.appendChild(card);
+
+
+        if(noticia.imagemId){
+
+            var img =
+                document.getElementById(
+                    "imagemCard" + i
+                );
+
+            carregarImagem(
+                noticia.imagemId,
+                img
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   RENDIMENTO
+========================= */
+
+function atualizarRendimento(){
+
+    var visualizacoes =
+        parseInt(
+            localStorage.getItem(
+                "meuJornalVisualizacoes"
+            )
+        ) || 0;
+
+
+    var rendimento =
+        parseFloat(
+            localStorage.getItem(
+                "meuJornalRendimento"
+            )
+        ) || 0;
+
+
+    document.getElementById(
+        "visualizacoes"
+    ).innerText =
+        visualizacoes;
+
+
+    document.getElementById(
+        "rendimento"
+    ).innerText =
+        rendimento.toFixed(2)
+        .replace(".",",") +
+        " MT";
+
+}
+
+
+/* =========================
+   ADMINISTRAÇÃO
+========================= */
+
+function entrarAdmin(){
+
+    var senha =
+        document.getElementById(
+            "senhaAdmin"
+        ).value;
+
+
+    var senhaGuardada =
+        localStorage.getItem(
+            "meuJornalSenha"
+        );
+
+
+    if(senhaGuardada === null){
+
+        senhaGuardada = "1234";
+
+        localStorage.setItem(
+            "meuJornalSenha",
+            senhaGuardada
+        );
+
+    }
+
+
+    if(senha === senhaGuardada){
+
+        document.getElementById(
+            "loginAdmin"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "painelAdmin"
+        ).style.display =
+            "block";
+
+
+        atualizarAdmin();
+
+    }else{
+
+        document.getElementById(
+            "erroAdmin"
+        ).innerText =
+            "Senha incorreta.";
+
+        document.getElementById(
+            "erroAdmin"
+        ).style.color =
+            "red";
+
+    }
+
+}
+
+
+/* =========================
+   ATUALIZAR ADMIN
+========================= */
+
+function atualizarAdmin(){
+
+    var visualizacoes =
+        parseInt(
+            localStorage.getItem(
+                "meuJornalVisualizacoes"
+            )
+        ) || 0;
+
+
+    var publicidade =
+        parseFloat(
+            localStorage.getItem(
+                "meuJornalPublicidade"
+            )
+        ) || 0;
+
+
+    var rendimento =
+        parseFloat(
+            localStorage.getItem(
+                "meuJornalRendimento"
+            )
+        ) || 0;
+
+
+    var total =
+        parseFloat(
+            localStorage.getItem(
+                "meuJornalTotal"
+            )
+        ) || 0;
+
+
+    document.getElementById(
+        "adminNoticias"
+    ).innerText =
+        noticias.length;
+
+
+    document.getElementById(
+        "adminVisualizacoes"
+    ).innerText =
+        visualizacoes;
+
+
+    document.getElementById(
+        "adminPublicidade"
+    ).innerText =
+        publicidade
+        .toFixed(2)
+        .replace(".",",") +
+        " MT";
+
+
+    document.getElementById(
+        "adminTotal"
+    ).innerText =
+        total
+        .toFixed(2)
+        .replace(".",",") +
+        " MT";
+
+}
+
+
+/* =========================
+   ABRIR PÁGINAS
+========================= */
+
+function abrirNoticiasAdmin(){
+
+    window.location.href =
+        "noticias.html";
+
+}
+
+
+function abrirPublicarAdmin(){
+
+    window.location.href =
+        "publicar.html";
+
+}
+
+
+function abrirRendimentoAdmin(){
+
+    window.location.href =
+        "rendimento.html";
+
+}
+
+
+/* =========================
+   SAIR ADMIN
+========================= */
+
+function sairAdmin(){
+
+    document.getElementById(
+        "painelAdmin"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "loginAdmin"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "senhaAdmin"
+    ).value = "";
+
+}
+
+
+/* =========================
+   ALTERAR SENHA
+========================= */
+
+function mudarSenha(){
+
+    document.getElementById(
+        "modalSenha"
+    ).style.display =
+        "flex";
+
+}
+
+
+function fecharModalSenha(){
+
+    document.getElementById(
+        "modalSenha"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "senhaAtual"
+    ).value = "";
+
+    document.getElementById(
+        "novaSenha"
+    ).value = "";
+
+    document.getElementById(
+        "mensagemSenha"
+    ).innerText = "";
+
+}
+
+
+function confirmarNovaSenha(){
+
+    var atual =
+        document.getElementById(
+            "senhaAtual"
+        ).value;
+
+
+    var nova =
+        document.getElementById(
+            "novaSenha"
+        ).value;
+
+
+    var guardada =
+        localStorage.getItem(
+            "meuJornalSenha"
+        );
+
+
+    if(guardada === null){
+
+        guardada = "1234";
+
+    }
+
+
+    if(atual !== guardada){
+
+        document.getElementById(
+            "mensagemSenha"
+        ).innerText =
+            "A senha atual está incorreta.";
+
+        return;
+
+    }
+
+
+    if(nova.length < 4){
+
+        document.getElementById(
+            "mensagemSenha"
+        ).innerText =
+            "A nova senha deve ter pelo menos 4 caracteres.";
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "meuJornalSenha",
+        nova
+    );
+
+
+    document.getElementById(
+        "mensagemSenha"
+    ).innerText =
+        "Senha alterada com sucesso.";
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
+
+mostrarInicio();
+
+atualizarRendimento();
+
+
+/* =========================
+   ABRIR ADMIN AO CLICAR
+========================= */
+
+window.addEventListener(
+    "hashchange",
+    function(){
+
+        if(
+            window.location.hash ===
+            "#areaAdmin"
+        ){
+
+            document.getElementById(
+                "areaAdmin"
+            ).style.display =
+                "block";
+
+            window.scrollTo({
+                top:
+                    document.getElementById(
+                        "areaAdmin"
+                    ).offsetTop,
+
+                behavior:"smooth"
+            });
+
+        }
+
+    }
+);
+
+
+/* Se abriu diretamente com #areaAdmin */
+
+if(
+    window.location.hash ===
+    "#areaAdmin"
+){
+
+    document.getElementById(
+        "areaAdmin"
+    ).style.display =
+        "block";
+
+}
+
+</script>
+
+</body>
+</html>

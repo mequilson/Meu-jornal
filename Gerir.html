@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal - Gerir notícias</title>
+
+<style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+}
+
+.caixa {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.noticia {
+  background: white;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.noticia img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+textarea {
+  height: 150px;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #111;
+  color: white;
+  font-size: 16px;
+}
+
+.botao-apagar {
+  background: #555;
+}
+
+.mensagem {
+  text-align: center;
+  font-weight: bold;
+}
+
+.visualizacoes {
+  padding: 10px;
+  background: #f2f2f2;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>MEU JORNAL</h1>
+
+<div class="caixa">
+
+<h2>Gerir notícias</h2>
+
+<div id="lista"></div>
+
+</div>
+
+
+<script>
+
+var noticias = JSON.parse(
+
+localStorage.getItem(
+"meuJornalNoticias"
+) || "[]"
+
+);
+
+
+function escaparHTML(texto) {
+
+return texto
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;")
+.replace(/>/g, "&gt;")
+.replace(/"/g, "&quot;")
+.replace(/'/g, "&#039;");
+
+}
+
+
+function mostrarNoticias() {
+
+var lista =
+document.getElementById("lista");
+
+lista.innerHTML = "";
+
+
+if (noticias.length === 0) {
+
+lista.innerHTML =
+"<p>Nenhuma notícia publicada.</p>";
+
+return;
+
+}
+
+
+for (
+var i = 0;
+i < noticias.length;
+i++
+) {
+
+var noticia =
+noticias[i];
+
+
+var visualizacoes =
+parseInt(
+noticia.visualizacoes || "0"
+);
+
+
+var div =
+document.createElement("div");
+
+div.className =
+"noticia";
+
+
+var imagem = "";
+
+
+if (noticia.imagem) {
+
+imagem =
+
+"<img src='" +
+noticia.imagem +
+"'>";
+
+}
+
+
+div.innerHTML =
+
+imagem +
+
+"<h2>" +
+
+escaparHTML(
+noticia.titulo || "Sem título"
+) +
+
+"</h2>" +
+
+"<p>" +
+
+escaparHTML(
+noticia.data || ""
+) +
+
+"</p>" +
+
+"<div class='visualizacoes'>" +
+
+"Visualizações: " +
+visualizacoes +
+
+"</div>" +
+
+"<label>Título</label>" +
+
+"<input " +
+
+"id='titulo" +
+i +
+"' " +
+
+"value='" +
+
+escaparHTML(
+noticia.titulo || ""
+) +
+
+"'>" +
+
+"<label>Notícia</label>" +
+
+"<textarea id='texto" +
+i +
+"'>" +
+
+escaparHTML(
+noticia.texto || ""
+) +
+
+"</textarea>" +
+
+"<button onclick='editarNoticia(" +
+i +
+")'>" +
+
+"Guardar alterações" +
+
+"</button>" +
+
+"<button " +
+
+"class='botao-apagar' " +
+
+"onclick='apagarNoticia(" +
+i +
+")'>" +
+
+"Apagar notícia" +
+
+"</button>" +
+
+"<p " +
+
+"class='mensagem' " +
+
+"id='mensagem" +
+i +
+"'>" +
+
+"</p>";
+
+
+lista.appendChild(div);
+
+}
+
+}
+
+
+function editarNoticia(indice) {
+
+var titulo =
+document.getElementById(
+"titulo" + indice
+).value.trim();
+
+
+var texto =
+document.getElementById(
+"texto" + indice
+).value.trim();
+
+
+var mensagem =
+document.getElementById(
+"mensagem" + indice
+);
+
+
+if (titulo === "") {
+
+mensagem.textContent =
+"Digite o título da notícia.";
+
+return;
+
+}
+
+
+if (texto === "") {
+
+mensagem.textContent =
+"Digite o texto da notícia.";
+
+return;
+
+}
+
+
+noticias[indice].titulo =
+titulo;
+
+
+noticias[indice].texto =
+texto;
+
+
+localStorage.setItem(
+
+"meuJornalNoticias",
+
+JSON.stringify(noticias)
+
+);
+
+
+mensagem.textContent =
+"Alterações guardadas com sucesso.";
+
+}
+
+
+function apagarNoticia(indice) {
+
+var confirmar =
+confirm(
+"Tem certeza que deseja apagar esta notícia?"
+);
+
+
+if (!confirmar) {
+
+return;
+
+}
+
+
+noticias.splice(indice, 1);
+
+
+localStorage.setItem(
+
+"meuJornalNoticias",
+
+JSON.stringify(noticias)
+
+);
+
+
+mostrarNoticias();
+
+}
+
+
+mostrarNoticias();
+
+</script>
+
+</body>
+
+</html>

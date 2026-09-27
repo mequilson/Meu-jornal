@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Jornal - Leitura</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f2f2f2;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      color: #0b57d0;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+
+    img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .texto {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      background: #0b57d0;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .erro {
+      color: red;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <a class="voltar" href="noticias.html">← Voltar</a>
+
+  <h1>MEU JORNAL</h1>
+
+  <div id="conteudo"></div>
+
+</div>
+
+<script>
+
+var noticias = JSON.parse(
+  localStorage.getItem("meuJornalNoticias")
+) || [];
+
+var indice = localStorage.getItem("noticiaSelecionada");
+
+var conteudo = document.getElementById("conteudo");
+
+if (
+  indice === null ||
+  !noticias[indice]
+) {
+
+  conteudo.innerHTML =
+    '<p class="erro">Notícia não encontrada.</p>';
+
+} else {
+
+  var noticia = noticias[indice];
+
+  var html = "";
+
+  html += "<h2>" +
+    (noticia.titulo || "Sem título") +
+    "</h2>";
+
+  if (noticia.imagem) {
+    html += "<img src='" +
+      noticia.imagem +
+      "'>";
+  }
+
+  html += "<div class='texto'>" +
+    (noticia.texto || noticia.conteudo || "Sem conteúdo.") +
+    "</div>";
+
+  conteudo.innerHTML = html;
+}
+
+</script>
+
+</body>
+</html>

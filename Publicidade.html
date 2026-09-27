@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meu Jornal - Publicidade</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f3f5;
+  color: #111;
+}
+
+.cabecalho {
+  background: #111;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.cabecalho p {
+  margin: 8px 0 0;
+}
+
+.conteudo {
+  max-width: 650px;
+  margin: auto;
+  padding: 20px;
+}
+
+.caixa {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.caixa h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 17px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 18px;
+  background: #111;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+button:active {
+  background: #333;
+}
+
+.valor {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+#mensagem {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.explicacao {
+  color: #444;
+  line-height: 1.6;
+}
+
+.botao {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: #111;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.rodape {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="cabecalho">
+  <h1>MEU JORNAL</h1>
+  <p>Gestão de publicidade</p>
+</div>
+
+<div class="conteudo">
+
+  <div class="caixa">
+
+    <h2>Adicionar publicidade</h2>
+
+    <p class="explicacao">
+      Digite o valor recebido por uma publicidade.
+      O valor será acrescentado ao rendimento total do jornal.
+    </p>
+
+    <label for="valorPublicidade">
+      Valor da publicidade (MT)
+    </label>
+
+    <input
+      type="number"
+      id="valorPublicidade"
+      placeholder="Exemplo: 100"
+      min="0"
+      step="0.01"
+    >
+
+    <button onclick="adicionarPublicidade()">
+      Adicionar publicidade
+    </button>
+
+    <p id="mensagem"></p>
+
+  </div>
+
+  <div class="caixa">
+
+    <h2>Publicidade acumulada</h2>
+
+    <div class="valor" id="totalPublicidade">
+      0,00 MT
+    </div>
+
+  </div>
+
+  <div class="caixa">
+
+    <h2>Informação</h2>
+
+    <p class="explicacao">
+      O valor acumulado nesta página é somado automaticamente ao
+      rendimento das visualizações.
+    </p>
+
+    <p class="explicacao">
+      Para consultar o rendimento total, abra a página
+      <strong>Rendimento</strong>.
+    </p>
+
+  </div>
+
+  <button onclick="limparPublicidade()">
+    Limpar publicidade acumulada
+  </button>
+
+  <a class="botao" href="rendimento.html">
+    Ver rendimento
+  </a>
+
+  <a class="botao" href="index.html">
+    Voltar ao início
+  </a>
+
+</div>
+
+<div class="rodape">
+  <p>© 2026 Meu Jornal</p>
+  <p>Todos os direitos reservados</p>
+</div>
+
+<script>
+
+function mostrarPublicidade() {
+
+  var publicidade =
+    parseFloat(localStorage.getItem("publicidade") || "0");
+
+  document.getElementById("totalPublicidade").textContent =
+    publicidade.toFixed(2).replace(".", ",") + " MT";
+}
+
+
+function adicionarPublicidade() {
+
+  var campo =
+    document.getElementById("valorPublicidade");
+
+  var mensagem =
+    document.getElementById("mensagem");
+
+  var valor =
+    parseFloat(campo.value);
+
+  if (isNaN(valor) || valor <= 0) {
+
+    mensagem.textContent =
+      "Digite um valor válido.";
+
+    return;
+  }
+
+  var publicidade =
+    parseFloat(localStorage.getItem("publicidade") || "0");
+
+  publicidade = publicidade + valor;
+
+  localStorage.setItem(
+    "publicidade",
+    publicidade
+  );
+
+  campo.value = "";
+
+  mensagem.textContent =
+    "Publicidade adicionada com sucesso!";
+
+  mostrarPublicidade();
+}
+
+
+function limparPublicidade() {
+
+  var confirmar =
+    confirm(
+      "Tem certeza que deseja apagar o valor acumulado da publicidade?"
+    );
+
+  if (!confirmar) {
+    return;
+  }
+
+  localStorage.setItem(
+    "publicidade",
+    "0"
+  );
+
+  mostrarPublicidade();
+
+  document.getElementById("mensagem").textContent =
+    "Publicidade acumulada foi apagada.";
+}
+
+
+mostrarPublicidade();
+
+</script>
+
+</body>
+</html>
