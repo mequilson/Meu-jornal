@@ -1,216 +1,370 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Meu Jornal - Notícias</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
+    color:#222;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  color: #222;
+header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:20px;
 }
 
-header {
-  background: #111;
-  color: white;
-  padding: 20px;
-  text-align: center;
+header h1{
+    margin:0;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
+header p{
+    margin:6px 0 0;
 }
 
-header p {
-  margin: 8px 0 0;
+nav{
+    background:#1f2937;
+    text-align:center;
+    padding:12px;
 }
 
-nav {
-  background: #222;
-  padding: 10px;
-  text-align: center;
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 6px;
+    font-weight:bold;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
+.container{
+    max-width:900px;
+    margin:25px auto;
+    padding:15px;
 }
 
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 10px;
+.topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-h2 {
-  text-align: center;
+.topo h2{
+    margin:0;
 }
 
-.noticia {
-  background: white;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+.botao-publicar{
+    background:#16a34a;
+    color:white;
+    text-decoration:none;
+    padding:11px 15px;
+    border-radius:8px;
+    font-weight:bold;
 }
 
-.noticia img {
-  width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 15px;
+.noticia{
+    background:white;
+    margin-bottom:25px;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
-.noticia h3 {
-  margin: 5px 0 10px;
-  font-size: 22px;
+.noticia-imagem{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:10px;
+    display:block;
+    margin-bottom:15px;
 }
 
-.noticia p {
-  line-height: 1.5;
+.sem-imagem{
+    display:none;
 }
 
-.data {
-  color: #777;
-  font-size: 14px;
-  margin-bottom: 10px;
+.noticia h3{
+    margin:5px 0 10px;
+    font-size:24px;
 }
 
-.botao {
-  display: inline-block;
-  background: #111;
-  color: white;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  margin-top: 10px;
+.info{
+    color:#666;
+    font-size:14px;
+    margin-bottom:12px;
 }
 
-.botao:hover {
-  background: #333;
+.categoria{
+    display:inline-block;
+    background:#e5e7eb;
+    padding:5px 9px;
+    border-radius:5px;
+    margin-right:8px;
+    font-weight:bold;
 }
 
-.sem-noticias {
-  background: white;
-  padding: 25px;
-  text-align: center;
-  border-radius: 10px;
+.texto{
+    line-height:1.6;
+    white-space:pre-line;
 }
+
+.botao-ver{
+    display:inline-block;
+    background:#111827;
+    color:white;
+    text-decoration:none;
+    padding:11px 18px;
+    border-radius:7px;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+.sem-noticias{
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:12px;
+}
+
+@media(max-width:600px){
+
+    .topo{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .botao-publicar{
+        text-align:center;
+    }
+
+    .noticia h3{
+        font-size:21px;
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
-  <h1>MEU JORNAL</h1>
-  <p>Informação que chega até você.</p>
+
+<h1>MEU JORNAL</h1>
+
+<p>Informação que chega até você.</p>
+
 </header>
 
 <nav>
-  <a href="index.html">Início</a>
-  <a href="noticias.html">Notícias</a>
-  <a href="publicar.html">Publicar</a>
+
+<a href="index.html">INÍCIO</a>
+
+<a href="publicar.html">PUBLICAR</a>
+
+<a href="noticias.html">NOTÍCIAS</a>
+
+<a href="rendimento.html">RENDIMENTO</a>
+
 </nav>
+
 
 <div class="container">
 
-  <h2>Últimas Notícias</h2>
+<div class="topo">
 
-  <div id="listaNoticias"></div>
+<h2>Últimas Notícias</h2>
+
+<a
+href="publicar.html"
+class="botao-publicar">
+
+PUBLICAR NOVA NOTÍCIA
+
+</a>
 
 </div>
 
+
+<div id="listaNoticias"></div>
+
+</div>
+
+
 <script>
 
-function carregarNoticias() {
+function carregarNoticias(){
 
-  const lista = document.getElementById("listaNoticias");
+var lista=
+document.getElementById(
+"listaNoticias"
+);
 
-  let noticias = JSON.parse(
-    localStorage.getItem("meuJornalNoticias") || "[]"
-  );
+var noticias=
+JSON.parse(
+localStorage.getItem(
+"meuJornalNoticias"
+)
+) || [];
 
-  lista.innerHTML = "";
 
-  if (noticias.length === 0) {
+lista.innerHTML="";
 
-    lista.innerHTML = `
-      <div class="sem-noticias">
-        <p>Nenhuma notícia publicada.</p>
-      </div>
-    `;
 
-    return;
-  }
+if(noticias.length===0){
 
-  noticias.reverse();
+lista.innerHTML=`
 
-  noticias.forEach(function(noticia, indice) {
+<div class="sem-noticias">
 
-    const artigo = document.createElement("div");
+<h3>Nenhuma notícia publicada</h3>
 
-    artigo.className = "noticia";
+<p>
+Vá para Publicar e adicione a primeira notícia.
+</p>
 
-    let imagem = "";
+<a
+href="publicar.html"
+class="botao-ver">
 
-    if (noticia.imagem) {
+PUBLICAR NOTÍCIA
 
-      imagem = `
-        <img
-          src="${noticia.imagem}"
-          alt="Imagem da notícia"
-          onerror="this.style.display='none'"
-        >
-      `;
+</a>
 
-    }
+</div>
 
-    const titulo = noticia.titulo || "Sem título";
+`;
 
-    const texto = noticia.texto || "";
-
-    const data = noticia.data || "";
-
-    artigo.innerHTML = `
-
-      ${imagem}
-
-      <h3>${titulo}</h3>
-
-      ${data ? `<div class="data">${data}</div>` : ""}
-
-      <p>
-        ${texto.substring(0, 180)}
-        ${texto.length > 180 ? "..." : ""}
-      </p>
-
-      <a
-        class="botao"
-        href="leitura.html?id=${indice}"
-      >
-        Ver notícia
-      </a>
-
-    `;
-
-    lista.appendChild(artigo);
-
-  });
+return;
 
 }
+
+
+/*
+Mostra a notícia mais recente
+primeiro, sem alterar o
+índice original.
+*/
+
+for(
+var i=noticias.length-1;
+i>=0;
+i--
+){
+
+var noticia=noticias[i];
+
+var artigo=
+document.createElement("div");
+
+artigo.className="noticia";
+
+
+var imagemHTML="";
+
+
+if(
+noticia.imagem &&
+typeof noticia.imagem==="string"
+){
+
+imagemHTML=`
+
+<img
+class="noticia-imagem"
+src="${noticia.imagem}"
+alt="Imagem da notícia"
+>
+
+`;
+
+}
+
+
+var titulo=
+noticia.titulo || "Sem título";
+
+var autor=
+noticia.autor || "Autor não informado";
+
+var data=
+noticia.data || "";
+
+var categoria=
+noticia.categoria || "Outras";
+
+var texto=
+noticia.texto || "";
+
+
+/*
+Mostra apenas uma parte
+do texto na página de notícias.
+*/
+
+var resumo=texto;
+
+if(resumo.length>250){
+
+resumo=
+resumo.substring(0,250)+"...";
+
+}
+
+
+artigo.innerHTML=`
+
+${imagemHTML}
+
+<h3>
+${titulo}
+</h3>
+
+<div class="info">
+
+<span class="categoria">
+${categoria}
+</span>
+
+Autor: ${autor}
+
+${data ? " | Data: "+data : ""}
+
+</div>
+
+<div class="texto">
+${resumo}
+</div>
+
+<a
+href="leitura.html?id=${i}"
+class="botao-ver">
+
+VER NOTÍCIA
+
+</a>
+
+`;
+
+
+lista.appendChild(artigo);
+
+}
+
+}
+
 
 carregarNoticias();
 
