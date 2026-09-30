@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Moçambique Notícias 24</title>
+<title>Meu Jornal</title>
 
 <style>
 * {
@@ -14,111 +13,96 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f1f1f1;
+    background: #f4f4f4;
     color: #222;
 }
 
 header {
-    background: #d90000;
+    background: #0b3d91;
     color: white;
-    padding: 18px;
     text-align: center;
+    padding: 25px 15px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 32px;
 }
 
 header p {
-    margin: 5px 0 0;
+    margin: 8px 0 0;
+    font-size: 16px;
 }
 
 nav {
     background: white;
     display: flex;
-    overflow-x: auto;
-    padding: 10px;
-    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-nav button {
-    border: none;
-    padding: 9px 15px;
-    border-radius: 20px;
-    background: #eee;
-    white-space: nowrap;
-}
-
-nav button:hover {
-    background: #d90000;
+nav a {
+    text-decoration: none;
+    background: #0b3d91;
     color: white;
+    padding: 11px 18px;
+    border-radius: 6px;
 }
 
-.container {
-    max-width: 700px;
-    margin: auto;
-    padding: 15px;
+nav a:hover {
+    background: #062b67;
 }
 
-.pesquisa {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 15px;
+main {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 0 15px;
 }
 
-.noticia {
+.card {
     background: white;
-    margin-bottom: 15px;
+    padding: 25px;
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px #0002;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.noticia img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
+.card h2 {
+    margin-top: 0;
+    color: #0b3d91;
 }
 
-.conteudo {
-    padding: 15px;
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .categoria {
-    background: #d90000;
+    display: block;
+    text-align: center;
+    padding: 20px 10px;
+    background: #0b3d91;
     color: white;
-    padding: 5px 8px;
-    border-radius: 5px;
-    font-size: 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
 }
 
-.noticia h2 {
-    font-size: 20px;
-}
-
-.data {
-    color: #777;
-    font-size: 13px;
-}
-
-.botao {
-    background: #d90000;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
+.categoria:hover {
+    background: #062b67;
 }
 
 footer {
+    margin-top: 40px;
     background: #222;
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: 30px;
 }
 </style>
 </head>
@@ -126,178 +110,65 @@ footer {
 <body>
 
 <header>
-    <h1>🇲🇿 Moçambique Notícias 24</h1>
-    <p>Informação de Moçambique</p>
+    <h1>MEU JORNAL</h1>
+    <p>Informação que chega até você.</p>
 </header>
 
 <nav>
-    <button onclick="mostrar('Todas')">Todas</button>
-    <button onclick="mostrar('Nacional')">Nacional</button>
-    <button onclick="mostrar('Política')">Política</button>
-    <button onclick="mostrar('Economia')">Economia</button>
-    <button onclick="mostrar('Educação')">Educação</button>
-    <button onclick="mostrar('Desporto')">Desporto</button>
+    <a href="index.html">Início</a>
+    <a href="noticias.html">Notícias</a>
+    <a href="Puxar.html">Publicar</a>
+    <a href="Admin.html">Admin</a>
+    <a href="gerir.html">Gerir</a>
 </nav>
 
-<div class="container">
+<main>
 
-    <input
-        class="pesquisa"
-        type="text"
-        id="pesquisa"
-        placeholder="Pesquisar notícia..."
-        onkeyup="pesquisar()"
-    >
+    <section class="card">
+        <h2>Bem-vindo ao Meu Jornal</h2>
+        <p>
+            Acompanhe as principais notícias e informações.
+            Escolha uma categoria para continuar.
+        </p>
 
-    <div id="listaNoticias"></div>
+        <div class="categorias">
 
-</div>
+            <a class="categoria" href="noticias.html?categoria=Nacional">
+                Nacional
+            </a>
+
+            <a class="categoria" href="noticias.html?categoria=Educação">
+                Educação
+            </a>
+
+            <a class="categoria" href="noticias.html?categoria=Política">
+                Política
+            </a>
+
+            <a class="categoria" href="noticias.html?categoria=Tecnologia">
+                Tecnologia
+            </a>
+
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Publicar notícia</h2>
+        <p>
+            Use a área de publicação para adicionar novas notícias
+            ao Meu Jornal.
+        </p>
+
+        <a class="categoria" href="Puxar.html">
+            Publicar notícia
+        </a>
+    </section>
+
+</main>
 
 <footer>
-    <p>© 2026 Moçambique Notícias 24</p>
-    <p>Todos os direitos reservados.</p>
+    <p>© 2026 Meu Jornal - Todos os direitos reservados.</p>
 </footer>
-
-<script>
-
-const noticias = [
-
-{
-titulo: "Bem-vindo ao Moçambique Notícias 24",
-categoria: "Nacional",
-data: "21/09/2026",
-imagem: "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4",
-texto: "Este é o seu novo espaço para acompanhar notícias e acontecimentos de Moçambique."
-},
-
-{
-titulo: "Educação em Moçambique",
-categoria: "Educação",
-data: "21/09/2026",
-imagem: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
-texto: "Notícias, informações e acontecimentos relacionados com a educação em Moçambique."
-},
-
-{
-titulo: "Desporto nacional",
-categoria: "Desporto",
-data: "21/09/2026",
-imagem: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211",
-texto: "Acompanhe as principais notícias do desporto nacional."
-}
-
-];
-
-function mostrar(categoria) {
-
-    const lista = document.getElementById("listaNoticias");
-
-    lista.innerHTML = "";
-
-    noticias.forEach(function(noticia) {
-
-        if (categoria === "Todas" || noticia.categoria === categoria) {
-
-            lista.innerHTML += `
-
-            <div class="noticia">
-
-                <img src="${noticia.imagem}">
-
-                <div class="conteudo">
-
-                    <span class="categoria">
-                        ${noticia.categoria}
-                    </span>
-
-                    <h2>${noticia.titulo}</h2>
-
-                    <p class="data">
-                        ${noticia.data}
-                    </p>
-
-                    <p>
-                        ${noticia.texto}
-                    </p>
-
-                    <button
-                        class="botao"
-                        onclick="ler('${noticia.titulo}')">
-                        Ler notícia
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-        }
-
-    });
-
-}
-
-function pesquisar() {
-
-    const palavra =
-        document.getElementById("pesquisa").value.toLowerCase();
-
-    const lista =
-        document.getElementById("listaNoticias");
-
-    lista.innerHTML = "";
-
-    noticias.forEach(function(noticia) {
-
-        if (
-            noticia.titulo.toLowerCase().includes(palavra) ||
-            noticia.texto.toLowerCase().includes(palavra)
-        ) {
-
-            lista.innerHTML += `
-
-            <div class="noticia">
-
-                <img src="${noticia.imagem}">
-
-                <div class="conteudo">
-
-                    <span class="categoria">
-                        ${noticia.categoria}
-                    </span>
-
-                    <h2>${noticia.titulo}</h2>
-
-                    <p class="data">
-                        ${noticia.data}
-                    </p>
-
-                    <p>${noticia.texto}</p>
-
-                    <button
-                        class="botao"
-                        onclick="ler('${noticia.titulo}')">
-                        Ler notícia
-                    </button>
-
-                </div>
-
-            </div>
-
-            `;
-        }
-
-    });
-
-}
-
-function ler(titulo) {
-    alert("Você selecionou: " + titulo);
-}
-
-mostrar("Todas");
-
-</script>
 
 </body>
 </html>
