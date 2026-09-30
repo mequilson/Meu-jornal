@@ -7,171 +7,118 @@
 <title>Meu Jornal</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    color: #222;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f1f1;
+    color:#222;
 }
 
-header {
-    background: #0b3d91;
-    color: white;
-    text-align: center;
-    padding: 25px 10px;
+header{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:20px 10px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 32px;
+header h1{
+    margin:0;
+    font-size:30px;
 }
 
-header p {
-    margin: 8px 0 0;
+header p{
+    margin:8px 0 0;
 }
 
-nav {
-    background: white;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+nav{
+    background:white;
+    padding:10px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
-nav button,
-nav a {
-    border: none;
-    text-decoration: none;
-    background: #0b3d91;
-    color: white;
-    padding: 11px 16px;
-    border-radius: 6px;
-    font-size: 15px;
-    cursor: pointer;
+nav button{
+    background:#111;
+    color:white;
+    border:0;
+    padding:11px 17px;
+    border-radius:5px;
+    font-size:15px;
 }
 
-nav button:hover,
-nav a:hover {
-    background: #062b67;
+main{
+    max-width:900px;
+    margin:auto;
+    padding:15px;
 }
 
-main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 10px;
+.pagina{
+    display:none;
 }
 
-.pagina {
-    display: none;
+.pagina.ativa{
+    display:block;
 }
 
-.pagina.ativa {
-    display: block;
+.card{
+    background:white;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
 }
 
-.card {
-    background: white;
-    padding: 22px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.card h2 {
-    color: #0b3d91;
-    margin-top: 0;
-}
-
-.categorias {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.categoria {
-    background: #0b3d91;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    padding: 18px 10px;
-    font-size: 17px;
-    cursor: pointer;
-}
-
-.categoria:hover {
-    background: #062b67;
+.card img{
+    display:block;
+    width:100%;
+    max-height:450px;
+    object-fit:cover;
+    border-radius:7px;
+    margin:10px 0;
 }
 
 input,
-textarea,
-select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 7px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    margin:7px 0 15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:16px;
 }
 
-textarea {
-    min-height: 180px;
-    resize: vertical;
+textarea{
+    min-height:170px;
 }
 
-.btn {
-    background: #0b3d91;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
+.botao{
+    background:#111;
+    color:white;
+    border:0;
+    padding:12px 18px;
+    border-radius:5px;
+    margin:4px;
+    font-size:15px;
 }
 
-.btn:hover {
-    background: #062b67;
+.apagar{
+    background:#b00020;
 }
 
-.btn-apagar {
-    background: #b00020;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.noticia {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
-}
-
-.noticia:last-child {
-    border-bottom: none;
-}
-
-.mensagem {
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 6px;
-    background: #e8f5e9;
-    color: #155724;
-}
-
-footer {
-    margin-top: 30px;
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 20px;
+#preview{
+    display:none;
+    width:100%;
+    max-height:350px;
+    object-fit:cover;
+    border-radius:7px;
+    margin-bottom:15px;
 }
 </style>
 </head>
@@ -184,470 +131,24 @@ footer {
 </header>
 
 <nav>
-    <button onclick="mostrarPagina('inicio')">Início</button>
-    <button onclick="mostrarPagina('noticias')">Notícias</button>
-    <button onclick="mostrarPagina('publicar')">Publicar</button>
-    <button onclick="mostrarPagina('gerir')">Gerir</button>
+    <button onclick="mostrarPagina('inicio')">
+        Início
+    </button>
+
+    <button onclick="mostrarPagina('noticias')">
+        Notícias
+    </button>
+
+    <button onclick="mostrarPagina('publicar')">
+        Publicar
+    </button>
+
+    <button onclick="mostrarPagina('gerir')">
+        Gerir
+    </button>
 </nav>
 
 <main>
 
 <!-- INÍCIO -->
 <section id="inicio" class="pagina ativa">
-
-    <div class="card">
-        <h2>Bem-vindo ao Meu Jornal</h2>
-
-        <p>
-            Acompanhe as principais notícias e informações.
-        </p>
-
-        <div class="categorias">
-
-            <button class="categoria"
-                onclick="abrirCategoria('Nacional')">
-                Nacional
-            </button>
-
-            <button class="categoria"
-                onclick="abrirCategoria('Educação')">
-                Educação
-            </button>
-
-            <button class="categoria"
-                onclick="abrirCategoria('Política')">
-                Política
-            </button>
-
-            <button class="categoria"
-                onclick="abrirCategoria('Tecnologia')">
-                Tecnologia
-            </button>
-
-        </div>
-    </div>
-
-</section>
-
-
-<!-- NOTÍCIAS -->
-<section id="noticias" class="pagina">
-
-    <div class="card">
-
-        <h2>Notícias</h2>
-
-        <div id="listaNoticias">
-            Nenhuma notícia publicada.
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PUBLICAR -->
-<section id="publicar" class="pagina">
-
-    <div class="card">
-
-        <h2>Publicar notícia</h2>
-
-        <label>Título da notícia</label>
-
-        <input
-            type="text"
-            id="titulo"
-            placeholder="Digite o título da notícia"
-        >
-
-        <label>Categoria</label>
-
-        <select id="categoria">
-
-            <option value="Nacional">Nacional</option>
-
-            <option value="Educação">Educação</option>
-
-            <option value="Política">Política</option>
-
-            <option value="Tecnologia">Tecnologia</option>
-
-        </select>
-
-        <label>Texto da notícia</label>
-
-        <textarea
-            id="texto"
-            placeholder="Digite o texto completo da notícia">
-        </textarea>
-
-        <button class="btn" onclick="publicarNoticia()">
-            Publicar notícia
-        </button>
-
-        <div id="mensagem"></div>
-
-    </div>
-
-</section>
-
-
-<!-- GERIR -->
-<section id="gerir" class="pagina">
-
-    <div class="card">
-
-        <h2>Gerir notícias</h2>
-
-        <div id="listaGerir">
-            Nenhuma notícia publicada.
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<footer>
-    <p>© 2026 Meu Jornal - Todos os direitos reservados.</p>
-</footer>
-
-
-<script>
-
-function mostrarPagina(nome) {
-
-    const paginas = document.querySelectorAll(".pagina");
-
-    paginas.forEach(function(pagina) {
-        pagina.classList.remove("ativa");
-    });
-
-    const escolhida = document.getElementById(nome);
-
-    if (escolhida) {
-        escolhida.classList.add("ativa");
-    }
-
-    if (nome === "noticias") {
-        mostrarNoticias();
-    }
-
-    if (nome === "gerir") {
-        mostrarGerir();
-    }
-}
-
-
-function obterNoticias() {
-
-    try {
-
-        const dados =
-            localStorage.getItem("meuJornalNoticias");
-
-        if (!dados) {
-            return [];
-        }
-
-        return JSON.parse(dados);
-
-    } catch (erro) {
-
-        return [];
-
-    }
-}
-
-
-function guardarNoticias(noticias) {
-
-    localStorage.setItem(
-        "meuJornalNoticias",
-        JSON.stringify(noticias)
-    );
-
-}
-
-
-function publicarNoticia() {
-
-    const titulo =
-        document.getElementById("titulo").value.trim();
-
-    const categoria =
-        document.getElementById("categoria").value;
-
-    const texto =
-        document.getElementById("texto").value.trim();
-
-    const mensagem =
-        document.getElementById("mensagem");
-
-
-    if (!titulo || !texto) {
-
-        mensagem.innerHTML =
-            '<div style="color:#b00020;">Preencha o título e o texto da notícia.</div>';
-
-        return;
-    }
-
-
-    const noticias = obterNoticias();
-
-
-    const novaNoticia = {
-
-        id: Date.now(),
-
-        titulo: titulo,
-
-        categoria: categoria,
-
-        texto: texto,
-
-        data: new Date().toLocaleDateString("pt-PT")
-
-    };
-
-
-    noticias.push(novaNoticia);
-
-    guardarNoticias(noticias);
-
-
-    mensagem.innerHTML =
-        '<div class="mensagem">Notícia publicada com sucesso.</div>';
-
-
-    document.getElementById("titulo").value = "";
-
-    document.getElementById("texto").value = "";
-
-
-    mostrarGerir();
-
-    mostrarPagina("noticias");
-
-}
-
-
-function mostrarNoticias() {
-
-    const noticias = obterNoticias();
-
-    const lista =
-        document.getElementById("listaNoticias");
-
-
-    if (noticias.length === 0) {
-
-        lista.innerHTML =
-            "Nenhuma notícia publicada.";
-
-        return;
-    }
-
-
-    lista.innerHTML = "";
-
-
-    noticias.slice().reverse().forEach(function(noticia) {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "noticia";
-
-
-        div.innerHTML =
-
-            "<h3>" +
-            escapeHTML(noticia.titulo) +
-            "</h3>" +
-
-            "<p><strong>Categoria:</strong> " +
-            escapeHTML(noticia.categoria) +
-            "</p>" +
-
-            "<p>" +
-            escapeHTML(noticia.texto) +
-            "</p>" +
-
-            "<small>" +
-            escapeHTML(noticia.data) +
-            "</small>";
-
-
-        lista.appendChild(div);
-
-    });
-
-}
-
-
-function mostrarGerir() {
-
-    const noticias = obterNoticias();
-
-    const lista =
-        document.getElementById("listaGerir");
-
-
-    if (noticias.length === 0) {
-
-        lista.innerHTML =
-            "Nenhuma notícia publicada.";
-
-        return;
-    }
-
-
-    lista.innerHTML = "";
-
-
-    noticias.slice().reverse().forEach(function(noticia) {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "noticia";
-
-
-        div.innerHTML =
-
-            "<h3>" +
-            escapeHTML(noticia.titulo) +
-            "</h3>" +
-
-            "<p>" +
-            escapeHTML(noticia.categoria) +
-            "</p>" +
-
-            "<button class='btn-apagar' onclick='apagarNoticia(" +
-            noticia.id +
-            ")'>Apagar</button>";
-
-
-        lista.appendChild(div);
-
-    });
-
-}
-
-
-function apagarNoticia(id) {
-
-    const noticias = obterNoticias();
-
-
-    const novasNoticias =
-        noticias.filter(function(noticia) {
-
-            return noticia.id !== id;
-
-        });
-
-
-    guardarNoticias(novasNoticias);
-
-    mostrarGerir();
-
-    mostrarNoticias();
-
-}
-
-
-function abrirCategoria(categoria) {
-
-    mostrarPagina("noticias");
-
-    const noticias = obterNoticias();
-
-    const filtradas =
-        noticias.filter(function(noticia) {
-
-            return noticia.categoria === categoria;
-
-        });
-
-
-    const lista =
-        document.getElementById("listaNoticias");
-
-
-    if (filtradas.length === 0) {
-
-        lista.innerHTML =
-            "<h3>" +
-            escapeHTML(categoria) +
-            "</h3>" +
-            "<p>Nenhuma notícia encontrada nesta categoria.</p>";
-
-        return;
-    }
-
-
-    lista.innerHTML =
-        "<h3>" +
-        escapeHTML(categoria) +
-        "</h3>";
-
-
-    filtradas.slice().reverse().forEach(function(noticia) {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "noticia";
-
-
-        div.innerHTML =
-
-            "<h3>" +
-            escapeHTML(noticia.titulo) +
-            "</h3>" +
-
-            "<p>" +
-            escapeHTML(noticia.texto) +
-            "</p>" +
-
-            "<small>" +
-            escapeHTML(noticia.data) +
-            "</small>";
-
-
-        lista.appendChild(div);
-
-    });
-
-}
-
-
-function escapeHTML(texto) {
-
-    return String(texto)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-}
-
-
-mostrarNoticias();
-
-</script>
-
-</body>
-</html>
