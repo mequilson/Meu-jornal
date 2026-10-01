@@ -72,6 +72,11 @@ input {
   border-radius: 6px;
   font-size: 16px;
   margin-top: 15px;
+  cursor: pointer;
+}
+
+.botao:hover {
+  opacity: 0.9;
 }
 
 .botao.apagar {
@@ -132,7 +137,6 @@ footer {
 
 <body>
 
-
 <header>
 
 <h1>MEU JORNAL</h1>
@@ -141,9 +145,7 @@ footer {
 
 </header>
 
-
 <div class="conteudo">
-
 
 <div class="info">
 
@@ -154,7 +156,6 @@ Cada visualização vale
 no cálculo interno do jornal.
 
 </div>
-
 
 <div class="caixa">
 
@@ -171,7 +172,6 @@ Número de visualizações das notícias.
 </p>
 
 </div>
-
 
 <div class="caixa">
 
@@ -196,6 +196,7 @@ Valor total recebido através de publicidade.
 >
 
 <button
+  type="button"
   class="botao"
   onclick="adicionarPublicidade()">
 
@@ -209,7 +210,6 @@ ADICIONAR PUBLICIDADE
 </div>
 
 </div>
-
 
 <div class="caixa">
 
@@ -227,7 +227,6 @@ Rendimento calculado pelas visualizações.
 
 </div>
 
-
 <div class="caixa">
 
 <h2>Rendimento total</h2>
@@ -244,7 +243,6 @@ Rendimento das visualizações + publicidade.
 
 </div>
 
-
 <div class="caixa">
 
 <h2>Histórico de publicidade</h2>
@@ -253,8 +251,8 @@ Rendimento das visualizações + publicidade.
 
 </div>
 
-
 <button
+  type="button"
   class="botao"
   onclick="voltar()">
 
@@ -262,9 +260,7 @@ Rendimento das visualizações + publicidade.
 
 </button>
 
-
 </div>
-
 
 <footer>
 
@@ -272,9 +268,9 @@ Meu Jornal
 
 </footer>
 
-
 <script>
 
+/* Meu Jornal - Rendimento */
 
 var valorPorVisualizacao = 0.50;
 
@@ -292,247 +288,199 @@ function obterHistorico() {
 
 function atualizar() {
 
+  var visualizacoes =
+    parseInt(
+      localStorage.getItem(
+        "meuJornalVisualizacoes"
+      )
+    ) || 0;
 
-var visualizacoes =
-parseInt(
-  localStorage.getItem(
-    "meuJornalVisualizacoes"
-  )
-) || 0;
+  var publicidade =
+    parseFloat(
+      localStorage.getItem(
+        "meuJornalPublicidade"
+      )
+    ) || 0;
 
+  var rendimento =
+    visualizacoes * valorPorVisualizacao;
 
-var publicidade =
-parseFloat(
-  localStorage.getItem(
-    "meuJornalPublicidade"
-  )
-) || 0;
+  var total =
+    rendimento + publicidade;
 
+  localStorage.setItem(
+    "meuJornalRendimento",
+    rendimento
+  );
 
-var rendimento =
-visualizacoes *
-valorPorVisualizacao;
+  localStorage.setItem(
+    "meuJornalTotal",
+    total
+  );
 
+  document.getElementById(
+    "visualizacoes"
+  ).innerText =
+    visualizacoes;
 
-var total =
-rendimento +
-publicidade;
+  document.getElementById(
+    "publicidade"
+  ).innerText =
+    publicidade.toFixed(2) + " MT";
 
+  document.getElementById(
+    "rendimento"
+  ).innerText =
+    rendimento.toFixed(2) + " MT";
 
-localStorage.setItem(
-  "meuJornalRendimento",
-  rendimento
-);
+  document.getElementById(
+    "total"
+  ).innerText =
+    total.toFixed(2) + " MT";
 
-
-localStorage.setItem(
-  "meuJornalTotal",
-  total
-);
-
-
-document.getElementById(
-  "visualizacoes"
-).innerText =
-visualizacoes;
-
-
-document.getElementById(
-  "publicidade"
-).innerText =
-publicidade.toFixed(2) +
-" MT";
-
-
-document.getElementById(
-  "rendimento"
-).innerText =
-rendimento.toFixed(2) +
-" MT";
-
-
-document.getElementById(
-  "total"
-).innerText =
-total.toFixed(2) +
-" MT";
-
-
-mostrarHistorico();
+  mostrarHistorico();
 
 }
 
 
 function adicionarPublicidade() {
 
+  var campo =
+    document.getElementById(
+      "valorPublicidade"
+    );
 
-var campo =
-document.getElementById(
-  "valorPublicidade"
-);
+  var valor =
+    parseFloat(campo.value);
 
+  if (
+    isNaN(valor) ||
+    valor <= 0
+  ) {
 
-var valor =
-parseFloat(
-  campo.value
-);
+    document.getElementById(
+      "mensagem"
+    ).innerText =
+      "Digite um valor válido.";
 
+    return;
+  }
 
-if (
-  isNaN(valor) ||
-  valor <= 0
-) {
+  var publicidadeAtual =
+    parseFloat(
+      localStorage.getItem(
+        "meuJornalPublicidade"
+      )
+    ) || 0;
+
+  var novaPublicidade =
+    publicidadeAtual + valor;
+
+  localStorage.setItem(
+    "meuJornalPublicidade",
+    novaPublicidade
+  );
+
+  var historico =
+    obterHistorico();
+
+  var agora =
+    new Date();
+
+  var registro = {
+
+    valor: valor,
+
+    data:
+      agora.toLocaleDateString(
+        "pt-PT"
+      ),
+
+    hora:
+      agora.toLocaleTimeString(
+        "pt-PT"
+      )
+
+  };
+
+  historico.push(registro);
+
+  localStorage.setItem(
+    "meuJornalHistoricoPublicidade",
+    JSON.stringify(historico)
+  );
+
+  campo.value = "";
 
   document.getElementById(
     "mensagem"
   ).innerText =
-  "Digite um valor válido.";
+    "Publicidade adicionada com sucesso.";
 
-  return;
-
-}
-
-
-var publicidadeAtual =
-parseFloat(
-  localStorage.getItem(
-    "meuJornalPublicidade"
-  )
-) || 0;
-
-
-var novaPublicidade =
-publicidadeAtual +
-valor;
-
-
-localStorage.setItem(
-  "meuJornalPublicidade",
-  novaPublicidade
-);
-
-
-var historico =
-obterHistorico();
-
-
-var agora =
-new Date();
-
-
-var registro = {
-
-  valor: valor,
-
-  data:
-  agora.toLocaleDateString(
-    "pt-PT"
-  ),
-
-  hora:
-  agora.toLocaleTimeString(
-    "pt-PT"
-  )
-
-};
-
-
-historico.push(
-  registro
-);
-
-
-localStorage.setItem(
-  "meuJornalHistoricoPublicidade",
-  JSON.stringify(
-    historico
-  )
-);
-
-
-campo.value = "";
-
-
-document.getElementById(
-  "mensagem"
-).innerText =
-"Publicidade adicionada com sucesso.";
-
-
-atualizar();
+  atualizar();
 
 }
 
 
 function mostrarHistorico() {
 
+  var historico =
+    obterHistorico();
 
-var historico =
-obterHistorico();
+  var area =
+    document.getElementById(
+      "historico"
+    );
 
+  if (
+    historico.length === 0
+  ) {
 
-var area =
-document.getElementById(
-  "historico"
-);
+    area.innerHTML =
+      '<div class="sem-historico">' +
+      'Nenhuma publicidade registrada.' +
+      '</div>';
 
+    return;
+  }
 
-if (
-  historico.length === 0
-) {
+  var html = "";
 
-  area.innerHTML =
-  '<div class="sem-historico">' +
-  'Nenhuma publicidade registrada.' +
-  '</div>';
+  for (
+    var i = historico.length - 1;
+    i >= 0;
+    i--
+  ) {
 
-  return;
+    html +=
 
-}
+      '<div class="historico-item">' +
 
+      '<div class="valor">' +
 
-var html = "";
+      Number(
+        historico[i].valor
+      ).toFixed(2) +
 
+      ' MT</div>' +
 
-for (
-  var i = historico.length - 1;
-  i >= 0;
-  i--
-) {
+      '<div class="data">' +
 
+      'Data: ' +
+      historico[i].data +
 
-html +=
+      '<br>' +
 
-'<div class="historico-item">' +
+      'Hora: ' +
+      historico[i].hora +
 
-'<div class="valor">' +
+      '</div>' +
 
-Number(
-  historico[i].valor
-).toFixed(2) +
+      '</div>';
 
-' MT</div>' +
+  }
 
-'<div class="data">' +
-
-'Data: ' +
-historico[i].data +
-
-'<br>' +
-
-'Hora: ' +
-historico[i].hora +
-
-'</div>' +
-
-'</div>';
-
-
-}
-
-
-area.innerHTML =
-html;
+  area.innerHTML = html;
 
 }
 
@@ -540,16 +488,14 @@ html;
 function voltar() {
 
   window.location.href =
-  "index.html";
+    "./index.html";
 
 }
 
 
 atualizar();
 
-
 </script>
-
 
 </body>
 </html>
