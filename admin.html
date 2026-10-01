@@ -9,256 +9,157 @@
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f1f3f6;
-    color:#222;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f1f3f6;
+color:#222;
 }
 
 header{
-    background:#111827;
-    color:white;
-    text-align:center;
-    padding:25px 15px;
+background:#111827;
+color:white;
+text-align:center;
+padding:25px 15px;
 }
 
 header h1{
-    margin:0;
-    font-size:30px;
+margin:0;
+font-size:30px;
 }
 
 header p{
-    margin:7px 0 0;
-    color:#d1d5db;
+margin:7px 0 0;
+color:#d1d5db;
 }
 
 nav{
-    background:white;
-    padding:12px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:8px;
-    box-shadow:0 2px 7px rgba(0,0,0,.08);
+background:white;
+padding:12px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:8px;
 }
 
 nav a{
-    text-decoration:none;
-    color:#111827;
-    background:#e5e7eb;
-    padding:9px 13px;
-    border-radius:6px;
-    font-weight:bold;
+text-decoration:none;
+color:#111827;
+background:#e5e7eb;
+padding:9px 13px;
+border-radius:
+  6px;
+font-weight:bold;
 }
 
 .container{
-    width:94%;
-    max-width:1000px;
-    margin:20px auto;
+width:94%;
+max-width:1000px;
+margin:20px auto;
 }
 
 .caixa{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .caixa h2{
-    margin-top:0;
+margin-top:0;
 }
 
 input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:7px;
-    font-size:16px;
-    margin-bottom:12px;
+width:100%;
+padding:13px;
+border:1px solid #ccc;
+border-radius:7px;
+font-size:16px;
+margin-bottom:12px;
 }
 
 button{
-    border:0;
-    padding:11px 15px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:bold;
+border:0;
+padding:11px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
 }
 
 .btn-entrar{
-    background:#111827;
-    color:white;
-}
-
-.btn-abrir{
-    background:#2563eb;
-    color:white;
-}
-
-.btn-editar{
-    background:#f59e0b;
-    color:white;
-}
-
-.btn-apagar{
-    background:#dc2626;
-    color:white;
+background:#111827;
+color:white;
 }
 
 .btn-publicar{
-    background:#16a34a;
-    color:white;
+background:#16a34a;
+color:white;
 }
 
 .btn-rendimento{
-    background:#7c3aed;
-    color:white;
+background:#7c3aed;
+color:white;
 }
 
 .btn-sair{
-    background:#dc2626;
-    color:white;
-}
-
-.btn-senha{
-    background:#374151;
-    color:white;
+background:#dc2626;
+color:white;
 }
 
 .painel{
-    display:none;
+display:none;
 }
 
 .resumos{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:20px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:20px;
 }
 
 .resumo{
-    background:#f3f4f6;
-    padding:17px;
-    border-radius:9px;
-    text-align:center;
+background:#f3f4f6;
+padding:17px;
+border-radius:9px;
+text-align:center;
 }
 
 .resumo span{
-    display:block;
-    color:#666;
-    font-size:14px;
+display:block;
+color:#666;
+font-size:14px;
 }
 
 .resumo strong{
-    display:block;
-    font-size:25px;
-    margin-top:6px;
+display:block;
+font-size:25px;
+margin-top:6px;
 }
 
 .botoes{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:20px;
-}
-
-.noticia{
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:12px;
-    background:#fafafa;
-}
-
-.noticia h3{
-    margin:0 0 8px;
-    font-size:20px;
-}
-
-.categoria{
-    display:inline-block;
-    background:#2563eb;
-    color:white;
-    padding:5px 9px;
-    border-radius:15px;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.data{
-    color:#777;
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.acoes{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
+display:flex;
+flex-wrap:wrap;
+gap:8px;
 }
 
 .erro{
-    color:#dc2626;
-    margin-top:10px;
-}
-
-.sucesso{
-    color:#16a34a;
-    margin-top:10px;
-}
-
-.modal{
-    display:none;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.6);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:999;
-}
-
-.modal-caixa{
-    background:white;
-    width:100%;
-    max-width:400px;
-    padding:25px;
-    border-radius:12px;
-    text-align:center;
-}
-
-.modal-caixa h3{
-    margin-top:0;
-}
-
-.modal-caixa input{
-    margin-top:10px;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#777;
+color:#dc2626;
+margin-top:10px;
 }
 
 @media(max-width:700px){
 
-    .resumos{
-        grid-template-columns:repeat(2,1fr);
-    }
+.resumos{
+grid-template-columns:repeat(2,1fr);
+}
 
-    .acoes button{
-        width:100%;
-    }
+.botoes button{
+width:100%;
+}
 
 }
 
@@ -269,801 +170,245 @@ footer{
 
 <header>
 
-    <h1>MEU JORNAL</h1>
+<h1>MEU JORNAL</h1>
 
-    <p>Painel de Administração</p>
+<p>Painel de Administração</p>
 
 </header>
 
-
 <nav>
 
-    <a href="index.html">INÍCIO</a>
+<a href="./index.html">INÍCIO</a>
 
-    <a href="publicar.html">PUBLICAR</a>
+<a href="./publicar.html">PUBLICAR</a>
 
-    <a href="noticias.html">NOTÍCIAS</a>
+<a href="./noticias.html">NOTÍCIAS</a>
 
-    <a href="rendimento.html">RENDIMENTO</a>
+<a href="./rendimento.html">RENDIMENTO</a>
 
 </nav>
 
-
 <div class="container">
 
+<div class="caixa" id="login">
 
-    <!-- LOGIN -->
+<h2>Acesso administrativo</h2>
 
-    <div class="caixa" id="login">
+<p>Digite a senha para entrar.</p>
 
-        <h2>Acesso administrativo</h2>
+<input
+type="password"
+id="senha"
+placeholder="Digite a senha"
+>
 
-        <p>
-            Digite a senha para entrar.
-        </p>
+<button
+type="button"
+class="btn-entrar"
+onclick="entrar()"
+>
+ENTRAR
+</button>
 
-        <input
-            type="password"
-            id="senha"
-            placeholder="Digite a senha"
-        >
-
-        <button
-            class="btn-entrar"
-            onclick="entrar()"
-        >
-            ENTRAR
-        </button>
-
-        <div id="mensagemLogin"></div>
-
-    </div>
-
-
-    <!-- PAINEL -->
-
-    <div id="painel" class="painel">
-
-
-        <div class="caixa">
-
-            <h2>Resumo</h2>
-
-            <div class="resumos">
-
-                <div class="resumo">
-
-                    <span>Notícias</span>
-
-                    <strong id="totalNoticias">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="resumo">
-
-                    <span>Visualizações</span>
-
-                    <strong id="totalVisualizacoes">
-                        0
-                    </strong>
-
-                </div>
-
-
-                <div class="resumo">
-
-                    <span>Publicidade</span>
-
-                    <strong id="totalPublicidade">
-                        0,00 MT
-                    </strong>
-
-                </div>
-
-
-                <div class="resumo">
-
-                    <span>Rendimento total</span>
-
-                    <strong id="totalRendimento">
-                        0,00 MT
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="botoes">
-
-                <button
-                    class="btn-publicar"
-                    onclick="publicar()"
-                >
-                    PUBLICAR NOTÍCIA
-                </button>
-
-
-                <button
-                    class="btn-rendimento"
-                    onclick="rendimento()"
-                >
-                    VER RENDIMENTO
-                </button>
-
-
-                <button
-                    class="btn-senha"
-                    onclick="abrirSenha()"
-                >
-                    ALTERAR SENHA
-                </button>
-
-
-                <button
-                    class="btn-sair"
-                    onclick="sair()"
-                >
-                    SAIR
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- GESTÃO DE NOTÍCIAS -->
-
-        <div class="caixa">
-
-            <h2>Gerir notícias</h2>
-
-            <input
-                type="text"
-                id="pesquisa"
-                placeholder="Pesquisar notícia pelo título..."
-                oninput="mostrarNoticias()"
-            >
-
-            <div id="listaNoticias"></div>
-
-        </div>
-
-    </div>
+<div id="mensagemLogin"></div>
 
 </div>
 
+<div id="painel" class="painel">
 
-<!-- MODAL APAGAR -->
+<div class="caixa">
 
-<div id="modalApagar" class="modal">
+<h2>Resumo</h2>
 
-    <div class="modal-caixa">
+<div class="resumos">
 
-        <h3>Apagar notícia?</h3>
+<div class="resumo">
+<span>Notícias</span>
+<strong id="totalNoticias">0</strong>
+</div>
 
-        <p>
-            Tem certeza que deseja apagar esta notícia?
-        </p>
+<div class="resumo">
+<span>Visualizações</span>
+<strong id="totalVisualizacoes">0</strong>
+</div>
 
-        <button
-            class="btn-apagar"
-            onclick="confirmarApagar()"
-        >
-            APAGAR
-        </button>
+<div class="resumo">
+<span>Publicidade</span>
+<strong id="totalPublicidade">0,00 MT</strong>
+</div>
 
-        <button
-            onclick="fecharApagar()"
-        >
-            CANCELAR
-        </button>
-
-    </div>
+<div class="resumo">
+<span>Rendimento total</span>
+<strong id="totalRendimento">0,00 MT</strong>
+</div>
 
 </div>
 
+<div class="botoes">
 
-<!-- MODAL SENHA -->
+<button
+type="button"
+class="btn-publicar"
+onclick="publicar()"
+>
+PUBLICAR NOTÍCIA
+</button>
 
-<div id="modalSenha" class="modal">
+<button
+type="button"
+class="btn-rendimento"
+onclick="rendimento()"
+>
+VER RENDIMENTO
+</button>
 
-    <div class="modal-caixa">
-
-        <h3>Alterar senha</h3>
-
-        <input
-            type="password"
-            id="senhaAtual"
-            placeholder="Senha atual"
-        >
-
-        <input
-            type="password"
-            id="novaSenha"
-            placeholder="Nova senha"
-        >
-
-        <button
-            class="btn-entrar"
-            onclick="guardarSenha()"
-        >
-            GUARDAR
-        </button>
-
-        <button onclick="fecharSenha()">
-            CANCELAR
-        </button>
-
-        <div id="mensagemSenha"></div>
-
-    </div>
+<button
+type="button"
+class="btn-sair"
+onclick="sair()"
+>
+SAIR
+</button>
 
 </div>
 
+</div>
+
+</div>
+
+</div>
 
 <footer>
-
-    MEU JORNAL
-
+MEU JORNAL
 </footer>
-
 
 <script>
 
-var noticias =
-    JSON.parse(
-        localStorage.getItem("meuJornalNoticias")
-    ) || [];
-
-var indiceApagar = null;
-
-
-/* =========================
-   ENTRAR
-========================= */
-
 function entrar(){
 
-    var senha =
-        document.getElementById("senha").value;
+var senha =
+document.getElementById("senha").value;
 
-    var senhaGuardada =
-        localStorage.getItem("meuJornalSenha");
+var senhaGuardada =
+localStorage.getItem("meuJornalSenha");
 
+if(senhaGuardada === null){
 
-    if(senhaGuardada === null){
+senhaGuardada="1234";
 
-        senhaGuardada = "1234";
-
-        localStorage.setItem(
-            "meuJornalSenha",
-            senhaGuardada
-        );
-
-    }
-
-
-    if(senha === senhaGuardada){
-
-        document.getElementById("login")
-            .style.display = "none";
-
-        document.getElementById("painel")
-            .style.display = "block";
-
-        atualizarResumo();
-
-        mostrarNoticias();
-
-    }else{
-
-        document.getElementById(
-            "mensagemLogin"
-        ).className = "erro";
-
-        document.getElementById(
-            "mensagemLogin"
-        ).innerText =
-            "Senha incorreta.";
-
-    }
+localStorage.setItem(
+"meuJornalSenha",
+"1234"
+);
 
 }
 
+if(senha === senhaGuardada){
 
-/* =========================
-   RESUMO
-========================= */
+document.getElementById(
+"login"
+).style.display="none";
+
+document.getElementById(
+"painel"
+).style.display="block";
+
+atualizarResumo();
+
+}else{
+
+document.getElementById(
+"mensagemLogin"
+).className="erro";
+
+document.getElementById(
+"mensagemLogin"
+).innerText=
+"Senha incorreta.";
+
+}
+
+}
 
 function atualizarResumo(){
 
-    noticias =
-        JSON.parse(
-            localStorage.getItem(
-                "meuJornalNoticias"
-            )
-        ) || [];
+var noticias =
+JSON.parse(
+localStorage.getItem(
+"meuJornalNoticias"
+)
+) || [];
 
+var visualizacoes =
+parseInt(
+localStorage.getItem(
+"meuJornalVisualizacoes"
+)
+) || 0;
 
-    var visualizacoes =
-        parseInt(
-            localStorage.getItem(
-                "meuJornalVisualizacoes"
-            )
-        ) || 0;
+var publicidade =
+parseFloat(
+localStorage.getItem(
+"meuJornalPublicidade"
+)
+) || 0;
 
+var total =
+parseFloat(
+localStorage.getItem(
+"meuJornalTotal"
+)
+) || 0;
 
-    var publicidade =
-        parseFloat(
-            localStorage.getItem(
-                "meuJornalPublicidade"
-            )
-        ) || 0;
+document.getElementById(
+"totalNoticias"
+).innerText=
+noticias.length;
 
+document.getElementById(
+"totalVisualizacoes"
+).innerText=
+visualizacoes;
 
-    var rendimento =
-        parseFloat(
-            localStorage.getItem(
-                "meuJornalRendimento"
-            )
-        ) || 0;
+document.getElementById(
+"totalPublicidade"
+).innerText=
+publicidade.toFixed(2)
+.replace(".",",")+" MT";
 
-
-    var total =
-        parseFloat(
-            localStorage.getItem(
-                "meuJornalTotal"
-            )
-        ) || 0;
-
-
-    document.getElementById(
-        "totalNoticias"
-    ).innerText =
-        noticias.length;
-
-
-    document.getElementById(
-        "totalVisualizacoes"
-    ).innerText =
-        visualizacoes;
-
-
-    document.getElementById(
-        "totalPublicidade"
-    ).innerText =
-        publicidade
-        .toFixed(2)
-        .replace(".",",") +
-        " MT";
-
-
-    document.getElementById(
-        "totalRendimento"
-    ).innerText =
-        total
-        .toFixed(2)
-        .replace(".",",") +
-        " MT";
+document.getElementById(
+"totalRendimento"
+).innerText=
+total.toFixed(2)
+.replace(".",",")+" MT";
 
 }
-
-
-/* =========================
-   MOSTRAR NOTÍCIAS
-========================= */
-
-function mostrarNoticias(){
-
-    var lista =
-        document.getElementById(
-            "listaNoticias"
-        );
-
-
-    var pesquisa =
-        document.getElementById(
-            "pesquisa"
-        ).value
-        .toLowerCase()
-        .trim();
-
-
-    lista.innerHTML = "";
-
-
-    var encontrou = false;
-
-
-    noticias.forEach(function(
-        noticia,
-        indice
-    ){
-
-        var titulo =
-            (noticia.titulo || "")
-            .toLowerCase();
-
-
-        if(
-            pesquisa &&
-            titulo.indexOf(pesquisa) === -1
-        ){
-
-            return;
-
-        }
-
-
-        encontrou = true;
-
-
-        var div =
-            document.createElement("div");
-
-
-        div.className = "noticia";
-
-
-        div.innerHTML =
-
-            '<div class="categoria">' +
-
-            escaparHTML(
-                noticia.categoria ||
-                "Outras"
-            ) +
-
-            '</div>' +
-
-            '<h3>' +
-
-            escaparHTML(
-                noticia.titulo ||
-                "Sem título"
-            ) +
-
-            '</h3>' +
-
-            '<div class="data">' +
-
-            escaparHTML(
-                noticia.data ||
-                ""
-            ) +
-
-            '</div>' +
-
-            '<div class="acoes">' +
-
-            '<button class="btn-abrir" ' +
-            'onclick="abrirNoticia(' +
-            indice +
-            ')">' +
-            'ABRIR' +
-            '</button>' +
-
-            '<button class="btn-editar" ' +
-            'onclick="editarNoticia(' +
-            indice +
-            ')">' +
-            'EDITAR' +
-            '</button>' +
-
-            '<button class="btn-apagar" ' +
-            'onclick="pedirApagar(' +
-            indice +
-            ')">' +
-            'APAGAR' +
-            '</button>' +
-
-            '</div>';
-
-
-        lista.appendChild(div);
-
-    });
-
-
-    if(!encontrou){
-
-        lista.innerHTML =
-            "<p>Nenhuma notícia encontrada.</p>";
-
-    }
-
-}
-
-
-/* =========================
-   ABRIR NOTÍCIA
-========================= */
-
-function abrirNoticia(indice){
-
-    if(!noticias[indice]){
-        return;
-    }
-
-
-    localStorage.setItem(
-        "meuJornalNoticiaSelecionada",
-        indice
-    );
-
-
-    window.location.href =
-        "noticias.html";
-
-}
-
-
-/* =========================
-   EDITAR
-========================= */
-
-function editarNoticia(indice){
-
-    if(!noticias[indice]){
-        return;
-    }
-
-
-    localStorage.setItem(
-        "meuJornalEditar",
-        indice
-    );
-
-
-    window.location.href =
-        "publicar.html";
-
-}
-
-
-/* =========================
-   APAGAR
-========================= */
-
-function pedirApagar(indice){
-
-    indiceApagar = indice;
-
-
-    document.getElementById(
-        "modalApagar"
-    ).style.display =
-        "flex";
-
-}
-
-
-function fecharApagar(){
-
-    indiceApagar = null;
-
-
-    document.getElementById(
-        "modalApagar"
-    ).style.display =
-        "none";
-
-}
-
-
-function confirmarApagar(){
-
-    if(indiceApagar === null){
-        return;
-    }
-
-
-    noticias.splice(
-        indiceApagar,
-        1
-    );
-
-
-    localStorage.setItem(
-        "meuJornalNoticias",
-        JSON.stringify(noticias)
-    );
-
-
-    fecharApagar();
-
-    atualizarResumo();
-
-    mostrarNoticias();
-
-}
-
-
-/* =========================
-   PUBLICAR
-========================= */
 
 function publicar(){
 
-    window.location.href =
-        "publicar.html";
+window.location.href="./publicar.html";
 
 }
-
-
-/* =========================
-   RENDIMENTO
-========================= */
 
 function rendimento(){
 
-    window.location.href =
-        "rendimento.html";
+window.location.href="./rendimento.html";
 
 }
-
-
-/* =========================
-   SAIR
-========================= */
 
 function sair(){
 
-    document.getElementById(
-        "painel"
-    ).style.display =
-        "none";
+document.getElementById(
+"painel"
+).style.display="none";
 
+document.getElementById(
+"login"
+).style.display="block";
 
-    document.getElementById(
-        "login"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "senha"
-    ).value = "";
-
-}
-
-
-/* =========================
-   ALTERAR SENHA
-========================= */
-
-function abrirSenha(){
-
-    document.getElementById(
-        "modalSenha"
-    ).style.display =
-        "flex";
-
-}
-
-
-function fecharSenha(){
-
-    document.getElementById(
-        "modalSenha"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "senhaAtual"
-    ).value = "";
-
-
-    document.getElementById(
-        "novaSenha"
-    ).value = "";
-
-
-    document.getElementById(
-        "mensagemSenha"
-    ).innerText = "";
-
-}
-
-
-function guardarSenha(){
-
-    var atual =
-        document.getElementById(
-            "senhaAtual"
-        ).value;
-
-
-    var nova =
-        document.getElementById(
-            "novaSenha"
-        ).value;
-
-
-    var guardada =
-        localStorage.getItem(
-            "meuJornalSenha"
-        );
-
-
-    if(guardada === null){
-
-        guardada = "1234";
-
-    }
-
-
-    if(atual !== guardada){
-
-        document.getElementById(
-            "mensagemSenha"
-        ).className = "erro";
-
-
-        document.getElementById(
-            "mensagemSenha"
-        ).innerText =
-            "A senha atual está incorreta.";
-
-        return;
-
-    }
-
-
-    if(nova.length < 4){
-
-        document.getElementById(
-            "mensagemSenha"
-        ).className = "erro";
-
-
-        document.getElementById(
-            "mensagemSenha"
-        ).innerText =
-            "A nova senha deve ter pelo menos 4 caracteres.";
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "meuJornalSenha",
-        nova
-    );
-
-
-    document.getElementById(
-        "mensagemSenha"
-    ).className = "sucesso";
-
-
-    document.getElementById(
-        "mensagemSenha"
-    ).innerText =
-        "Senha alterada com sucesso.";
-
-}
-
-
-/* =========================
-   SEGURANÇA DO TEXTO
-========================= */
-
-function escaparHTML(texto){
-
-    var div =
-        document.createElement("div");
-
-    div.textContent =
-        texto;
-
-    return div.innerHTML;
+document.getElementById(
+"senha"
+).value="";
 
 }
 
