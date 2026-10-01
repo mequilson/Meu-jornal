@@ -7,118 +7,144 @@
 <title>Meu Jornal</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f1f1f1;
-    color:#222;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #222;
 }
 
-header{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:20px 10px;
+header {
+  background: #111;
+  color: white;
+  padding: 18px;
+  text-align: center;
 }
 
-header h1{
-    margin:0;
-    font-size:30px;
+header h1 {
+  margin: 0;
+  font-size: 28px;
 }
 
-header p{
-    margin:8px 0 0;
+header p {
+  margin: 7px 0 0;
 }
 
-nav{
-    background:white;
-    padding:10px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:8px;
+nav {
+  background: #222;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
 }
 
-nav button{
-    background:#111;
-    color:white;
-    border:0;
-    padding:11px 17px;
-    border-radius:5px;
-    font-size:15px;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 5px;
+  background: #333;
 }
 
-main{
-    max-width:900px;
-    margin:auto;
-    padding:15px;
+nav a:hover {
+  background: #555;
 }
 
-.pagina{
-    display:none;
+.container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 20px auto;
 }
 
-.pagina.ativa{
-    display:block;
+.hero {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.card{
-    background:white;
-    padding:15px;
-    margin-bottom:15px;
-    border-radius:8px;
-    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+.hero h2 {
+  margin-top: 0;
 }
 
-.card img{
-    display:block;
-    width:100%;
-    max-height:450px;
-    object-fit:cover;
-    border-radius:7px;
-    margin:10px 0;
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 20px 0;
 }
 
-input,
-select,
-textarea{
-    width:100%;
-    padding:12px;
-    margin:7px 0 15px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    font-size:16px;
+.categorias button {
+  border: none;
+  background: #111;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-textarea{
-    min-height:170px;
+.categorias button:hover {
+  background: #444;
 }
 
-.botao{
-    background:#111;
-    color:white;
-    border:0;
-    padding:12px 18px;
-    border-radius:5px;
-    margin:4px;
-    font-size:15px;
+#listaNoticias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
 }
 
-.apagar{
-    background:#b00020;
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
-#preview{
-    display:none;
-    width:100%;
-    max-height:350px;
-    object-fit:cover;
-    border-radius:7px;
-    margin-bottom:15px;
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.botao {
+  display: inline-block;
+  border: none;
+  background: #111;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.area-admin {
+  background: white;
+  padding: 20px;
+  margin-top: 25px;
+  border-radius: 10px;
+}
+
+footer {
+  margin-top: 30px;
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 18px;
 }
 </style>
 </head>
@@ -126,29 +152,245 @@ textarea{
 <body>
 
 <header>
-    <h1>MEU JORNAL</h1>
-    <p>Informação que chega até você.</p>
+  <h1>MEU JORNAL</h1>
+  <p>Informação que chega até você.</p>
 </header>
 
 <nav>
-    <button onclick="mostrarPagina('inicio')">
-        Início
-    </button>
 
-    <button onclick="mostrarPagina('noticias')">
-        Notícias
-    </button>
+  <a href="./index.html">INÍCIO</a>
 
-    <button onclick="mostrarPagina('publicar')">
-        Publicar
-    </button>
+  <a href="./publicar.html">PUBLICAR</a>
 
-    <button onclick="mostrarPagina('gerir')">
-        Gerir
-    </button>
+  <a href="./noticias.html">NOTÍCIAS</a>
+
+  <a href="./rendimento.html">RENDIMENTO</a>
+
+  <a href="#areaAdmin">ADMINISTRAÇÃO</a>
+
 </nav>
 
-<main>
+<div class="container">
 
-<!-- INÍCIO -->
-<section id="inicio" class="pagina ativa">
+  <section class="hero">
+
+    <h2>Bem-vindo ao Meu Jornal</h2>
+
+    <p>
+      Leia notícias, publique conteúdos e acompanhe o seu jornal.
+    </p>
+
+    <a class="botao" href="./noticias.html">
+      LER NOTÍCIAS
+    </a>
+
+  </section>
+
+  <h2>ESCOLHA UMA CATEGORIA</h2>
+
+  <div class="categorias">
+
+    <button onclick="abrirCategoria('Educação')">
+      Educação
+    </button>
+
+    <button onclick="abrirCategoria('Novas Tecnologias')">
+      Novas Tecnologias
+    </button>
+
+    <button onclick="abrirCategoria('Política')">
+      Política
+    </button>
+
+    <button onclick="abrirCategoria('Economia')">
+      Economia
+    </button>
+
+    <button onclick="abrirCategoria('Desporto')">
+      Desporto
+    </button>
+
+    <button onclick="abrirCategoria('Sociedade')">
+      Sociedade
+    </button>
+
+    <button onclick="abrirCategoria('Saúde')">
+      Saúde
+    </button>
+
+    <button onclick="abrirCategoria('Cultura')">
+      Cultura
+    </button>
+
+    <button onclick="abrirCategoria('Outras')">
+      Outras
+    </button>
+
+  </div>
+
+  <h2>NOTÍCIAS RECENTES</h2>
+
+  <div id="listaNoticias"></div>
+
+  <section class="area-admin" id="areaAdmin">
+
+    <h2>Administração</h2>
+
+    <p>
+      Área de administração do Meu Jornal.
+    </p>
+
+    <button class="botao" onclick="abrirPublicar()">
+      Publicar notícia
+    </button>
+
+    <button class="botao" onclick="abrirRendimento()">
+      Rendimento
+    </button>
+
+  </section>
+
+</div>
+
+<footer>
+  <p>© Meu Jornal</p>
+</footer>
+
+<script>
+
+function carregarNoticias() {
+
+  const noticias =
+    JSON.parse(
+      localStorage.getItem("meuJornalNoticias")
+    ) || [];
+
+  const lista =
+    document.getElementById("listaNoticias");
+
+  lista.innerHTML = "";
+
+  if (noticias.length === 0) {
+
+    lista.innerHTML =
+      "<p>Nenhuma notícia publicada ainda.</p>";
+
+    return;
+  }
+
+  noticias
+    .slice()
+    .reverse()
+    .slice(0, 6)
+    .forEach(function(noticia, indice) {
+
+      const card =
+        document.createElement("div");
+
+      card.className = "card";
+
+      let imagem = "";
+
+      if (noticia.imagem) {
+
+        imagem =
+          '<img src="' +
+          noticia.imagem +
+          '" alt="Imagem da notícia">';
+
+      }
+
+      card.innerHTML =
+
+        imagem +
+
+        '<div class="card-content">' +
+
+        '<small>' +
+        (noticia.categoria || "Notícia") +
+        '</small>' +
+
+        '<h3>' +
+        (noticia.titulo || "") +
+        '</h3>' +
+
+        '<p>' +
+        (noticia.texto || "").substring(0, 120) +
+        '...</p>' +
+
+        '<button class="botao" onclick="abrirNoticia(' +
+        indice +
+        ')">' +
+        'Ler notícia' +
+        '</button>' +
+
+        '</div>';
+
+      lista.appendChild(card);
+
+    });
+}
+
+
+function abrirNoticia(indice) {
+
+  const noticias =
+    JSON.parse(
+      localStorage.getItem("meuJornalNoticias")
+    ) || [];
+
+  const noticiasInvertidas =
+    noticias.slice().reverse();
+
+  if (!noticiasInvertidas[indice]) {
+    return;
+  }
+
+  localStorage.setItem(
+    "meuJornalNoticiaSelecionada",
+    JSON.stringify(
+      noticiasInvertidas[indice]
+    )
+  );
+
+  window.location.href =
+    "./noticias.html";
+
+}
+
+
+function abrirCategoria(categoria) {
+
+  localStorage.setItem(
+    "meuJornalCategoria",
+    categoria
+  );
+
+  window.location.href =
+    "./noticias.html";
+
+}
+
+
+function abrirPublicar() {
+
+  window.location.href =
+    "./publicar.html";
+
+}
+
+
+function abrirRendimento() {
+
+  window.location.href =
+    "./rendimento.html";
+
+}
+
+
+carregarNoticias();
+
+</script>
+
+</body>
+</html>
