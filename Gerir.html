@@ -1,378 +1,295 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Meu Jornal - Gerir notícias</title>
+<title>Meu Jornal - Gerir Notícias</title>
 
 <style>
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background: #f2f2f2;
+*{
+  box-sizing:border-box;
 }
 
-h1 {
-  text-align: center;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f1f3f6;
+  color:#222;
 }
 
-.caixa {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+header{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
 }
 
-.noticia {
-  background: white;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+header h1{
+  margin:0;
+  font-size:30px;
 }
 
-.noticia img {
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
+header p{
+  margin:8px 0 0;
+  color:#d1d5db;
 }
 
-input,
-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  margin-top: 8px;
-  margin-bottom: 12px;
-  font-size: 16px;
+nav{
+  background:white;
+  padding:12px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
 }
 
-textarea {
-  height: 150px;
+nav a{
+  text-decoration:none;
+  color:#111827;
+  background:#e5e7eb;
+  padding:10px 14px;
+  border-radius:6px;
+  font-weight:bold;
 }
 
-button {
-  width: 100%;
-  padding: 13px;
-  margin-top: 8px;
-  border: none;
-  border-radius: 6px;
-  background: #111;
-  color: white;
-  font-size: 16px;
+.container{
+  width:94%;
+  max-width:900px;
+  margin:20px auto;
 }
 
-.botao-apagar {
-  background: #555;
+.caixa{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.mensagem {
-  text-align: center;
-  font-weight: bold;
+.noticia{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:15px;
 }
 
-.visualizacoes {
-  padding: 10px;
-  background: #f2f2f2;
-  border-radius: 6px;
-  font-weight: bold;
+.noticia h3{
+  margin-top:0;
 }
 
+.noticia img{
+  width:100%;
+  max-height:250px;
+  object-fit:cover;
+  border-radius:8px;
+  margin:10px 0;
+}
+
+button{
+  border:0;
+  padding:11px 16px;
+  border-radius:7px;
+  font-weight:bold;
+  cursor:pointer;
+  margin:4px;
+}
+
+.editar{
+  background:#2563eb;
+  color:white;
+}
+
+.apagar{
+  background:#dc2626;
+  color:white;
+}
+
+.voltar{
+  background:#111827;
+  color:white;
+}
+
+.vazio{
+  text-align:center;
+  padding:25px;
+  color:#666;
+}
 </style>
-
 </head>
 
 <body>
 
+<header>
 <h1>MEU JORNAL</h1>
+<p>Gerir Notícias</p>
+</header>
+
+<nav>
+<a href="./index.html">INÍCIO</a>
+<a href="./publicar.html">PUBLICAR</a>
+<a href="./noticias.html">NOTÍCIAS</a>
+<a href="./rendimento.html">RENDIMENTO</a>
+<a href="./admin.html">ADMINISTRAÇÃO</a>
+</nav>
+
+<div class="container">
 
 <div class="caixa">
 
-<h2>Gerir notícias</h2>
+<h2>Notícias publicadas</h2>
 
-<div id="lista"></div>
+<div id="listaNoticias"></div>
 
 </div>
 
+<div class="caixa">
+<button class="voltar" onclick="voltarInicio()">
+VOLTAR AO INÍCIO
+</button>
+</div>
+
+</div>
 
 <script>
 
-var noticias = JSON.parse(
-
-localStorage.getItem(
-"meuJornalNoticias"
-) || "[]"
-
-);
-
-
-function escaparHTML(texto) {
-
-return texto
-.replace(/&/g, "&amp;")
-.replace(/</g, "&lt;")
-.replace(/>/g, "&gt;")
-.replace(/"/g, "&quot;")
-.replace(/'/g, "&#039;");
-
-}
-
-
-function mostrarNoticias() {
+function carregarNoticias(){
 
 var lista =
-document.getElementById("lista");
+JSON.parse(
+localStorage.getItem("meuJornalNoticias")
+) || [];
 
-lista.innerHTML = "";
+var area =
+document.getElementById("listaNoticias");
 
+area.innerHTML="";
 
-if (noticias.length === 0) {
+if(lista.length===0){
 
-lista.innerHTML =
-"<p>Nenhuma notícia publicada.</p>";
+area.innerHTML=
+'<div class="vazio">Nenhuma notícia publicada.</div>';
 
 return;
-
 }
 
+lista.forEach(function(noticia,index){
 
-for (
-var i = 0;
-i < noticias.length;
-i++
-) {
+var titulo =
+noticia.titulo || "Sem título";
 
-var noticia =
-noticias[i];
+var texto =
+noticia.texto || "";
 
+var categoria =
+noticia.categoria || "";
 
-var visualizacoes =
-parseInt(
-noticia.visualizacoes || "0"
-);
-
+var imagem =
+noticia.imagem ||
+noticia.foto ||
+noticia.imagemUrl ||
+"";
 
 var div =
 document.createElement("div");
 
-div.className =
-"noticia";
+div.className="noticia";
 
+var html="";
 
-var imagem = "";
+html+="<h3>"+escapar(titulo)+"</h3>";
 
+if(categoria){
+html+="<p><strong>Categoria:</strong> "+
+escapar(categoria)+"</p>";
+}
 
-if (noticia.imagem) {
+if(imagem){
 
-imagem =
-
-"<img src='" +
-noticia.imagem +
-"'>";
+html+="<img src='"+
+imagem+
+"' alt='Imagem da notícia'>";
 
 }
 
-
-div.innerHTML =
-
-imagem +
-
-"<h2>" +
-
-escaparHTML(
-noticia.titulo || "Sem título"
-) +
-
-"</h2>" +
-
-"<p>" +
-
-escaparHTML(
-noticia.data || ""
-) +
-
-"</p>" +
-
-"<div class='visualizacoes'>" +
-
-"Visualizações: " +
-visualizacoes +
-
-"</div>" +
-
-"<label>Título</label>" +
-
-"<input " +
-
-"id='titulo" +
-i +
-"' " +
-
-"value='" +
-
-escaparHTML(
-noticia.titulo || ""
-) +
-
-"'>" +
-
-"<label>Notícia</label>" +
-
-"<textarea id='texto" +
-i +
-"'>" +
-
-escaparHTML(
-noticia.texto || ""
-) +
-
-"</textarea>" +
-
-"<button onclick='editarNoticia(" +
-i +
-")'>" +
-
-"Guardar alterações" +
-
-"</button>" +
-
-"<button " +
-
-"class='botao-apagar' " +
-
-"onclick='apagarNoticia(" +
-i +
-")'>" +
-
-"Apagar notícia" +
-
-"</button>" +
-
-"<p " +
-
-"class='mensagem' " +
-
-"id='mensagem" +
-i +
-"'>" +
-
+html+="<p>"+
+escapar(texto)+
 "</p>";
 
+html+="<button class='editar' onclick='editarNoticia("+
+index+
+")'>EDITAR</button>";
 
-lista.appendChild(div);
+html+="<button class='apagar' onclick='apagarNoticia("+
+index+
+")'>APAGAR</button>";
+
+div.innerHTML=html;
+
+area.appendChild(div);
+
+});
 
 }
 
+
+function escapar(texto){
+
+return String(texto)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 }
 
 
-function editarNoticia(indice) {
+function apagarNoticia(index){
 
-var titulo =
-document.getElementById(
-"titulo" + indice
-).value.trim();
+var lista =
+JSON.parse(
+localStorage.getItem("meuJornalNoticias")
+) || [];
 
-
-var texto =
-document.getElementById(
-"texto" + indice
-).value.trim();
-
-
-var mensagem =
-document.getElementById(
-"mensagem" + indice
-);
-
-
-if (titulo === "") {
-
-mensagem.textContent =
-"Digite o título da notícia.";
-
+if(!confirm("Tem certeza que deseja apagar esta notícia?")){
 return;
-
 }
 
-
-if (texto === "") {
-
-mensagem.textContent =
-"Digite o texto da notícia.";
-
-return;
-
-}
-
-
-noticias[indice].titulo =
-titulo;
-
-
-noticias[indice].texto =
-texto;
-
+lista.splice(index,1);
 
 localStorage.setItem(
-
 "meuJornalNoticias",
-
-JSON.stringify(noticias)
-
+JSON.stringify(lista)
 );
 
-
-mensagem.textContent =
-"Alterações guardadas com sucesso.";
+carregarNoticias();
 
 }
 
 
-function apagarNoticia(indice) {
-
-var confirmar =
-confirm(
-"Tem certeza que deseja apagar esta notícia?"
-);
-
-
-if (!confirmar) {
-
-return;
-
-}
-
-
-noticias.splice(indice, 1);
-
+function editarNoticia(index){
 
 localStorage.setItem(
-
-"meuJornalNoticias",
-
-JSON.stringify(noticias)
-
+"meuJornalEditar",
+String(index)
 );
 
-
-mostrarNoticias();
+window.location.href="./publicar.html";
 
 }
 
 
-mostrarNoticias();
+function voltarInicio(){
+
+window.location.href="./index.html";
+
+}
+
+
+carregarNoticias();
 
 </script>
 
 </body>
-
 </html>
