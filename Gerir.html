@@ -8,112 +8,134 @@
 
 <style>
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f1f3f6;
-  color:#222;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f1f3f6;
+color:#222;
 }
 
 header{
-  background:#111827;
-  color:white;
-  text-align:center;
-  padding:25px 15px;
+background:#111827;
+color:white;
+text-align:center;
+padding:25px 15px;
 }
 
 header h1{
-  margin:0;
-  font-size:30px;
+margin:0;
+font-size:30px;
 }
 
 header p{
-  margin:8px 0 0;
-  color:#d1d5db;
+margin:8px 0 0;
 }
 
 nav{
-  background:white;
-  padding:12px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
+background:white;
+padding:12px;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:8px;
 }
 
 nav a{
-  text-decoration:none;
-  color:#111827;
-  background:#e5e7eb;
-  padding:10px 14px;
-  border-radius:6px;
-  font-weight:bold;
+text-decoration:none;
+color:#111827;
+background:#e5e7eb;
+padding:10px 14px;
+border-radius:6px;
+font-weight:bold;
 }
 
 .container{
-  width:94%;
-  max-width:900px;
-  margin:20px auto;
+width:94%;
+max-width:900px;
+margin:20px auto;
 }
 
 .caixa{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .noticia{
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:15px;
-  margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:10px;
+padding:18px;
+margin-bottom:18px;
+background:white;
 }
 
 .noticia h3{
-  margin-top:0;
+margin-top:0;
+font-size:22px;
 }
 
 .noticia img{
-  width:100%;
-  max-height:250px;
-  object-fit:cover;
-  border-radius:8px;
-  margin:10px 0;
+display:block;
+width:100%;
+max-height:250px;
+object-fit:cover;
+border-radius:8px;
+margin:12px 0;
+}
+
+.botoes{
+display:flex;
+gap:10px;
+margin-top:15px;
 }
 
 button{
-  border:0;
-  padding:11px 16px;
-  border-radius:7px;
-  font-weight:bold;
-  cursor:pointer;
-  margin:4px;
+border:0;
+padding:13px 18px;
+border-radius:7px;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
 }
 
 .editar{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white;
 }
 
 .apagar{
-  background:#dc2626;
-  color:white;
+background:#dc2626;
+color:white;
 }
 
 .voltar{
-  background:#111827;
-  color:white;
+background:#111827;
+color:white;
+width:100%;
 }
 
 .vazio{
-  text-align:center;
-  padding:25px;
-  color:#666;
+text-align:center;
+padding:25px;
+color:#666;
+}
+
+@media(max-width:600px){
+
+.botoes{
+display:flex;
+flex-direction:column;
+}
+
+button{
+width:100%;
+}
+
 }
 </style>
 </head>
@@ -121,17 +143,28 @@ button{
 <body>
 
 <header>
+
 <h1>MEU JORNAL</h1>
+
 <p>Gerir Notícias</p>
+
 </header>
 
+
 <nav>
+
 <a href="./index.html">INÍCIO</a>
+
 <a href="./publicar.html">PUBLICAR</a>
+
 <a href="./noticias.html">NOTÍCIAS</a>
+
 <a href="./rendimento.html">RENDIMENTO</a>
+
 <a href="./admin.html">ADMINISTRAÇÃO</a>
+
 </nav>
+
 
 <div class="container">
 
@@ -143,13 +176,21 @@ button{
 
 </div>
 
+
 <div class="caixa">
-<button class="voltar" onclick="voltarInicio()">
+
+<button
+class="voltar"
+onclick="voltarInicio()">
+
 VOLTAR AO INÍCIO
+
 </button>
+
 </div>
 
 </div>
+
 
 <script>
 
@@ -165,13 +206,16 @@ document.getElementById("listaNoticias");
 
 area.innerHTML="";
 
+
 if(lista.length===0){
 
-area.innerHTML=
+area.innerHTML =
 '<div class="vazio">Nenhuma notícia publicada.</div>';
 
 return;
+
 }
+
 
 lista.forEach(function(noticia,index){
 
@@ -190,41 +234,71 @@ noticia.foto ||
 noticia.imagemUrl ||
 "";
 
+
 var div =
 document.createElement("div");
 
 div.className="noticia";
 
-var html="";
 
-html+="<h3>"+escapar(titulo)+"</h3>";
+var conteudo="";
+
+
+conteudo +=
+"<h3>"+
+escapar(titulo)+
+"</h3>";
+
 
 if(categoria){
-html+="<p><strong>Categoria:</strong> "+
-escapar(categoria)+"</p>";
+
+conteudo +=
+"<p><strong>Categoria:</strong> "+
+escapar(categoria)+
+"</p>";
+
 }
+
 
 if(imagem){
 
-html+="<img src='"+
+conteudo +=
+"<img src='"+
 imagem+
 "' alt='Imagem da notícia'>";
 
 }
 
-html+="<p>"+
+
+conteudo +=
+"<p>"+
 escapar(texto)+
 "</p>";
 
-html+="<button class='editar' onclick='editarNoticia("+
-index+
-")'>EDITAR</button>";
 
-html+="<button class='apagar' onclick='apagarNoticia("+
-index+
-")'>APAGAR</button>";
+conteudo +=
+"<div class='botoes'>";
 
-div.innerHTML=html;
+
+conteudo +=
+"<button class='editar' "+
+"onclick='editarNoticia("+index+")'>"+
+"EDITAR"+
+"</button>";
+
+
+conteudo +=
+"<button class='apagar' "+
+"onclick='apagarNoticia("+index+")'>"+
+"APAGAR"+
+"</button>";
+
+
+conteudo +=
+"</div>";
+
+
+div.innerHTML=conteudo;
 
 area.appendChild(div);
 
@@ -236,10 +310,15 @@ area.appendChild(div);
 function escapar(texto){
 
 return String(texto)
+
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
 
 }
@@ -252,16 +331,28 @@ JSON.parse(
 localStorage.getItem("meuJornalNoticias")
 ) || [];
 
-if(!confirm("Tem certeza que deseja apagar esta notícia?")){
+
+var confirmar =
+confirm(
+"Tem certeza que deseja apagar esta notícia?"
+);
+
+
+if(!confirmar){
+
 return;
+
 }
 
+
 lista.splice(index,1);
+
 
 localStorage.setItem(
 "meuJornalNoticias",
 JSON.stringify(lista)
 );
+
 
 carregarNoticias();
 
@@ -274,6 +365,7 @@ localStorage.setItem(
 "meuJornalEditar",
 String(index)
 );
+
 
 window.location.href="./publicar.html";
 
