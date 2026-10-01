@@ -3,38 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Meu Jornal - Administração</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f1f3f6;
-color:#222;
+color:#222
 }
 
 header{
 background:#111827;
 color:white;
 text-align:center;
-padding:25px 15px;
+padding:25px 15px
 }
 
-header h1{
-margin:0;
-font-size:30px;
-}
-
-header p{
-margin:7px 0 0;
-color:#d1d5db;
-}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0;color:#d1d5db}
 
 nav{
 background:white;
@@ -42,150 +31,119 @@ padding:12px;
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
-gap:8px;
+gap:8px
 }
 
 nav a{
 text-decoration:none;
 color:#111827;
 background:#e5e7eb;
-padding:9px 13px;
-border-radius:
-  6px;
-font-weight:bold;
+padding:10px 14px;
+border-radius:6px;
+font-weight:bold
 }
 
 .container{
 width:94%;
-max-width:1000px;
-margin:20px auto;
+max-width:900px;
+margin:20px auto
 }
 
 .caixa{
 background:white;
-padding:20px;
+padding:22px;
 border-radius:12px;
 margin-bottom:20px;
-box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-
-.caixa h2{
-margin-top:0;
+box-shadow:0 2px 8px rgba(0,0,0,.08)
 }
 
 input{
+display:block;
 width:100%;
-padding:13px;
-border:1px solid #ccc;
+padding:14px;
+margin:12px 0;
+border:1px solid #bbb;
 border-radius:7px;
-font-size:16px;
-margin-bottom:12px;
+font-size:16px
 }
 
 button{
 border:0;
-padding:11px 15px;
-border-radius:6px;
-cursor:pointer;
+padding:12px 18px;
+border-radius:7px;
 font-weight:bold;
+cursor:pointer;
+margin:4px
 }
 
-.btn-entrar{
+.entrar{
 background:#111827;
-color:white;
+color:white
 }
 
-.btn-publicar{
+.publicar{
 background:#16a34a;
-color:white;
+color:white
 }
 
-.btn-rendimento{
+.rendimento{
 background:#7c3aed;
-color:white;
+color:white
 }
 
-.btn-sair{
+.sair{
 background:#dc2626;
-color:white;
+color:white
 }
 
-.painel{
-display:none;
+#painel{
+display:none
 }
 
 .resumos{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin-bottom:20px;
+grid-template-columns:repeat(2,1fr);
+gap:12px
 }
 
 .resumo{
 background:#f3f4f6;
-padding:17px;
-border-radius:9px;
-text-align:center;
-}
-
-.resumo span{
-display:block;
-color:#666;
-font-size:14px;
+padding:18px;
+border-radius:8px;
+text-align:center
 }
 
 .resumo strong{
 display:block;
-font-size:25px;
-margin-top:6px;
-}
-
-.botoes{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
+font-size:24px;
+margin-top:6px
 }
 
 .erro{
 color:#dc2626;
-margin-top:10px;
+font-weight:bold;
+margin-top:10px
 }
 
-@media(max-width:700px){
-
-.resumos{
-grid-template-columns:repeat(2,1fr);
+@media(max-width:600px){
+.resumos{grid-template-columns:1fr}
+button{width:100%;margin:5px 0}
 }
-
-.botoes button{
-width:100%;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-
 <h1>MEU JORNAL</h1>
-
 <p>Painel de Administração</p>
-
 </header>
 
 <nav>
-
 <a href="./index.html">INÍCIO</a>
-
 <a href="./publicar.html">PUBLICAR</a>
-
 <a href="./noticias.html">NOTÍCIAS</a>
-
 <a href="./rendimento.html">RENDIMENTO</a>
-
 </nav>
 
 <div class="container">
@@ -194,7 +152,7 @@ width:100%;
 
 <h2>Acesso administrativo</h2>
 
-<p>Digite a senha para entrar.</p>
+<p><strong>Digite a senha para entrar.</strong></p>
 
 <input
 type="password"
@@ -204,69 +162,66 @@ placeholder="Digite a senha"
 
 <button
 type="button"
-class="btn-entrar"
-onclick="entrar()"
->
+class="entrar"
+onclick="entrar()">
 ENTRAR
 </button>
 
-<div id="mensagemLogin"></div>
+<div id="mensagem"></div>
 
 </div>
 
-<div id="painel" class="painel">
+
+<div id="painel">
 
 <div class="caixa">
 
-<h2>Resumo</h2>
+<h2>Painel de Administração</h2>
 
 <div class="resumos">
 
 <div class="resumo">
-<span>Notícias</span>
-<strong id="totalNoticias">0</strong>
+Notícias
+<strong id="noticias">0</strong>
 </div>
 
 <div class="resumo">
-<span>Visualizações</span>
-<strong id="totalVisualizacoes">0</strong>
+Visualizações
+<strong id="visualizacoes">0</strong>
 </div>
 
 <div class="resumo">
-<span>Publicidade</span>
-<strong id="totalPublicidade">0,00 MT</strong>
+Publicidade
+<strong id="publicidade">0,00 MT</strong>
 </div>
 
 <div class="resumo">
-<span>Rendimento total</span>
-<strong id="totalRendimento">0,00 MT</strong>
+Rendimento total
+<strong id="rendimentoTotal">0,00 MT</strong>
 </div>
 
 </div>
 
-<div class="botoes">
+<br>
 
 <button
 type="button"
-class="btn-publicar"
-onclick="publicar()"
->
+class="publicar"
+onclick="irPublicar()">
 PUBLICAR NOTÍCIA
 </button>
 
 <button
 type="button"
-class="btn-rendimento"
-onclick="rendimento()"
->
+class="rendimento"
+onclick="irRendimento()">
 VER RENDIMENTO
 </button>
 
 <button
 type="button"
-class="btn-sair"
-onclick="sair()"
->
+class="sair"
+onclick="sair()">
 SAIR
 </button>
 
@@ -276,139 +231,92 @@ SAIR
 
 </div>
 
-</div>
-
-<footer>
-MEU JORNAL
-</footer>
-
 <script>
 
 function entrar(){
 
-var senha =
-document.getElementById("senha").value;
+var campo=document.getElementById("senha");
+var mensagem=document.getElementById("mensagem");
 
-var senhaGuardada =
+var senha=campo.value;
+
+var guardada=
 localStorage.getItem("meuJornalSenha");
 
-if(senhaGuardada === null){
-
-senhaGuardada="1234";
-
-localStorage.setItem(
-"meuJornalSenha",
-"1234"
-);
-
+if(guardada===null){
+guardada="1234";
+localStorage.setItem("meuJornalSenha","1234");
 }
 
-if(senha === senhaGuardada){
+if(senha===guardada){
 
-document.getElementById(
-"login"
-).style.display="none";
+document.getElementById("login").style.display="none";
+document.getElementById("painel").style.display="block";
 
-document.getElementById(
-"painel"
-).style.display="block";
-
-atualizarResumo();
+carregarResumo();
 
 }else{
 
-document.getElementById(
-"mensagemLogin"
-).className="erro";
-
-document.getElementById(
-"mensagemLogin"
-).innerText=
-"Senha incorreta.";
+mensagem.className="erro";
+mensagem.innerText="Senha incorreta.";
 
 }
 
 }
 
-function atualizarResumo(){
 
-var noticias =
+function carregarResumo(){
+
+var lista=
 JSON.parse(
-localStorage.getItem(
-"meuJornalNoticias"
-)
+localStorage.getItem("meuJornalNoticias")
 ) || [];
 
-var visualizacoes =
+var vis=
 parseInt(
-localStorage.getItem(
-"meuJornalVisualizacoes"
-)
+localStorage.getItem("meuJornalVisualizacoes")
 ) || 0;
 
-var publicidade =
+var pub=
 parseFloat(
-localStorage.getItem(
-"meuJornalPublicidade"
-)
+localStorage.getItem("meuJornalPublicidade")
 ) || 0;
 
-var total =
+var total=
 parseFloat(
-localStorage.getItem(
-"meuJornalTotal"
-)
+localStorage.getItem("meuJornalTotal")
 ) || 0;
 
-document.getElementById(
-"totalNoticias"
-).innerText=
-noticias.length;
+document.getElementById("noticias").innerText=
+lista.length;
 
-document.getElementById(
-"totalVisualizacoes"
-).innerText=
-visualizacoes;
+document.getElementById("visualizacoes").innerText=
+vis;
 
-document.getElementById(
-"totalPublicidade"
-).innerText=
-publicidade.toFixed(2)
-.replace(".",",")+" MT";
+document.getElementById("publicidade").innerText=
+pub.toFixed(2).replace(".",",")+" MT";
 
-document.getElementById(
-"totalRendimento"
-).innerText=
-total.toFixed(2)
-.replace(".",",")+" MT";
+document.getElementById("rendimentoTotal").innerText=
+total.toFixed(2).replace(".",",")+" MT";
 
 }
 
-function publicar(){
 
+function irPublicar(){
 window.location.href="./publicar.html";
-
 }
 
-function rendimento(){
 
+function irRendimento(){
 window.location.href="./rendimento.html";
-
 }
+
 
 function sair(){
 
-document.getElementById(
-"painel"
-).style.display="none";
-
-document.getElementById(
-"login"
-).style.display="block";
-
-document.getElementById(
-"senha"
-).value="";
+document.getElementById("painel").style.display="none";
+document.getElementById("login").style.display="block";
+document.getElementById("senha").value="";
 
 }
 
