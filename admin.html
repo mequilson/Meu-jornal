@@ -4,134 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meu Jornal - Administração</title>
-
 <style>
 *{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f1f3f6;
-color:#222
-}
-
-header{
-background:#111827;
-color:white;
-text-align:center;
-padding:25px 15px
-}
-
+body{margin:0;font-family:Arial,sans-serif;background:#f1f3f6;color:#222}
+header{background:#111827;color:white;text-align:center;padding:25px 15px}
 header h1{margin:0;font-size:30px}
-header p{margin:8px 0 0;color:#d1d5db}
-
-nav{
-background:white;
-padding:12px;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:8px
-}
-
-nav a{
-text-decoration:none;
-color:#111827;
-background:#e5e7eb;
-padding:10px 14px;
-border-radius:6px;
-font-weight:bold
-}
-
-.container{
-width:94%;
-max-width:900px;
-margin:20px auto
-}
-
-.caixa{
-background:white;
-padding:22px;
-border-radius:12px;
-margin-bottom:20px;
-box-shadow:0 2px 8px rgba(0,0,0,.08)
-}
-
-input{
-display:block;
-width:100%;
-padding:14px;
-margin:12px 0;
-border:1px solid #bbb;
-border-radius:7px;
-font-size:16px
-}
-
-button{
-border:0;
-padding:12px 18px;
-border-radius:7px;
-font-weight:bold;
-cursor:pointer;
-margin:4px
-}
-
-.entrar{
-background:#111827;
-color:white
-}
-
-.publicar{
-background:#16a34a;
-color:white
-}
-
-.rendimento{
-background:#7c3aed;
-color:white
-}
-
-.sair{
-background:#dc2626;
-color:white
-}
-
-#painel{
-display:none
-}
-
-.resumos{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px
-}
-
-.resumo{
-background:#f3f4f6;
-padding:18px;
-border-radius:8px;
-text-align:center
-}
-
-.resumo strong{
-display:block;
-font-size:24px;
-margin-top:6px
-}
-
-.erro{
-color:#dc2626;
-font-weight:bold;
-margin-top:10px
-}
-
+nav{background:white;padding:12px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+nav a{background:#e5e7eb;color:#111827;text-decoration:none;padding:10px;border-radius:6px;font-weight:bold}
+.container{width:94%;max-width:900px;margin:20px auto}
+.caixa{background:white;padding:22px;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 8px #ddd}
+input{display:block;width:100%;padding:14px;margin:12px 0;border:1px solid #bbb;border-radius:7px;font-size:16px}
+button{border:0;padding:12px 18px;border-radius:7px;font-weight:bold;font-size:15px;cursor:pointer;margin:4px}
+.entrar{background:#111827;color:white}
+.publicar{background:#16a34a;color:white}
+.rendimento{background:#7c3aed;color:white}
+.sair{background:#dc2626;color:white}
+.alterar{background:#d97706;color:white}
+#painel,#formularioSenha{display:none}
+.resumos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.resumo{background:#f3f4f6;padding:18px;border-radius:8px;text-align:center}
+.resumo strong{display:block;font-size:24px;margin-top:6px;overflow-wrap:anywhere}
+.erro{color:#dc2626;font-weight:bold}
+.sucesso{color:#15803d;font-weight:bold}
 @media(max-width:600px){
 .resumos{grid-template-columns:1fr}
-button{width:100%;margin:5px 0}
+button{width:100%;margin:6px 0}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -144,182 +44,161 @@ button{width:100%;margin:5px 0}
 <a href="./publicar.html">PUBLICAR</a>
 <a href="./noticias.html">NOTÍCIAS</a>
 <a href="./rendimento.html">RENDIMENTO</a>
+<a href="./gerir.html">GERIR NOTÍCIAS</a>
 </nav>
 
 <div class="container">
 
 <div class="caixa" id="login">
-
 <h2>Acesso administrativo</h2>
-
-<p><strong>Digite a senha para entrar.</strong></p>
-
-<input
-type="password"
-id="senha"
-placeholder="Digite a senha"
->
-
-<button
-type="button"
-class="entrar"
-onclick="entrar()">
-ENTRAR
-</button>
-
-<div id="mensagem"></div>
-
+<p>Digite a senha para entrar.</p>
+<form id="formLogin">
+<input type="password" id="senha" placeholder="Digite a senha" required>
+<button type="submit" class="entrar">ENTRAR</button>
+</form>
+<div id="mensagem" role="status"></div>
 </div>
-
 
 <div id="painel">
-
 <div class="caixa">
-
 <h2>Painel de Administração</h2>
-
 <div class="resumos">
-
-<div class="resumo">
-Notícias
-<strong id="noticias">0</strong>
+<div class="resumo">Notícias<strong id="noticias">0</strong></div>
+<div class="resumo">Visualizações<strong id="visualizacoes">0</strong></div>
+<div class="resumo">Publicidade<strong id="publicidade">0,00 MT</strong></div>
+<div class="resumo">Rendimento total<strong id="rendimentoTotal">0,00 MT</strong></div>
 </div>
-
-<div class="resumo">
-Visualizações
-<strong id="visualizacoes">0</strong>
-</div>
-
-<div class="resumo">
-Publicidade
-<strong id="publicidade">0,00 MT</strong>
-</div>
-
-<div class="resumo">
-Rendimento total
-<strong id="rendimentoTotal">0,00 MT</strong>
-</div>
-
-</div>
-
 <br>
-
-<button
-type="button"
-class="publicar"
-onclick="irPublicar()">
-PUBLICAR NOTÍCIA
-</button>
-
-<button
-type="button"
-class="rendimento"
-onclick="irRendimento()">
-VER RENDIMENTO
-</button>
-
-<button
-type="button"
-class="sair"
-onclick="sair()">
-SAIR
-</button>
-
+<button type="button" class="publicar" onclick="irPublicar()">PUBLICAR NOTÍCIA</button>
+<button type="button" class="rendimento" onclick="irRendimento()">VER RENDIMENTO</button>
+<button type="button" class="alterar" onclick="mostrarAlteracao()">ALTERAR SENHA</button>
+<button type="button" class="sair" onclick="sair()">SAIR</button>
 </div>
 
-</div>
+<div class="caixa" id="formularioSenha">
+<h2>Alterar senha</h2>
+<form id="formAlterarSenha">
+<label for="senhaAtual">Senha atual</label>
+<input type="password" id="senhaAtual" required>
 
+<label for="senhaNova">Nova senha (mínimo 4 caracteres)</label>
+<input type="password" id="senhaNova" minlength="4" required>
+
+<label for="senhaConfirmacao">Confirmar nova senha</label>
+<input type="password" id="senhaConfirmacao" minlength="4" required>
+
+<button type="submit" class="alterar">GUARDAR NOVA SENHA</button>
+<button type="button" class="sair" onclick="cancelarAlteracao()">CANCELAR</button>
+<div id="mensagemSenha" role="status"></div>
+</form>
+</div>
+</div>
 </div>
 
 <script>
-
-function entrar(){
-
-var campo=document.getElementById("senha");
-var mensagem=document.getElementById("mensagem");
-
-var senha=campo1234.value;
-
-var guardada=
-localStorage.getItem("meuJornalSenha");
-
-if(guardada===null){
-guardada="1234";
-localStorage.setItem("meuJornalSenha","1234");
+function obterSenha(){
+    return localStorage.getItem("meuJornalSenha") || "1234";
 }
 
-if(senha===guardada){
+document.getElementById("formLogin").addEventListener("submit",function(event){
+    event.preventDefault();
 
-document.getElementById("login").style.display="none";
-document.getElementById("painel").style.display="block";
+    var digitada=document.getElementById("senha").value;
+    var guardada=obterSenha();
+    var mensagem=document.getElementById("mensagem");
 
-carregarResumo();
+    if(digitada===guardada){
+        document.getElementById("login").style.display="none";
+        document.getElementById("painel").style.display="block";
+        mensagem.textContent="";
+        atualizarResumo();
+    }else{
+        mensagem.className="erro";
+        mensagem.textContent="Senha incorreta. Verifique e tente novamente.";
+        document.getElementById("senha").value="";
+    }
+});
 
-}else{
+function atualizarResumo(){
+    try{
+        var noticias=JSON.parse(localStorage.getItem("meuJornalNoticias")||"[]");
+        if(!Array.isArray(noticias)) noticias=[];
+        document.getElementById("noticias").textContent=noticias.length;
+    }catch(e){
+        document.getElementById("noticias").textContent="0";
+    }
 
-mensagem.className="erro";
-mensagem.innerText="Senha incorreta.";
+    document.getElementById("visualizacoes").textContent=
+        localStorage.getItem("meuJornalVisualizacoes")||"0";
 
+    var publicidade=Number(localStorage.getItem("meuJornalPublicidade")||0);
+    var rendimento=Number(localStorage.getItem("meuJornalRendimento")||0);
+    var total=Number(localStorage.getItem("meuJornalTotal")||rendimento+publicidade);
+
+    document.getElementById("publicidade").textContent=
+        publicidade.toFixed(2).replace(".",",")+" MT";
+
+    document.getElementById("rendimentoTotal").textContent=
+        total.toFixed(2).replace(".",",")+" MT";
 }
-
-}
-
-
-function carregarResumo(){
-
-var lista=
-JSON.parse(
-localStorage.getItem("meuJornalNoticias")
-) || [];
-
-var vis=
-parseInt(
-localStorage.getItem("meuJornalVisualizacoes")
-) || 0;
-
-var pub=
-parseFloat(
-localStorage.getItem("meuJornalPublicidade")
-) || 0;
-
-var total=
-parseFloat(
-localStorage.getItem("meuJornalTotal")
-) || 0;
-
-document.getElementById("noticias").innerText=
-lista.length;
-
-document.getElementById("visualizacoes").innerText=
-vis;
-
-document.getElementById("publicidade").innerText=
-pub.toFixed(2).replace(".",",")+" MT";
-
-document.getElementById("rendimentoTotal").innerText=
-total.toFixed(2).replace(".",",")+" MT";
-
-}
-
 
 function irPublicar(){
-window.location.href="./publicar.html";
+    window.location.href="./publicar.html";
 }
-
 
 function irRendimento(){
-window.location.href="./rendimento.html";
+    window.location.href="./rendimento.html";
 }
 
+function mostrarAlteracao(){
+    document.getElementById("formularioSenha").style.display="block";
+    document.getElementById("mensagemSenha").textContent="";
+}
+
+function cancelarAlteracao(){
+    document.getElementById("formularioSenha").style.display="none";
+    document.getElementById("formAlterarSenha").reset();
+}
+
+document.getElementById("formAlterarSenha").addEventListener("submit",function(event){
+    event.preventDefault();
+
+    var atual=document.getElementById("senhaAtual").value;
+    var nova=document.getElementById("senhaNova").value;
+    var confirmacao=document.getElementById("senhaConfirmacao").value;
+    var mensagem=document.getElementById("mensagemSenha");
+
+    if(atual!==obterSenha()){
+        mensagem.className="erro";
+        mensagem.textContent="A senha atual está incorreta.";
+        return;
+    }
+
+    if(nova.length<4){
+        mensagem.className="erro";
+        mensagem.textContent="A nova senha deve ter pelo menos 4 caracteres.";
+        return;
+    }
+
+    if(nova!==confirmacao){
+        mensagem.className="erro";
+        mensagem.textContent="As senhas novas não coincidem.";
+        return;
+    }
+
+    localStorage.setItem("meuJornalSenha",nova);
+    mensagem.className="sucesso";
+    mensagem.textContent="Senha alterada com sucesso.";
+    document.getElementById("formAlterarSenha").reset();
+});
 
 function sair(){
-
-document.getElementById("painel").style.display="none";
-document.getElementById("login").style.display="block";
-document.getElementById("senha").value="";
-
+    document.getElementById("painel").style.display="none";
+    document.getElementById("formularioSenha").style.display="none";
+    document.getElementById("login").style.display="block";
+    document.getElementById("formLogin").reset();
+    document.getElementById("mensagem").textContent="";
 }
-
 </script>
 
 </body>
