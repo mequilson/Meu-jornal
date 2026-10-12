@@ -151,7 +151,16 @@ function irRendimento(){
 }
 
 function mostrarAlteracao(){
-    document.getElementById("formularioSenha").style.display="block";
+    function mostrarAlteracao(){
+    var formulario = document.getElementById("formularioSenha");
+
+    if(formulario){
+        formulario.style.display = "block";
+        formulario.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    document.getElementById("mensagemSenha").textContent = "";
+}
     document.getElementById("mensagemSenha").textContent="";
 }
 
