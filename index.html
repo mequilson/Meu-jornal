@@ -4,943 +4,875 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="google-adsense-account" content="<meta name="google-adsense-account" content="ca-pub-8921112624862886">
+<!-- GOOGLE ADSENSE -->
+<meta name="google-adsense-account" content="ca-pub-COLOQUE_AQUI_O_SEU_CODIGO">
 
 <title>Meu Jornal</title>
+
 <style>
-
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  color: #222;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  color:#222;
 }
 
-header {
-  background: #111;
-  color: white;
-  padding: 18px;
-  text-align: center;
+header{
+  background:#111;
+  color:white;
+  padding:18px 12px;
+  text-align:center;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
+header h1{
+  margin:0;
+  font-size:30px;
 }
 
-header p {
-  margin: 7px 0 0;
+header p{
+  margin:6px 0 0;
+  font-size:15px;
 }
 
-nav {
-  background: #222;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px;
+nav{
+  background:#222;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:6px;
+  padding:10px;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 5px;
-  background: #333;
+nav a,
+nav button{
+  border:0;
+  background:#333;
+  color:white;
+  padding:10px 13px;
+  border-radius:5px;
+  text-decoration:none;
+  cursor:pointer;
+  font-size:14px;
 }
 
-nav a:hover {
-  background: #555;
+nav a:hover,
+nav button:hover{
+  background:#555;
 }
 
-.container {
-  width: 95%;
-  max-width: 1100px;
-  margin: 20px auto;
+.container{
+  width:94%;
+  max-width:1100px;
+  margin:20px auto;
 }
 
-.hero {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  margin-bottom: 20px;
+h2{
+  margin-top:0;
 }
 
-.hero h2 {
-  margin-top: 0;
+.destaque{
+  background:white;
+  padding:18px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  margin-bottom:25px;
 }
 
-.categorias {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin: 20px 0;
+.destaque img{
+  width:100%;
+  max-height:400px;
+  object-fit:cover;
+  border-radius:8px;
+  display:block;
 }
 
-.categorias button {
-  border: none;
-  background: #111;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 5px;
-  cursor: pointer;
+.destaque h2{
+  margin-bottom:8px;
 }
 
-.categorias button:hover {
-  background: #444;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
 }
 
-#listaNoticias {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+.card{
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
-.card {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
 }
 
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
+.card-content{
+  padding:15px;
 }
 
-.card-content {
-  padding: 15px;
+.card h3{
+  margin-top:0;
 }
 
-.card h3 {
-  margin-top: 8px;
-  margin-bottom: 10px;
+.card p{
+  line-height:1.5;
 }
 
-.card p {
-  line-height: 1.5;
+button{
+  cursor:pointer;
 }
 
-.card small {
-  color: #666;
+.btn{
+  display:inline-block;
+  border:0;
+  background:#111;
+  color:white;
+  padding:11px 16px;
+  border-radius:6px;
+  margin-top:8px;
 }
 
-.botao {
-  display: inline-block;
-  border: none;
-  background: #111;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  margin: 4px;
+.btn:hover{
+  background:#444;
 }
 
-.botao:hover {
-  background: #444;
+.categorias{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:25px;
 }
 
-.area-admin {
-  background: white;
-  padding: 20px;
-  margin-top: 25px;
-  border-radius: 10px;
+.categorias button{
+  border:0;
+  background:#ddd;
+  padding:10px 13px;
+  border-radius:5px;
 }
 
-.area-admin h2 {
-  margin-top: 0;
+.categorias button:hover{
+  background:#bbb;
 }
 
-.rendimento-box {
-  background: white;
-  padding: 20px;
-  margin-top: 25px;
-  border-radius: 10px;
-  text-align: center;
+#areaAdmin{
+  display:none;
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-top:25px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
-.rendimento-box strong {
-  font-size: 22px;
+#painelAdmin{
+  display:none;
 }
 
-footer {
-  margin-top: 30px;
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 18px;
+#erroAdmin{
+  color:#c00;
+  margin-top:10px;
 }
 
-.mensagem {
-  text-align: center;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
+.admin-botoes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
 }
 
-@media (max-width: 600px) {
+.admin-botoes a,
+.admin-botoes button{
+  background:#111;
+  color:white;
+  border:0;
+  padding:12px;
+  border-radius:6px;
+  text-decoration:none;
+}
 
-  header h1 {
-    font-size: 25px;
+.estatisticas{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.estatistica{
+  background:#eee;
+  padding:15px;
+  border-radius:8px;
+}
+
+.estatistica strong{
+  display:block;
+  font-size:22px;
+  margin-top:5px;
+}
+
+footer{
+  margin-top:40px;
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+
+.vazio{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  text-align:center;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:9999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.65);
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:90%;
+  max-width:400px;
+  background:white;
+  padding:22px;
+  border-radius:10px;
+}
+
+.modal-box input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.modal-botoes{
+  display:flex;
+  gap:10px;
+}
+
+.modal-botoes button{
+  flex:1;
+  padding:11px;
+  border:0;
+  border-radius:5px;
+}
+
+.ok{
+  background:#111;
+  color:white;
+}
+
+.cancelar{
+  background:#ddd;
+}
+
+@media(max-width:600px){
+  header h1{
+    font-size:25px;
   }
 
-  nav {
-    flex-direction: column;
+  nav a,
+  nav button{
+    font-size:13px;
   }
-
-  nav a {
-    text-align: center;
-  }
-
-  .container {
-    width: 94%;
-  }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
   <h1>MEU JORNAL</h1>
-
-  <p>Informação que chega até você.</p>
-
+  <p>Informação ao seu alcance</p>
 </header>
 
-
 <nav>
-
-  <a href="./index.html">
-    INÍCIO
-  </a>
-
-  <a href="./publicar.html">
-    PUBLICAR
-  </a>
-
-  <a href="./noticias.html">
-    NOTÍCIAS
-  </a>
-
-  <a href="./rendimento.html">
-    RENDIMENTO
-  </a>
-
-  <a href="#areaAdmin">
-    ADMINISTRAÇÃO
-  </a>
-
+  <a href="index.html">INÍCIO</a>
+  <a href="publicar.html">PUBLICAR</a>
+  <a href="noticias.html">NOTÍCIAS</a>
+  <a href="rendimento.html">RENDIMENTO</a>
+  <button onclick="abrirLogin()">ADMINISTRAÇÃO</button>
 </nav>
 
+<main class="container">
 
-<div class="container">
+  <section>
+    <h2>Notícias em destaque</h2>
 
-
-  <section class="hero">
-
-    <h2>
-      Bem-vindo ao Meu Jornal
-    </h2>
-
-    <p>
-      Leia notícias, publique conteúdos e acompanhe o seu jornal.
-    </p>
-
-    <a
-      class="botao"
-      href="./noticias.html">
-      LER NOTÍCIAS
-    </a>
-
+    <div id="destaqueArea">
+      <div class="vazio">Nenhuma notícia publicada.</div>
+    </div>
   </section>
 
+  <section>
+    <h2>Outras notícias</h2>
+    <div id="outrasNoticias" class="grid"></div>
+  </section>
 
-  <h2>
-    ESCOLHA UMA CATEGORIA
-  </h2>
+  <section style="margin-top:30px;">
+    <h2>Categorias</h2>
 
+    <div class="categorias">
+      <button onclick="abrirCategoria('Política')">Política</button>
+      <button onclick="abrirCategoria('Desporto')">Desporto</button>
+      <button onclick="abrirCategoria('Economia')">Economia</button>
+      <button onclick="abrirCategoria('Sociedade')">Sociedade</button>
+      <button onclick="abrirCategoria('Cultura')">Cultura</button>
+      <button onclick="abrirCategoria('Educação')">Educação</button>
+      <button onclick="abrirCategoria('Saúde')">Saúde</button>
+      <button onclick="abrirCategoria('Tecnologia')">Tecnologia</button>
+      <button onclick="abrirCategoria('Internacional')">Internacional</button>
+      <button onclick="abrirCategoria('Outras')">Outras</button>
+    </div>
+  </section>
 
-  <div class="categorias">
+  <section id="areaAdmin">
 
-    <button onclick="abrirCategoria('Educação')">
-      Educação
-    </button>
+    <h2>Administração</h2>
 
-    <button onclick="abrirCategoria('Novas Tecnologias')">
-      Novas Tecnologias
-    </button>
+    <div id="loginAdmin">
+      <p>Digite a senha de administração:</p>
 
-    <button onclick="abrirCategoria('Política')">
-      Política
-    </button>
+      <input
+        type="password"
+        id="senhaAdmin"
+        placeholder="Digite a senha"
+        style="width:100%;padding:12px;border:1px solid #ccc;border-radius:5px;"
+      >
 
-    <button onclick="abrirCategoria('Economia')">
-      Economia
-    </button>
+      <button class="btn" onclick="entrarAdmin()">
+        ENTRAR
+      </button>
 
-    <button onclick="abrirCategoria('Desporto')">
-      Desporto
-    </button>
-
-    <button onclick="abrirCategoria('Sociedade')">
-      Sociedade
-    </button>
-
-    <button onclick="abrirCategoria('Saúde')">
-      Saúde
-    </button>
-
-    <button onclick="abrirCategoria('Cultura')">
-      Cultura
-    </button>
-
-    <button onclick="abrirCategoria('Outras')">
-      Outras
-    </button>
-
-  </div>
-
-
-  <h2>
-    NOTÍCIAS RECENTES
-  </h2>
-
-
-  <div id="listaNoticias">
-
-    <div class="mensagem">
-      A carregar notícias...
+      <div id="erroAdmin"></div>
     </div>
 
+    <div id="painelAdmin">
+
+      <h3>Painel administrativo</h3>
+
+      <div class="estatisticas">
+
+        <div class="estatistica">
+          Notícias
+          <strong id="totalNoticias">0</strong>
+        </div>
+
+        <div class="estatistica">
+          Visualizações
+          <strong id="totalVisualizacoes">0</strong>
+        </div>
+
+        <div class="estatistica">
+          Publicidade
+          <strong id="totalPublicidade">0,00 MT</strong>
+        </div>
+
+        <div class="estatistica">
+          Total
+          <strong id="totalRendimento">0,00 MT</strong>
+        </div>
+
+      </div>
+
+      <div class="admin-botoes">
+
+        <a href="gerir.html">
+          GERIR NOTÍCIAS
+        </a>
+
+        <a href="publicar.html">
+          PUBLICAR
+        </a>
+
+        <a href="rendimento.html">
+          RENDIMENTO
+        </a>
+
+        <button onclick="abrirAlterarSenha()">
+          ALTERAR SENHA
+        </button>
+
+        <button onclick="sairAdmin()">
+          SAIR
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Meu Jornal</p>
+  <p>Informação ao seu alcance</p>
+</footer>
+
+<!-- MODAL LOGIN -->
+<div id="modalLogin" class="modal">
+
+  <div class="modal-box">
+
+    <h3>Administração</h3>
+
+    <input
+      type="password"
+      id="senhaModal"
+      placeholder="Digite a senha"
+    >
+
+    <div class="modal-botoes">
+
+      <button class="ok" onclick="confirmarLogin()">
+        ENTRAR
+      </button>
+
+      <button class="cancelar" onclick="fecharLogin()">
+        CANCELAR
+      </button>
+
+    </div>
+
+    <div id="erroModal" style="color:#c00;margin-top:10px;"></div>
+
   </div>
-
-
-  <section class="rendimento-box">
-
-    <h2>
-      RESUMO
-    </h2>
-
-    <p>
-      Visualizações:
-      <strong id="visualizacoes">
-        0
-      </strong>
-    </p>
-
-    <p>
-      Rendimento:
-      <strong id="rendimento">
-        0,00 MT
-      </strong>
-    </p>
-
-  </section>
-
-
-  <section
-    class="area-admin"
-    id="areaAdmin">
-
-    <h2>
-      Administração
-    </h2>
-
-    <p>
-      Área de administração do Meu Jornal.
-    </p>
-
-
-    <a
-      class="botao"
-      href="./gerir.html">
-      GERIR NOTÍCIAS
-    </a>
-
-
-    <button
-      class="botao"
-      onclick="abrirPublicar()">
-      PUBLICAR
-    </button>
-
-
-    <button
-      class="botao"
-      onclick="abrirRendimento()">
-      RENDIMENTO
-    </button>
-
-  </section>
 
 </div>
 
-
-<footer>
-
-  <p>
-    © 2026 Meu Jornal
-  </p>
-
-  <p>
-    Informação ao seu alcance.
-  </p>
-
-</footer>
-
-
 <script>
 
+/* ==============================
+   NOTÍCIAS
+============================== */
 
-/* ==========================================
-   ABRIR CATEGORIA
-========================================== */
+function obterNoticias(){
 
-function abrirCategoria(categoria) {
+  try{
 
-  localStorage.setItem(
-    "meuJornalCategoria",
-    categoria
-  );
+    const dados = localStorage.getItem("meuJornalNoticias");
 
-  window.location.href =
-    "./noticias.html";
+    if(!dados){
+      return [];
+    }
 
-}
+    const noticias = JSON.parse(dados);
 
+    return Array.isArray(noticias) ? noticias : [];
 
-/* ==========================================
-   ABRIR PUBLICAR
-========================================== */
+  }catch(e){
 
-function abrirPublicar() {
+    console.log(e);
 
-  window.location.href =
-    "./publicar.html";
-
-}
-
-
-/* ==========================================
-   ABRIR RENDIMENTO
-========================================== */
-
-function abrirRendimento() {
-
-  window.location.href =
-    "./rendimento.html";
-
-}
-
-
-/* ==========================================
-   ABRIR NOTÍCIA
-========================================== */
-
-function abrirNoticia(indice) {
-
-  const noticias =
-    JSON.parse(
-      localStorage.getItem(
-        "meuJornalNoticias"
-      )
-    ) || [];
-
-
-  const noticiasInvertidas =
-    noticias.slice().reverse();
-
-
-  const noticia =
-    noticiasInvertidas[indice];
-
-
-  if (!noticia) {
-
-    return;
+    return [];
 
   }
 
+}
+
+
+/* ==============================
+   MOSTRAR NOTÍCIAS
+============================== */
+
+function mostrarNoticias(){
+
+  const noticias = obterNoticias();
+
+  const destaque = document.getElementById("destaqueArea");
+  const outras = document.getElementById("outrasNoticias");
+
+  destaque.innerHTML = "";
+  outras.innerHTML = "";
+
+  if(noticias.length === 0){
+
+    destaque.innerHTML =
+      '<div class="vazio">Nenhuma notícia publicada.</div>';
+
+    return;
+  }
+
+  const principal = noticias[0];
+
+  const titulo =
+    principal.titulo ||
+    principal.title ||
+    "Sem título";
+
+  const texto =
+    principal.texto ||
+    principal.conteudo ||
+    principal.descricao ||
+    "";
+
+  const categoria =
+    principal.categoria ||
+    principal.category ||
+    "Outras";
+
+  let imagem = "";
+
+  if(principal.imagem){
+    imagem = principal.imagem;
+  }
+
+  destaque.innerHTML = `
+
+    <div class="destaque">
+
+      ${imagem ? `<img src="${imagem}" alt="Imagem da notícia">` : ""}
+
+      <h2>${escaparHTML(titulo)}</h2>
+
+      <p><strong>${escaparHTML(categoria)}</strong></p>
+
+      <p>${escaparHTML(resumir(texto,300))}</p>
+
+      <button class="btn" onclick="abrirNoticia(0)">
+        NOTÍCIA COMPLETA
+      </button>
+
+    </div>
+
+  `;
+
+
+  for(let i=1;i<noticias.length;i++){
+
+    const noticia = noticias[i];
+
+    const tituloCard =
+      noticia.titulo ||
+      noticia.title ||
+      "Sem título";
+
+    const textoCard =
+      noticia.texto ||
+      noticia.conteudo ||
+      noticia.descricao ||
+      "";
+
+    const categoriaCard =
+      noticia.categoria ||
+      noticia.category ||
+      "Outras";
+
+    const imagemCard =
+      noticia.imagem || "";
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+      ${imagemCard ?
+        `<img src="${imagemCard}" alt="Imagem da notícia">`
+        :
+        ""
+      }
+
+      <div class="card-content">
+
+        <h3>${escaparHTML(tituloCard)}</h3>
+
+        <p>
+          <strong>${escaparHTML(categoriaCard)}</strong>
+        </p>
+
+        <p>
+          ${escaparHTML(resumir(textoCard,150))}
+        </p>
+
+        <button class="btn" onclick="abrirNoticia(${i})">
+          NOTÍCIA COMPLETA
+        </button>
+
+      </div>
+
+    `;
+
+    outras.appendChild(card);
+
+  }
+
+}
+
+
+/* ==============================
+   ABRIR NOTÍCIA
+============================== */
+
+function abrirNoticia(indice){
 
   localStorage.setItem(
     "meuJornalNoticiaSelecionada",
-    JSON.stringify(noticia)
+    indice
   );
 
+  window.location.href = "noticias.html";
+
+}
+
+
+/* ==============================
+   CATEGORIA
+============================== */
+
+function abrirCategoria(categoria){
 
   window.location.href =
-    "./noticias.html";
+    "noticias.html?categoria=" +
+    encodeURIComponent(categoria);
 
 }
 
 
-/* ==========================================
-   BANCO DE IMAGENS
-========================================== */
+/* ==============================
+   ADMIN
+============================== */
 
-let bancoImagens = null;
+function abrirLogin(){
 
+  document.getElementById("areaAdmin").style.display = "block";
 
-function abrirBancoImagens() {
-
-  return new Promise(function(resolve) {
-
-    const pedido =
-      indexedDB.open(
-        "MeuJornalBanco",
-        1
-      );
-
-
-    pedido.onsuccess =
-      function(evento) {
-
-        bancoImagens =
-          evento.target.result;
-
-        resolve(
-          bancoImagens
-        );
-
-      };
-
-
-    pedido.onerror =
-      function() {
-
-        resolve(null);
-
-      };
-
-  });
+  document.getElementById("areaAdmin")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
 
 
-/* ==========================================
-   CARREGAR IMAGEM PELO ID
-========================================== */
+function entrarAdmin(){
 
-function carregarImagemPorId(
-  imagemId,
-  elemento
-) {
+  const senha =
+    document.getElementById("senhaAdmin").value;
 
-  if (!imagemId) {
+  const senhaGuardada =
+    localStorage.getItem("meuJornalSenhaAdmin");
 
-    return;
+  /*
+    NÃO substitui a senha que já existe.
+    Se houver senha guardada, ela continua sendo usada.
+  */
+
+  const senhaCorreta =
+    senhaGuardada || "1234";
+
+  if(senha === senhaCorreta){
+
+    document.getElementById("loginAdmin").style.display =
+      "none";
+
+    document.getElementById("painelAdmin").style.display =
+      "block";
+
+    atualizarAdmin();
+
+  }else{
+
+    document.getElementById("erroAdmin").textContent =
+      "Senha incorreta.";
 
   }
 
+}
 
-  if (!bancoImagens) {
 
-    return;
+function confirmarLogin(){
+
+  const senha =
+    document.getElementById("senhaModal").value;
+
+  const senhaGuardada =
+    localStorage.getItem("meuJornalSenhaAdmin");
+
+  const senhaCorreta =
+    senhaGuardada || "1234";
+
+  if(senha === senhaCorreta){
+
+    document.getElementById("modalLogin").style.display =
+      "none";
+
+    document.getElementById("areaAdmin").style.display =
+      "block";
+
+    document.getElementById("loginAdmin").style.display =
+      "none";
+
+    document.getElementById("painelAdmin").style.display =
+      "block";
+
+    atualizarAdmin();
+
+    document.getElementById("areaAdmin")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  }else{
+
+    document.getElementById("erroModal").textContent =
+      "Senha incorreta.";
 
   }
 
-
-  try {
-
-    const transacao =
-      bancoImagens.transaction(
-        ["imagens"],
-        "readonly"
-      );
+}
 
 
-    const loja =
-      transacao.objectStore(
-        "imagens"
-      );
+function fecharLogin(){
+
+  document.getElementById("modalLogin").style.display =
+    "none";
+
+}
 
 
-    const pedido =
-      loja.get(imagemId);
+function sairAdmin(){
+
+  document.getElementById("painelAdmin").style.display =
+    "none";
+
+  document.getElementById("loginAdmin").style.display =
+    "block";
+
+  document.getElementById("senhaAdmin").value = "";
+
+}
 
 
-    pedido.onsuccess =
-      function() {
+/* ==============================
+   ALTERAR SENHA
+============================== */
 
-        if (!pedido.result) {
+function abrirAlterarSenha(){
 
-          return;
+  window.location.href = "admin.html";
 
-        }
-
-
-        let blob =
-          pedido.result.blob ||
-          pedido.result;
+}
 
 
-        if (!blob) {
+/* ==============================
+   ESTATÍSTICAS
+============================== */
 
-          return;
+function atualizarAdmin(){
 
-        }
+  const noticias = obterNoticias();
 
+  document.getElementById("totalNoticias").textContent =
+    noticias.length;
 
-        const url =
-          URL.createObjectURL(blob);
-
-
-        elemento.src = url;
-
-        elemento.style.display =
-          "block";
-
-      };
-
-  } catch (erro) {
-
-    console.log(
-      "Erro ao carregar imagem:",
-      erro
+  const visualizacoes =
+    Number(
+      localStorage.getItem("meuJornalVisualizacoes") || 0
     );
 
-  }
-
-}
-
-
-/* ==========================================
-   CARREGAR NOTÍCIAS
-========================================== */
-
-async function carregarNoticias() {
-
-  const lista =
-    document.getElementById(
-      "listaNoticias"
-    );
-
-
-  let noticias = [];
-
-
-  try {
-
-    noticias =
-      JSON.parse(
-        localStorage.getItem(
-          "meuJornalNoticias"
-        )
-      ) || [];
-
-  } catch (erro) {
-
-    noticias = [];
-
-  }
-
-
-  lista.innerHTML = "";
-
-
-  if (
-    !noticias ||
-    noticias.length === 0
-  ) {
-
-    lista.innerHTML =
-      '<div class="mensagem">' +
-      'Nenhuma notícia publicada ainda.' +
-      '</div>';
-
-    return;
-
-  }
-
-
-  const noticiasRecentes =
-    noticias
-      .slice()
-      .reverse()
-      .slice(0, 6);
-
-
-  await abrirBancoImagens();
-
-
-  noticiasRecentes.forEach(
-    function(noticia, indice) {
-
-      const card =
-        document.createElement(
-          "article"
-        );
-
-
-      card.className =
-        "card";
-
-
-      /*
-       * Criamos a imagem somente
-       * quando a notícia tem imagem.
-       */
-
-      let imagemHTML = "";
-
-
-      if (noticia.imagem) {
-
-        imagemHTML =
-          '<img src="' +
-          noticia.imagem +
-          '" alt="Imagem da notícia">';
-
-      }
-
-      else if (noticia.imagemId) {
-
-        imagemHTML =
-          '<img id="imagemNoticia' +
-          indice +
-          '" alt="Imagem da notícia" ' +
-          'style="display:none;">';
-
-      }
-
-
-      card.innerHTML =
-
-        imagemHTML +
-
-        '<div class="card-content">' +
-
-        '<small>' +
-
-        escapeHTML(
-          noticia.categoria ||
-          "Notícia"
-        ) +
-
-        '</small>' +
-
-        '<h3>' +
-
-        escapeHTML(
-          noticia.titulo ||
-          "Sem título"
-        ) +
-
-        '</h3>' +
-
-        '<p>' +
-
-        escapeHTML(
-          noticia.texto
-            ? noticia.texto.substring(
-                0,
-                120
-              )
-            : ""
-        ) +
-
-        (noticia.texto &&
-         noticia.texto.length > 120
-          ? "..."
-          : "") +
-
-        '</p>' +
-
-        '<button ' +
-        'class="botao" ' +
-        'onclick="abrirNoticia(' +
-        indice +
-        ')">' +
-
-        'Ler notícia' +
-
-        '</button>' +
-
-        '</div>';
-
-
-      lista.appendChild(card);
-
-
-      if (
-        noticia.imagemId &&
-        bancoImagens
-      ) {
-
-        const elemento =
-          document.getElementById(
-            "imagemNoticia" +
-            indice
-          );
-
-
-        if (elemento) {
-
-          carregarImagemPorId(
-            noticia.imagemId,
-            elemento
-          );
-
-        }
-
-      }
-
-    }
-  );
-
-}
-
-
-/* ==========================================
-   PROTEGER TEXTO DAS NOTÍCIAS
-========================================== */
-
-function escapeHTML(texto) {
-
-  const div =
-    document.createElement(
-      "div"
-    );
-
-
-  div.textContent =
-    texto;
-
-
-  return div.innerHTML;
-
-}
-
-
-/* ==========================================
-   CARREGAR VISUALIZAÇÕES
-========================================== */
-
-function carregarVisualizacoes() {
-
-  let visualizacoes =
-    localStorage.getItem(
-      "meuJornalVisualizacoes"
-    );
-
-
-  if (!visualizacoes) {
-
-    visualizacoes = "0";
-
-  }
-
-
-  document.getElementById(
-    "visualizacoes"
-  ).textContent =
+  document.getElementById("totalVisualizacoes").textContent =
     visualizacoes;
 
-}
-
-
-/* ==========================================
-   CARREGAR RENDIMENTO
-========================================== */
-
-function carregarRendimento() {
-
-  let rendimento =
-    localStorage.getItem(
-      "meuJornalRendimento"
+  const rendimento =
+    Number(
+      localStorage.getItem("meuJornalRendimento") || 0
     );
 
+  const valor =
+    rendimento.toFixed(2).replace(".",",");
 
-  if (!rendimento) {
+  document.getElementById("totalPublicidade").textContent =
+    valor + " MT";
 
-    rendimento = "0";
-
-  }
-
-
-  let valor =
-    parseFloat(
-      rendimento
-    );
-
-
-  if (isNaN(valor)) {
-
-    valor = 0;
-
-  }
-
-
-  document.getElementById(
-    "rendimento"
-  ).textContent =
-
-    valor
-      .toFixed(2)
-      .replace(".", ",") +
-
-    " MT";
+  document.getElementById("totalRendimento").textContent =
+    valor + " MT";
 
 }
 
 
-/* ==========================================
-   CONTAR VISUALIZAÇÃO
-========================================== */
+/* ==============================
+   CONTADOR DE VISUALIZAÇÕES
+============================== */
 
-function registrarVisualizacao() {
+function registrarVisualizacao(){
 
-  let total =
-    parseInt(
-      localStorage.getItem(
-        "meuJornalVisualizacoes"
-      )
-    ) || 0;
+  let visualizacoes =
+    Number(
+      localStorage.getItem("meuJornalVisualizacoes") || 0
+    );
 
-
-  total++;
-
+  visualizacoes++;
 
   localStorage.setItem(
     "meuJornalVisualizacoes",
-    total
+    visualizacoes
   );
-
-
-  document.getElementById(
-    "visualizacoes"
-  ).textContent =
-    total;
 
 }
 
 
-/* ==========================================
+/* ==============================
+   FUNÇÕES AUXILIARES
+============================== */
+
+function resumir(texto, limite){
+
+  texto = String(texto || "");
+
+  if(texto.length <= limite){
+    return texto;
+  }
+
+  return texto.substring(0,limite) + "...";
+
+}
+
+
+function escaparHTML(texto){
+
+  return String(texto || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==============================
    INICIALIZAÇÃO
-========================================== */
+============================== */
 
-carregarNoticias();
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-carregarVisualizacoes();
+    mostrarNoticias();
 
-carregarRendimento();
+    registrarVisualizacao();
 
-registrarVisualizacao();
+    atualizarAdmin();
 
+  }
+);
 
 </script>
 
