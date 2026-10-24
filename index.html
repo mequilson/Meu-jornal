@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Meu Jornal</title>
 
+<!-- GOOGLE ADSENSE -->
+<meta name="google-adsense-account" content="ca-pub-8921112624862886">
+
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -111,6 +116,7 @@ nav a:hover {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  display: block;
 }
 
 .card-content {
@@ -118,7 +124,16 @@ nav a:hover {
 }
 
 .card h3 {
-  margin-top: 0;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  line-height: 1.5;
+}
+
+.card small {
+  color: #666;
 }
 
 .botao {
@@ -130,6 +145,11 @@ nav a:hover {
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
+  margin: 4px;
+}
+
+.botao:hover {
+  background: #444;
 }
 
 .area-admin {
@@ -139,6 +159,22 @@ nav a:hover {
   border-radius: 10px;
 }
 
+.area-admin h2 {
+  margin-top: 0;
+}
+
+.rendimento-box {
+  background: white;
+  padding: 20px;
+  margin-top: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.rendimento-box strong {
+  font-size: 22px;
+}
+
 footer {
   margin-top: 30px;
   background: #111;
@@ -146,48 +182,100 @@ footer {
   text-align: center;
   padding: 18px;
 }
+
+.mensagem {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 25px;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  nav a {
+    text-align: center;
+  }
+
+  .container {
+    width: 94%;
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
 <header>
+
   <h1>MEU JORNAL</h1>
+
   <p>Informação que chega até você.</p>
+
 </header>
-  <meta name="google-adsense-account" content="ca-pub-8921112624862886">
+
 
 <nav>
 
-  <a href="./index.html">INÍCIO</a>
+  <a href="./index.html">
+    INÍCIO
+  </a>
 
-  <a href="./publicar.html">PUBLICAR</a>
+  <a href="./publicar.html">
+    PUBLICAR
+  </a>
 
-  <a href="./noticias.html">NOTÍCIAS</a>
+  <a href="./noticias.html">
+    NOTÍCIAS
+  </a>
 
-  <a href="./rendimento.html">RENDIMENTO</a>
+  <a href="./rendimento.html">
+    RENDIMENTO
+  </a>
 
-  <a href="#areaAdmin">ADMINISTRAÇÃO</a>
+  <a href="#areaAdmin">
+    ADMINISTRAÇÃO
+  </a>
 
 </nav>
 
+
 <div class="container">
+
 
   <section class="hero">
 
-    <h2>Bem-vindo ao Meu Jornal</h2>
+    <h2>
+      Bem-vindo ao Meu Jornal
+    </h2>
 
     <p>
       Leia notícias, publique conteúdos e acompanhe o seu jornal.
     </p>
 
-    <a class="botao" href="./noticias.html">
+    <a
+      class="botao"
+      href="./noticias.html">
       LER NOTÍCIAS
     </a>
 
   </section>
 
-  <h2>ESCOLHA UMA CATEGORIA</h2>
+
+  <h2>
+    ESCOLHA UMA CATEGORIA
+  </h2>
+
 
   <div class="categorias">
 
@@ -229,136 +317,101 @@ footer {
 
   </div>
 
-  <h2>NOTÍCIAS RECENTES</h2>
 
-  <div id="listaNoticias"></div>
+  <h2>
+    NOTÍCIAS RECENTES
+  </h2>
 
-  <section class="area-admin" id="areaAdmin">
 
-    <h2>Administração</h2>
+  <div id="listaNoticias">
+
+    <div class="mensagem">
+      A carregar notícias...
+    </div>
+
+  </div>
+
+
+  <section class="rendimento-box">
+
+    <h2>
+      RESUMO
+    </h2>
+
+    <p>
+      Visualizações:
+      <strong id="visualizacoes">
+        0
+      </strong>
+    </p>
+
+    <p>
+      Rendimento:
+      <strong id="rendimento">
+        0,00 MT
+      </strong>
+    </p>
+
+  </section>
+
+
+  <section
+    class="area-admin"
+    id="areaAdmin">
+
+    <h2>
+      Administração
+    </h2>
 
     <p>
       Área de administração do Meu Jornal.
     </p>
 
-    <button class="botao" onclick="abrirPublicar()">
-      Publicar notícia
+
+    <a
+      class="botao"
+      href="./gerir.html">
+      GERIR NOTÍCIAS
+    </a>
+
+
+    <button
+      class="botao"
+      onclick="abrirPublicar()">
+      PUBLICAR
     </button>
 
-    <button class="botao" onclick="abrirRendimento()">
-      Rendimento
+
+    <button
+      class="botao"
+      onclick="abrirRendimento()">
+      RENDIMENTO
     </button>
 
   </section>
 
 </div>
 
+
 <footer>
-  <p>© Meu Jornal</p>
+
+  <p>
+    © 2026 Meu Jornal
+  </p>
+
+  <p>
+    Informação ao seu alcance.
+  </p>
+
 </footer>
+
 
 <script>
 
-function carregarNoticias() {
 
-  const noticias =
-    JSON.parse(
-      localStorage.getItem("meuJornalNoticias")
-    ) || [];
-
-  const lista =
-    document.getElementById("listaNoticias");
-
-  lista.innerHTML = "";
-
-  if (noticias.length === 0) {
-
-    lista.innerHTML =
-      "<p>Nenhuma notícia publicada ainda.</p>";
-
-    return;
-  }
-
-  noticias
-    .slice()
-    .reverse()
-    .slice(0, 6)
-    .forEach(function(noticia, indice) {
-
-      const card =
-        document.createElement("div");
-
-      card.className = "card";
-
-      let imagem = "";
-
-      if (noticia.imagem) {
-
-        imagem =
-          '<img src="' +
-          noticia.imagem +
-          '" alt="Imagem da notícia">';
-
-      }
-
-      card.innerHTML =
-
-        imagem +
-
-        '<div class="card-content">' +
-
-        '<small>' +
-        (noticia.categoria || "Notícia") +
-        '</small>' +
-
-        '<h3>' +
-        (noticia.titulo || "") +
-        '</h3>' +
-
-        '<p>' +
-        (noticia.texto || "").substring(0, 120) +
-        '...</p>' +
-
-        '<button class="botao" onclick="abrirNoticia(' +
-        indice +
-        ')">' +
-        'Ler notícia' +
-        '</button>' +
-
-        '</div>';
-
-      lista.appendChild(card);
-
-    });
-}
-
-
-function abrirNoticia(indice) {
-
-  const noticias =
-    JSON.parse(
-      localStorage.getItem("meuJornalNoticias")
-    ) || [];
-
-  const noticiasInvertidas =
-    noticias.slice().reverse();
-
-  if (!noticiasInvertidas[indice]) {
-    return;
-  }
-
-  localStorage.setItem(
-    "meuJornalNoticiaSelecionada",
-    JSON.stringify(
-      noticiasInvertidas[indice]
-    )
-  );
-
-  window.location.href =
-    "./noticias.html";
-
-}
-
+/* ==========================================
+   ABRIR CATEGORIA
+========================================== */
 
 function abrirCategoria(categoria) {
 
@@ -373,6 +426,10 @@ function abrirCategoria(categoria) {
 }
 
 
+/* ==========================================
+   ABRIR PUBLICAR
+========================================== */
+
 function abrirPublicar() {
 
   window.location.href =
@@ -380,6 +437,10 @@ function abrirPublicar() {
 
 }
 
+
+/* ==========================================
+   ABRIR RENDIMENTO
+========================================== */
 
 function abrirRendimento() {
 
@@ -389,9 +450,502 @@ function abrirRendimento() {
 }
 
 
+/* ==========================================
+   ABRIR NOTÍCIA
+========================================== */
+
+function abrirNoticia(indice) {
+
+  const noticias =
+    JSON.parse(
+      localStorage.getItem(
+        "meuJornalNoticias"
+      )
+    ) || [];
+
+
+  const noticiasInvertidas =
+    noticias.slice().reverse();
+
+
+  const noticia =
+    noticiasInvertidas[indice];
+
+
+  if (!noticia) {
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "meuJornalNoticiaSelecionada",
+    JSON.stringify(noticia)
+  );
+
+
+  window.location.href =
+    "./noticias.html";
+
+}
+
+
+/* ==========================================
+   BANCO DE IMAGENS
+========================================== */
+
+let bancoImagens = null;
+
+
+function abrirBancoImagens() {
+
+  return new Promise(function(resolve) {
+
+    const pedido =
+      indexedDB.open(
+        "MeuJornalBanco",
+        1
+      );
+
+
+    pedido.onsuccess =
+      function(evento) {
+
+        bancoImagens =
+          evento.target.result;
+
+        resolve(
+          bancoImagens
+        );
+
+      };
+
+
+    pedido.onerror =
+      function() {
+
+        resolve(null);
+
+      };
+
+  });
+
+}
+
+
+/* ==========================================
+   CARREGAR IMAGEM PELO ID
+========================================== */
+
+function carregarImagemPorId(
+  imagemId,
+  elemento
+) {
+
+  if (!imagemId) {
+
+    return;
+
+  }
+
+
+  if (!bancoImagens) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const transacao =
+      bancoImagens.transaction(
+        ["imagens"],
+        "readonly"
+      );
+
+
+    const loja =
+      transacao.objectStore(
+        "imagens"
+      );
+
+
+    const pedido =
+      loja.get(imagemId);
+
+
+    pedido.onsuccess =
+      function() {
+
+        if (!pedido.result) {
+
+          return;
+
+        }
+
+
+        let blob =
+          pedido.result.blob ||
+          pedido.result;
+
+
+        if (!blob) {
+
+          return;
+
+        }
+
+
+        const url =
+          URL.createObjectURL(blob);
+
+
+        elemento.src = url;
+
+        elemento.style.display =
+          "block";
+
+      };
+
+  } catch (erro) {
+
+    console.log(
+      "Erro ao carregar imagem:",
+      erro
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   CARREGAR NOTÍCIAS
+========================================== */
+
+async function carregarNoticias() {
+
+  const lista =
+    document.getElementById(
+      "listaNoticias"
+    );
+
+
+  let noticias = [];
+
+
+  try {
+
+    noticias =
+      JSON.parse(
+        localStorage.getItem(
+          "meuJornalNoticias"
+        )
+      ) || [];
+
+  } catch (erro) {
+
+    noticias = [];
+
+  }
+
+
+  lista.innerHTML = "";
+
+
+  if (
+    !noticias ||
+    noticias.length === 0
+  ) {
+
+    lista.innerHTML =
+      '<div class="mensagem">' +
+      'Nenhuma notícia publicada ainda.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  const noticiasRecentes =
+    noticias
+      .slice()
+      .reverse()
+      .slice(0, 6);
+
+
+  await abrirBancoImagens();
+
+
+  noticiasRecentes.forEach(
+    function(noticia, indice) {
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        "card";
+
+
+      /*
+       * Criamos a imagem somente
+       * quando a notícia tem imagem.
+       */
+
+      let imagemHTML = "";
+
+
+      if (noticia.imagem) {
+
+        imagemHTML =
+          '<img src="' +
+          noticia.imagem +
+          '" alt="Imagem da notícia">';
+
+      }
+
+      else if (noticia.imagemId) {
+
+        imagemHTML =
+          '<img id="imagemNoticia' +
+          indice +
+          '" alt="Imagem da notícia" ' +
+          'style="display:none;">';
+
+      }
+
+
+      card.innerHTML =
+
+        imagemHTML +
+
+        '<div class="card-content">' +
+
+        '<small>' +
+
+        escapeHTML(
+          noticia.categoria ||
+          "Notícia"
+        ) +
+
+        '</small>' +
+
+        '<h3>' +
+
+        escapeHTML(
+          noticia.titulo ||
+          "Sem título"
+        ) +
+
+        '</h3>' +
+
+        '<p>' +
+
+        escapeHTML(
+          noticia.texto
+            ? noticia.texto.substring(
+                0,
+                120
+              )
+            : ""
+        ) +
+
+        (noticia.texto &&
+         noticia.texto.length > 120
+          ? "..."
+          : "") +
+
+        '</p>' +
+
+        '<button ' +
+        'class="botao" ' +
+        'onclick="abrirNoticia(' +
+        indice +
+        ')">' +
+
+        'Ler notícia' +
+
+        '</button>' +
+
+        '</div>';
+
+
+      lista.appendChild(card);
+
+
+      if (
+        noticia.imagemId &&
+        bancoImagens
+      ) {
+
+        const elemento =
+          document.getElementById(
+            "imagemNoticia" +
+            indice
+          );
+
+
+        if (elemento) {
+
+          carregarImagemPorId(
+            noticia.imagemId,
+            elemento
+          );
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   PROTEGER TEXTO DAS NOTÍCIAS
+========================================== */
+
+function escapeHTML(texto) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.textContent =
+    texto;
+
+
+  return div.innerHTML;
+
+}
+
+
+/* ==========================================
+   CARREGAR VISUALIZAÇÕES
+========================================== */
+
+function carregarVisualizacoes() {
+
+  let visualizacoes =
+    localStorage.getItem(
+      "meuJornalVisualizacoes"
+    );
+
+
+  if (!visualizacoes) {
+
+    visualizacoes = "0";
+
+  }
+
+
+  document.getElementById(
+    "visualizacoes"
+  ).textContent =
+    visualizacoes;
+
+}
+
+
+/* ==========================================
+   CARREGAR RENDIMENTO
+========================================== */
+
+function carregarRendimento() {
+
+  let rendimento =
+    localStorage.getItem(
+      "meuJornalRendimento"
+    );
+
+
+  if (!rendimento) {
+
+    rendimento = "0";
+
+  }
+
+
+  let valor =
+    parseFloat(
+      rendimento
+    );
+
+
+  if (isNaN(valor)) {
+
+    valor = 0;
+
+  }
+
+
+  document.getElementById(
+    "rendimento"
+  ).textContent =
+
+    valor
+      .toFixed(2)
+      .replace(".", ",") +
+
+    " MT";
+
+}
+
+
+/* ==========================================
+   CONTAR VISUALIZAÇÃO
+========================================== */
+
+function registrarVisualizacao() {
+
+  let total =
+    parseInt(
+      localStorage.getItem(
+        "meuJornalVisualizacoes"
+      )
+    ) || 0;
+
+
+  total++;
+
+
+  localStorage.setItem(
+    "meuJornalVisualizacoes",
+    total
+  );
+
+
+  document.getElementById(
+    "visualizacoes"
+  ).textContent =
+    total;
+
+}
+
+
+/* ==========================================
+   INICIALIZAÇÃO
+========================================== */
+
 carregarNoticias();
+
+carregarVisualizacoes();
+
+carregarRendimento();
+
+registrarVisualizacao();
+
 
 </script>
 
 </body>
-</html>
+  </html>
